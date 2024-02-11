@@ -1,4 +1,5 @@
 'use client'
+import { blue } from '@ant-design/colors'
 import { TodoItem } from '@prisma/client'
 import { Button, Card, Form, Input, Switch, Typography } from 'antd'
 import { useSWRConfig } from 'swr'
@@ -12,10 +13,10 @@ export const TodoCard = (props: {
   const inputId = Form.useWatch('id', form)
   const layout = {
     labelCol: {
-      span: 8,
+      span: 10,
     },
     wrapperCol: {
-      span: 8,
+      span: 10,
     },
     style: {
       maxWidth: 800,
@@ -76,7 +77,7 @@ export const TodoCard = (props: {
           id: props.todoItem.id,
         }}
       >
-        <Card title={props.todoItem.title}>
+        <Card title={props.todoItem.title} style={{ backgroundColor: blue[1] }}>
           <Form.Item name="id" label="Id" rules={[]}>
             <Typography>{props.todoItem.id}</Typography>
           </Form.Item>

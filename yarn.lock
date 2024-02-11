@@ -4384,6 +4384,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "frontend@workspace:frontend"
   dependencies:
+    "@ant-design/colors": "npm:^7.0.2"
     "@ant-design/nextjs-registry": "npm:^1.0.0"
     "@types/node": "npm:^20"
     "@types/react": "npm:^18"
