@@ -1,7 +1,7 @@
 'use client'
 
 import { TodoItem } from '@prisma/client'
-import { Button, Typography } from 'antd'
+import { Typography } from 'antd'
 import useSWR from 'swr'
 import { TodoCard } from './component/TodoCard'
 
@@ -19,7 +19,13 @@ export default function Home() {
   if (error) return <Typography>failed to load</Typography>
   // if (isLoading) return <Typography>loading...</Typography>
   if (response === undefined) return <Typography>loading....</Typography>
-  return <Typography>{response?.toString()}</Typography>
+  return (
+    <>
+      {response.map((item) => (
+        <TodoCard key={item.id} todoItem={item} />
+      ))}
+    </>
+  )
 
   // return (
   //   <>
