@@ -1,6 +1,7 @@
 import { Controller } from '@nestjs/common'
-import { Delete, Get, Post, Put } from '@nestjs/common'
+import { Body, Delete, Get, Post, Put } from '@nestjs/common'
 import { TodoItem } from '@prisma/client'
+import { CreateTodoDto, DeleteTodoDto, UpdateTodoDto } from './todo.dto'
 import { TodoService } from './todo.service'
 
 @Controller('todo')
@@ -13,17 +14,17 @@ export class TodoController {
   }
 
   @Post()
-  postTodo(): string[] {
-    return this.todoService.getDummy()
+  async postTodo(@Body() createDto: CreateTodoDto): Promise<TodoItem> {
+    return this.todoService.createTodo(createDto)
   }
 
   @Put()
-  putTodo(): string[] {
-    return this.todoService.getDummy()
+  async putTodo(@Body() updateDto: UpdateTodoDto): Promise<TodoItem> {
+    return this.todoService.updateTodo(updateDto)
   }
 
-  @Delete()
-  deleteTodo(): string[] {
-    return this.todoService.getDummy()
+  @Delete(':id')
+  deleteTodo(@Body() deleteDto: DeleteTodoDto): Promise<TodoItem> {
+    return this.todoService.deleteTodo(deleteDto)
   }
 }
