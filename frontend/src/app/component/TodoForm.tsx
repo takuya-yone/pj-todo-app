@@ -2,9 +2,15 @@
 import { TodoItem } from '@prisma/client'
 import { Button, Form, Input } from 'antd'
 import { useSWRConfig } from 'swr'
+import { NotificationPlacementType, NotificationSeverityType } from '../page'
 
 export const TodoForm = (props: {
   endpointUrl: string
+  openNotification: (
+    placement: NotificationPlacementType,
+    type: NotificationSeverityType,
+    message: string,
+  ) => void
 }) => {
   const { mutate } = useSWRConfig()
   const [form] = Form.useForm()
@@ -38,8 +44,11 @@ export const TodoForm = (props: {
       },
       body: JSON.stringify(item),
     })
-      .then((res) => {
-        console.log(res)
+      .then(() => {
+        props.openNotification('bottomRight', 'success', 'Successful Create')
+      })
+      .catch((err) => {
+        props.openNotification('bottomRight', 'error', err)
       })
       .finally(() => mutate(props.endpointUrl))
   }

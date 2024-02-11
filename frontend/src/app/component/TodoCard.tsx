@@ -1,16 +1,25 @@
 'use client'
 import { blue } from '@ant-design/colors'
 import { TodoItem } from '@prisma/client'
-import { Button, Card, Form, Input, Switch, Typography } from 'antd'
+import { Button, Card, Col, Form, Input, Row, Switch } from 'antd'
+import React from 'react'
 import { useSWRConfig } from 'swr'
+import { NotificationPlacementType, NotificationSeverityType } from '../page'
 
 export const TodoCard = (props: {
   todoItem: TodoItem
   endpointUrl: string
+  openNotification: (
+    placement: NotificationPlacementType,
+    type: NotificationSeverityType,
+    message: string,
+  ) => void
 }) => {
   const { mutate } = useSWRConfig()
   const [form] = Form.useForm()
+
   const inputId = Form.useWatch('id', form)
+
   const layout = {
     labelCol: {
       span: 10,
@@ -41,8 +50,11 @@ export const TodoCard = (props: {
       },
       body: JSON.stringify(item),
     })
-      .then((res) => {
-        console.log(res)
+      .then(() => {
+        props.openNotification('bottomRight', 'success', 'Successful Update')
+      })
+      .catch((err) => {
+        props.openNotification('bottomRight', 'error', err)
       })
       .finally(() => mutate(props.endpointUrl))
   }
@@ -57,8 +69,11 @@ export const TodoCard = (props: {
       },
       body: JSON.stringify({ id: inputId }),
     })
-      .then((res) => {
-        console.log(res)
+      .then(() => {
+        props.openNotification('bottomRight', 'success', 'Successful Delete')
+      })
+      .catch((err) => {
+        props.openNotification('bottomRight', 'error', err)
       })
       .finally(() => mutate(props.endpointUrl))
   }
@@ -77,9 +92,18 @@ export const TodoCard = (props: {
           id: props.todoItem.id,
         }}
       >
-        <Card title={props.todoItem.title} style={{ backgroundColor: blue[1] }}>
-          <Form.Item name="id" label="Id" rules={[]}>
-            <Typography>{props.todoItem.id}</Typography>
+        <Card title={props.todoItem.id} style={{ backgroundColor: blue[0] }}>
+          <Form.Item
+            name="id"
+            label="Id"
+            rules={[
+              {
+                required: true,
+              },
+            ]}
+            style={{ display: 'none' }}
+          >
+            <Input disabled={true} />
           </Form.Item>
           <Form.Item
             name="title"
@@ -115,12 +139,18 @@ export const TodoCard = (props: {
             <Switch />
           </Form.Item>
           <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
-            <Button type="primary" danger onClick={() => deleteItem()}>
-              Delete
-            </Button>
+            <Row>
+              <Col span={8} className="gutter-row">
+                <Button type="primary" htmlType="submit">
+                  Submit
+                </Button>
+              </Col>
+              <Col span={8} className="gutter-row">
+                <Button type="primary" danger onClick={() => deleteItem()}>
+                  Delete
+                </Button>
+              </Col>
+            </Row>
           </Form.Item>
         </Card>
       </Form>
