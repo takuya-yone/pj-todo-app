@@ -1,8 +1,16 @@
 import { Injectable } from '@nestjs/common'
+import { TodoItem } from '@prisma/client'
+import { PrismaService } from 'src/prisma/prisma.service'
 
 @Injectable()
 export class TodoService {
-  getTodos(): string[] {
-    return ['aaa', 'bbb']
+  constructor(private prisma: PrismaService) {}
+
+  async getTodos(): Promise<TodoItem[]> {
+    return this.prisma.todoItem.findMany()
+  }
+
+  getDummy(): string[] {
+    return ['aaa', 'bbb', 'ccc']
   }
 }
