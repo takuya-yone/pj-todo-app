@@ -1,10 +1,15 @@
 'use client'
 import { TodoItem } from '@prisma/client'
 import { Button, Card, Form, Input, Switch, Typography } from 'antd'
+import { useSWRConfig } from 'swr'
 
 export const TodoCard = (props: {
   todoItem: TodoItem
+  endpointUrl: string
 }) => {
+  const { mutate } = useSWRConfig()
+  const [form] = Form.useForm()
+  const inputId = Form.useWatch('id', form)
   const layout = {
     labelCol: {
       span: 8,
@@ -26,13 +31,42 @@ export const TodoCard = (props: {
     },
   }
 
-  const onFinish = (item: string) => {
-    console.log(item)
+  const onFinish = (item: TodoItem) => {
+    fetch(props.endpointUrl, {
+      method: 'PUT',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(item),
+    })
+      .then((res) => {
+        console.log(res)
+      })
+      .finally(() => mutate(props.endpointUrl))
   }
+
+  const deleteItem = () => {
+    console.log(inputId)
+    fetch(props.endpointUrl, {
+      method: 'DELETE',
+      mode: 'cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ id: inputId }),
+    })
+      .then((res) => {
+        console.log(res)
+      })
+      .finally(() => mutate(props.endpointUrl))
+  }
+
   return (
     <>
       <Form
         {...layout}
+        form={form}
         onFinish={onFinish}
         validateMessages={validateMessages}
         initialValues={{
@@ -82,6 +116,9 @@ export const TodoCard = (props: {
           <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
             <Button type="primary" htmlType="submit">
               Submit
+            </Button>
+            <Button type="primary" danger onClick={() => deleteItem()}>
+              Delete
             </Button>
           </Form.Item>
         </Card>
