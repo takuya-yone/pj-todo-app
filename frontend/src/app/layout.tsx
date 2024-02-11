@@ -1,20 +1,19 @@
-import { AntdRegistry } from "@ant-design/nextjs-registry";
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { AntdRegistry } from '@ant-design/nextjs-registry'
+import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
-	title: "ToDo App",
-	description: "ToDo App",
-};
+  title: 'ToDo App',
+  description: 'ToDo App',
+}
 
 export default function RootLayout({
-	children,
+  children,
 }: Readonly<{
-	children: React.ReactNode;
+  children: React.ReactNode
 }>) {
-	return (
-		<html lang="en">
-			<AntdRegistry>{children}</AntdRegistry>
-		</html>
-	);
+  return (
+    <html lang="en">
+      <AntdRegistry>{children}</AntdRegistry>
+    </html>
+  )
 }
