@@ -2850,6 +2850,7 @@ __metadata:
     "@types/supertest": "npm:^6.0.2"
     "@typescript-eslint/eslint-plugin": "npm:^6.21.0"
     "@typescript-eslint/parser": "npm:^6.21.0"
+    co: "npm:^4.6.0"
     jest: "npm:^29.7.0"
     prisma: "npm:^5.9.1"
     reflect-metadata: "npm:^0.2.1"

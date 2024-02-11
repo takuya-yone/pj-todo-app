@@ -23,6 +23,7 @@
     "@nestjs/platform-express": "^10.3.2",
     "@nestjs/swagger": "^7.3.0",
     "@prisma/client": "5.9.1",
+    "co": "^4.6.0",
     "prisma": "^5.9.1",
     "reflect-metadata": "^0.2.1",
     "rxjs": "^7.8.1"
