@@ -1,0 +1,26 @@
+{
+  "name": "pj-todo-app",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "author": "yonezawa.takuya.yq2@gmail.com",
+  "main": "index.js",
+  "scripts": {
+    "ncu": "ncu -w frontend -w backend",
+    "biome:all": "biome check --apply frontend/src backend types",
+    "biome:frontend": "biome check --apply frontend/src",
+    "biome:backend": "biome check --apply backend",
+    "biome:types": "biome check --apply types"
+  },
+  "license": "ISC",
+  "workspaces": [
+    "frontend",
+    "backend",
+    "types"
+  ],
+  "packageManager": "yarn@4.1.0",
+  "devDependencies": {
+    "@biomejs/biome": "^1.5.3",
+    "npm-check-updates": "^16.14.15"
+  }
+}
