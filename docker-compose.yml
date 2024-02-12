@@ -5,17 +5,17 @@ services:
     build:
       context: .
       dockerfile: "./frontend/Dockerfile"
-    environment:
-      NEXT_PUBLIC_API_ENDPOINT: backend:4000
     ports:
-      - "3000:3000"
+      - "8080:80"
 
   backend:
-    container_name: backend-container
+    container_name: backend
     hostname: backend-server
     build:
       context: .
       dockerfile: "./backend/Dockerfile"
+    environment:
+      DATABASE_URL: "mysql://mysqluser:mysqlpass@database-server:3306/test"
     depends_on:
       database:
         condition: service_healthy
@@ -55,4 +55,4 @@ services:
     image: adminer
     restart: always
     ports:
-      - 8080:8080
+      - 8081:8080

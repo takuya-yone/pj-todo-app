@@ -17,19 +17,20 @@ COPY . .
 RUN yarn workspace backend prisma generate
 RUN yarn workspace frontend build
 
-# baseステージをもとにrunnerステージを開始
-FROM base AS runner
 
-WORKDIR /app
+# COPY --from=builder /app/frontend/next.config.mjs ./
+# COPY --from=builder /app/frontend/public ./public
+# COPY --from=builder /app/frontend/.next/standalone ./
+# COPY --from=builder /app/frontend/.next/static ./.next/static
 
-# public と .next/static は nextjs の standalone を使う場合に含まれないため、コピーする必要がある
-# https://nextjs.org/docs/advanced-features/output-file-tracing#automatically-copying-traced-files
-# builderから必要なファイルだけコピーする
-COPY --from=builder /app/frontend/public ./public
-COPY --from=builder /app/frontend/.next/static ./.next/static
+# COPY --from=builder /app/frontend/out/ ./.next/static
 
-COPY --from=builder /app/frontend/.next/standalone ./
+############### Nginx ###############
 
-# `next start` の代わりに `node server.js` を使用
-# https://nextjs.org/docs/advanced-features/output-file-tracing#automatically-copying-traced-files
-CMD ["node", "frontend/server.js"]
+FROM nginx:1.23.1-alpine
+COPY --from=builder  /app/frontend/out/ /usr/share/nginx/html
+EXPOSE 80
+
+###################################
+
+# CMD ["node", "frontend/server.js"]

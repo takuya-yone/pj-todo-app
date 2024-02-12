@@ -17,17 +17,16 @@ COPY . .
 
 RUN yarn workspace backend build
 RUN yarn workspace backend prisma:local generate
-RUN yarn workspace backend prisma:local migrate deploy
-# baseステージをもとにrunnerステージを開始
+# RUN yarn workspace backend prisma:local migrate deploy
+
 FROM base AS runner
 
 WORKDIR /app
 
 COPY --from=builder /app/backend/dist ./dist
 COPY --from=builder /app/backend/prisma ./prisma
+# COPY --from=builder /app/backend/.env ./.env
 COPY --from=builder /app/node_modules ./node_modules
-
-
 
 
 CMD ["node", "dist/main.js"]
