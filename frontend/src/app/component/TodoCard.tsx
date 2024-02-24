@@ -2,7 +2,7 @@
 import { blue } from '@ant-design/colors'
 import { TodoItem } from '@prisma/client'
 import { Button, Card, Col, Form, Input, Row, Switch } from 'antd'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSWRConfig } from 'swr'
 import { NotificationPlacementType, NotificationSeverityType } from '../page'
 
@@ -19,6 +19,8 @@ export const TodoCard = (props: {
   const [form] = Form.useForm()
 
   const inputId = Form.useWatch('id', form)
+
+  useEffect(() => form.resetFields(), [props.todoItem])
 
   const layout = {
     labelCol: {
