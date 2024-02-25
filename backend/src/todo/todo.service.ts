@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { TodoItem } from '@prisma/client'
-import { PrismaService } from 'src/prisma/prisma.service'
+import { PrismaService } from '../prisma/prisma.service'
 import { CreateTodoDto, DeleteTodoDto, UpdateTodoDto } from './todo.dto'
 
 @Injectable()
@@ -31,7 +31,7 @@ export class TodoService {
     })
   }
 
-  getDummy(): string[] {
-    return ['aaa', 'bbb', 'ccc']
-  }
+  // getDummy(): string[] {
+  //   return ['aaa', 'bbb', 'ccc']
+  // }
 }

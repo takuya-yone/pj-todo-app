@@ -67,6 +67,6 @@
     }
   },
   "files": {
-    "ignore": ["cdk.out", ".next", "out", "backend/dist"]
+    "ignore": ["cdk.out", ".next", "out", "dist", "coverage"]
   }
 }
