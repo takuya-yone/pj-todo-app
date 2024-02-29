@@ -1,5 +1,6 @@
 services:
   frontend:
+    # image: 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/pj-todo-app-frontend:1.0.0
     container_name: frontend
     hostname: frontend-server
     build:
@@ -9,6 +10,7 @@ services:
       - "8080:80"
 
   backend:
+    # image: 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/pj-todo-app-backend:1.0.0
     container_name: backend
     hostname: backend-server
     build:
