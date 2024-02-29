@@ -28,8 +28,12 @@ RUN yarn workspace frontend build
 ############### Nginx ###############
 
 FROM nginx:1.23.1-alpine
+COPY ./frontend/nginx/default.conf /etc/nginx/conf.d/default.conf
+COPY ./frontend/nginx/nginx.conf /etc/nginx/nginx.conf
+COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.1 /lambda-adapter /opt/extensions/lambda-adapter
 COPY --from=builder  /app/frontend/out/ /usr/share/nginx/html
-EXPOSE 80
+ENV PORT 8080
+EXPOSE 8080
 
 ###################################
 
