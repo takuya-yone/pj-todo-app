@@ -1173,6 +1173,28 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@nestjs/serve-static@npm:^4.0.1":
+  version: 4.0.1
+  resolution: "@nestjs/serve-static@npm:4.0.1"
+  dependencies:
+    path-to-regexp: "npm:0.2.5"
+  peerDependencies:
+    "@fastify/static": ^6.5.0
+    "@nestjs/common": ^9.0.0 || ^10.0.0
+    "@nestjs/core": ^9.0.0 || ^10.0.0
+    express: ^4.18.1
+    fastify: ^4.7.0
+  peerDependenciesMeta:
+    "@fastify/static":
+      optional: true
+    express:
+      optional: true
+    fastify:
+      optional: true
+  checksum: 10c0/940119197dd0f9d35db8d59eb871171f857c4507363e50c2a7e9a430dfbf1055fd3bc43969eb5d2863d01b8dd86ae093371bf64cbead343065a7643769455738
+  languageName: node
+  linkType: hard
+
 "@nestjs/swagger@npm:^7.3.0":
   version: 7.3.0
   resolution: "@nestjs/swagger@npm:7.3.0"
@@ -2752,6 +2774,7 @@ __metadata:
     "@nestjs/core": "npm:^10.3.3"
     "@nestjs/platform-express": "npm:^10.3.3"
     "@nestjs/schematics": "npm:^10.1.1"
+    "@nestjs/serve-static": "npm:^4.0.1"
     "@nestjs/swagger": "npm:^7.3.0"
     "@nestjs/testing": "npm:^10.3.3"
     "@prisma/client": "npm:5.10.2"
@@ -7180,6 +7203,13 @@ __metadata:
   version: 0.1.7
   resolution: "path-to-regexp@npm:0.1.7"
   checksum: 10c0/50a1ddb1af41a9e68bd67ca8e331a705899d16fb720a1ea3a41e310480948387daf603abb14d7b0826c58f10146d49050a1291ba6a82b78a382d1c02c0b8f905
+  languageName: node
+  linkType: hard
+
+"path-to-regexp@npm:0.2.5":
+  version: 0.2.5
+  resolution: "path-to-regexp@npm:0.2.5"
+  checksum: 10c0/947ffdd583390408a4814dcb921226fba363110a8245d22bd11c2bb1db323ad76b2e879f6dadc02bcf8c9c925b1556d5405c01a466dd28a93d84af5f62c51b79
   languageName: node
   linkType: hard
 

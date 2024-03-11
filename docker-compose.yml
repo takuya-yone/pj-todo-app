@@ -1,60 +1,69 @@
 services:
-  frontend:
-    image: 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/pj-todo-app-frontend:1.0.0
-    container_name: frontend
-    hostname: frontend-server
+  application:
+    image: 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/pj-todo-app-mono:1.0.0
     build:
       context: .
-      dockerfile: "./frontend/Dockerfile"
-    ports:
-      - "8080:8080"
-
-  backend:
-    image: 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/pj-todo-app-backend:1.0.0
-    container_name: backend
-    hostname: backend-server
-    build:
-      context: .
-      dockerfile: "./backend/Dockerfile"
+      dockerfile: "./Dockerfile"
     environment:
       DATABASE_URL: "mysql://mysqluser:mysqlpass@database-server:3306/test"
-    depends_on:
-      database:
-        condition: service_healthy
     ports:
       - "4000:4000"
+  # frontend:
+  #   image: 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/pj-todo-app-frontend:1.0.0
+  #   container_name: frontend
+  #   hostname: frontend-server
+  #   build:
+  #     context: .
+  #     dockerfile: "./frontend/Dockerfile"
+  #   ports:
+  #     - "8080:8080"
 
-  database:
-    container_name: database
-    hostname: database-server
-    image: mysql:8.3.0
-    ports:
-      - "3306:3306"
-    environment:
-      MYSQL_ROOT_PASSWORD: rootpass
-      MYSQL_USER: mysqluser
-      MYSQL_PASSWORD: mysqlpass
-      MYSQL_DATABASE: test
-      TZ: "Asia/Tokyo"
-    healthcheck:
-      test:
-        [
-          "CMD",
-          "mysqladmin",
-          "ping",
-          "-h",
-          "localhost",
-          "-u",
-          "mysql",
-          "-pmysql",
-        ]
-      timeout: 20s
-      retries: 10
+  # backend:
+  #   image: 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/pj-todo-app-backend:1.0.0
+  #   container_name: backend
+  #   hostname: backend-server
+  #   build:
+  #     context: .
+  #     dockerfile: "./backend/Dockerfile"
+  #   environment:
+  #     DATABASE_URL: "mysql://mysqluser:mysqlpass@database-server:3306/test"
+  #   depends_on:
+  #     database:
+  #       condition: service_healthy
+  #   ports:
+  #     - "4000:4000"
 
-  adminer:
-    container_name: adminer
-    hostname: adminer-server
-    image: adminer
-    restart: always
-    ports:
-      - 8081:8080
+  # database:
+  #   container_name: database
+  #   hostname: database-server
+  #   image: mysql:8.3.0
+  #   ports:
+  #     - "3306:3306"
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: rootpass
+  #     MYSQL_USER: mysqluser
+  #     MYSQL_PASSWORD: mysqlpass
+  #     MYSQL_DATABASE: test
+  #     TZ: "Asia/Tokyo"
+  #   healthcheck:
+  #     test:
+  #       [
+  #         "CMD",
+  #         "mysqladmin",
+  #         "ping",
+  #         "-h",
+  #         "localhost",
+  #         "-u",
+  #         "mysql",
+  #         "-pmysql",
+  #       ]
+  #     timeout: 20s
+  #     retries: 10
+
+  # adminer:
+  #   container_name: adminer
+  #   hostname: adminer-server
+  #   image: adminer
+  #   restart: always
+  #   ports:
+  #     - 8081:8080
