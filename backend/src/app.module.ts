@@ -1,5 +1,5 @@
-import { join } from 'path'
-import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common'
+import { join } from 'node:path'
+import { type MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common'
 import { ServeStaticModule } from '@nestjs/serve-static'
 import { AppController } from './app.controller'
 import { AppService } from './app.service'

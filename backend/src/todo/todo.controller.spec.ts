@@ -1,4 +1,4 @@
-import { Test, TestingModule } from '@nestjs/testing'
+import { Test, type TestingModule } from '@nestjs/testing'
 import { PrismaService } from '../prisma/prisma.service'
 import { TodoController } from './todo.controller'
 import { CreateTodoDto, DeleteTodoDto, UpdateTodoDto } from './todo.dto'

@@ -1,8 +1,8 @@
 import { Controller } from '@nestjs/common'
 import { Body, Delete, Get, Post, Put } from '@nestjs/common'
-import { TodoItem } from '@prisma/client'
-import { CreateTodoDto, DeleteTodoDto, UpdateTodoDto } from './todo.dto'
-import { TodoService } from './todo.service'
+import type { TodoItem } from '@prisma/client'
+import type { CreateTodoDto, DeleteTodoDto, UpdateTodoDto } from './todo.dto'
+import type { TodoService } from './todo.service'
 
 @Controller('todo')
 export class TodoController {

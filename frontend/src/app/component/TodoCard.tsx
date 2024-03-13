@@ -1,10 +1,10 @@
 'use client'
 import { blue } from '@ant-design/colors'
-import { TodoItem } from '@prisma/client'
+import type { TodoItem } from '@prisma/client'
 import { Button, Card, Col, Form, Input, Row, Switch } from 'antd'
 import React, { useEffect } from 'react'
 import { useSWRConfig } from 'swr'
-import { NotificationPlacementType, NotificationSeverityType } from '../page'
+import type { NotificationPlacementType, NotificationSeverityType } from '../page'
 
 export const TodoCard = (props: {
   todoItem: TodoItem
