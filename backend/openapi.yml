@@ -1,0 +1,94 @@
+openapi: 3.0.0
+paths:
+  /api:
+    get:
+      operationId: AppController_getHello
+      parameters: []
+      responses:
+        '200':
+          description: ''
+  /api/todo:
+    get:
+      operationId: TodoController_getTodo
+      parameters: []
+      responses:
+        '200':
+          description: ''
+    post:
+      operationId: TodoController_postTodo
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTodoDto'
+      responses:
+        '201':
+          description: ''
+    put:
+      operationId: TodoController_putTodo
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateTodoDto'
+      responses:
+        '200':
+          description: ''
+    delete:
+      operationId: TodoController_deleteTodo
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/DeleteTodoDto'
+      responses:
+        '200':
+          description: ''
+info:
+  title: ''
+  description: ''
+  version: 1.0.0
+  contact: {}
+tags: []
+servers: []
+components:
+  schemas:
+    CreateTodoDto:
+      type: object
+      properties:
+        title:
+          type: string
+        comment:
+          type: string
+      required:
+        - title
+        - comment
+    UpdateTodoDto:
+      type: object
+      properties:
+        id:
+          type: string
+        title:
+          type: string
+        comment:
+          type: string
+        complete:
+          type: boolean
+      required:
+        - id
+        - title
+        - comment
+        - complete
+    DeleteTodoDto:
+      type: object
+      properties:
+        id:
+          type: string
+      required:
+        - id
