@@ -1,8 +1,8 @@
 'use client'
-import type { TodoItem } from '@prisma/client'
+import { TodoItem } from '@prisma/client'
 import { Button, Form, Input } from 'antd'
 import { useSWRConfig } from 'swr'
-import type { NotificationPlacementType, NotificationSeverityType } from '../page'
+import { NotificationPlacementType, NotificationSeverityType } from '../page'
 
 export const TodoForm = (props: {
   endpointUrl: string

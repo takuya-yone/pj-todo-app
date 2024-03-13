@@ -1,7 +1,7 @@
 'use client'
 
 import { blue, green, red } from '@ant-design/colors'
-import type { TodoItem } from '@prisma/client'
+import { TodoItem } from '@prisma/client'
 import { Col, Divider, Row, Spin, Typography, notification } from 'antd'
 import type { NotificationArgsProps } from 'antd'
 import useSWR from 'swr'

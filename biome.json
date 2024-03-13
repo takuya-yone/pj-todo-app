@@ -1,5 +1,5 @@
 {
-  "$schema": "./node_modules/@biomejs/biome/configuration_schema.json",
+  "$schema": "https://biomejs.dev/schemas/1.5.2/schema.json",
   "organizeImports": {
     "enabled": true
   },
@@ -14,10 +14,11 @@
         "useNamingConvention": "off",
         "noNamespace": "error"
       },
-      "nursery": {},
-      "complexity": {
-        "useSimplifiedLogicExpression": "off",
+      "nursery": {
         "noUselessLoneBlockStatements": "off"
+      },
+      "complexity": {
+        "useSimplifiedLogicExpression": "off"
       },
       "correctness": {
         "useExhaustiveDependencies": "off",
