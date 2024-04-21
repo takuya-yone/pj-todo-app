@@ -1,9 +1,8 @@
 steps:
   - name: "bash"
-    args: ["echo", "Hello, World!"]
-  # Docker Build
-  - name: "gcr.io/cloud-builders/docker"
-    args: ["build", "-t", "${TAG_NAME}", "."]
+    args: ["echo", "${$PROJECT_ID}"]
+  # - name: "gcr.io/cloud-builders/docker"
+  #   args: ["build", "-t", "${BUILD_ID}", "."]
   # Docker Push
   # - name: "gcr.io/cloud-builders/docker"
   #   args: ["push", "${TAG_NAME}"]
