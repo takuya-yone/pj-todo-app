@@ -1,10 +1,10 @@
 steps:
   - name: "bash"
-    args: ["echo", "${$PROJECT_ID}"]
+    args: ["echo", "$PROJECT_ID"]
   # - name: "gcr.io/cloud-builders/docker"
-  #   args: ["build", "-t", "${BUILD_ID}", "."]
+  #   args: ["build", "-t", "$BUILD_ID", "."]
   # Docker Push
   # - name: "gcr.io/cloud-builders/docker"
-  #   args: ["push", "${TAG_NAME}"]
+  #   args: ["push", "$TAG_NAME"]
 options:
   logging: CLOUD_LOGGING_ONLY

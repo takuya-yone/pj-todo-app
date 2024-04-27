@@ -2084,6 +2084,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/semver-utils@npm:^1.1.1":
+  version: 1.1.3
+  resolution: "@types/semver-utils@npm:1.1.3"
+  checksum: 10c0/67aaf48cf5d77dc887b8424cb15eedfa4d094d76987138d130e2298e0f4a7f0eb4f2a4cbd6cefb702874953e719881ac92612f6861c8f7b5abd16a0ed06458d1
+  languageName: node
+  linkType: hard
+
 "@types/send@npm:*":
   version: 0.17.4
   resolution: "@types/send@npm:0.17.4"
@@ -6822,10 +6829,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-check-updates@npm:^16.14.16":
-  version: 16.14.16
-  resolution: "npm-check-updates@npm:16.14.16"
+"npm-check-updates@npm:^16.14.20":
+  version: 16.14.20
+  resolution: "npm-check-updates@npm:16.14.20"
   dependencies:
+    "@types/semver-utils": "npm:^1.1.1"
     chalk: "npm:^5.3.0"
     cli-table3: "npm:^0.6.3"
     commander: "npm:^10.0.1"
@@ -6861,7 +6869,7 @@ __metadata:
   bin:
     ncu: build/src/bin/cli.js
     npm-check-updates: build/src/bin/cli.js
-  checksum: 10c0/e87c4895b35e6e34c4e0333cceb54340ba4c6272207a71e3e849dcde53e22f5c93a44ebe5b5d1378e77416b0ca45041a4cb7e4e7eca086a7063d796ab79c37d3
+  checksum: 10c0/805303ca6a754dc866a2fc3397c1e78d25d566341191a910f1f17cf59336924ec310d197edaf5944e115953dec7c61a280c4fa5c68d21e76f2248df4ed7c795f
   languageName: node
   linkType: hard
 
@@ -7271,7 +7279,7 @@ __metadata:
   resolution: "pj-todo-app@workspace:."
   dependencies:
     "@biomejs/biome": "npm:^1.6.1"
-    npm-check-updates: "npm:^16.14.16"
+    npm-check-updates: "npm:^16.14.20"
   languageName: unknown
   linkType: soft
 
