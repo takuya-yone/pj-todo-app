@@ -1,0 +1,24 @@
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: dev-target
+run:
+  location: projects/yonezawa-sandbox/locations/asia-northeast1
+---
+apiVersion: deploy.cloud.google.com/v1
+kind: Target
+metadata:
+  name: prod-target
+run:
+  location: projects/yonezawa-sandbox/locations/asia-northeast1
+---
+apiVersion: deploy.cloud.google.com/v1
+kind: DeliveryPipeline
+metadata:
+  name: test-pipeline
+serialPipeline:
+  stages:
+    - targetId: dev-target
+      profiles: [dev]
+    - targetId: prod-target
+      profiles: [prod]
