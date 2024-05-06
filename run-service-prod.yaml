@@ -7,3 +7,9 @@ spec:
     spec:
       containers:
         - image: nginx
+          ports:
+            - name: http1
+              containerPort: 80
+          startupProbe:
+            tcpSocket:
+              port: 80

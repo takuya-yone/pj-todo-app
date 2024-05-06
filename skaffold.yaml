@@ -1,7 +1,7 @@
 apiVersion: skaffold/v4beta7
 kind: Config
 metadata:
-  name: deploy-run-quickstart
+  name: deploy-run-
 profiles:
   - name: dev
     manifests:
@@ -13,3 +13,10 @@ profiles:
         - run-service-prod.yaml
 deploy:
   cloudrun: {}
+verify:
+  - name: after-deploy-verification
+    container:
+      name: alpine-wget
+      image: alpine:latest
+      command: ["/bin/sh"]
+      args: ["-c", "wget https://google.com"]
