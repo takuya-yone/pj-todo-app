@@ -7,6 +7,8 @@ paths:
       responses:
         '200':
           description: ''
+      tags:
+        - App
   /api/todo:
     get:
       operationId: TodoController_getTodo
@@ -14,6 +16,8 @@ paths:
       responses:
         '200':
           description: ''
+      tags: &ref_0
+        - Todo
     post:
       operationId: TodoController_postTodo
       parameters: []
@@ -26,6 +30,7 @@ paths:
       responses:
         '201':
           description: ''
+      tags: *ref_0
     put:
       operationId: TodoController_putTodo
       parameters: []
@@ -38,6 +43,7 @@ paths:
       responses:
         '200':
           description: ''
+      tags: *ref_0
     delete:
       operationId: TodoController_deleteTodo
       parameters: []
@@ -50,6 +56,7 @@ paths:
       responses:
         '200':
           description: ''
+      tags: *ref_0
 info:
   title: ''
   description: ''
