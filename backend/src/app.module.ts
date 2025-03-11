@@ -21,6 +21,6 @@ import { TodoService } from './todo/todo.service'
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer.apply(LoggerMiddleware).forRoutes({ path: '*', method: RequestMethod.ALL })
+    consumer.apply(LoggerMiddleware).forRoutes({ path: '*splat', method: RequestMethod.ALL })
   }
 }
