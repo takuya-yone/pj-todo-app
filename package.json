@@ -18,9 +18,9 @@
     "backend",
     "types"
   ],
-  "packageManager": "yarn@4.7.0",
+  "packageManager": "yarn@4.8.1",
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
-    "npm-check-updates": "^17.1.15"
+    "npm-check-updates": "^17.1.16"
   }
 }
