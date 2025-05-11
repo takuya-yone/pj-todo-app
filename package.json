@@ -21,6 +21,6 @@
   "packageManager": "yarn@4.9.1",
   "devDependencies": {
     "@biomejs/biome": "^1.9.4",
-    "npm-check-updates": "^17.1.18"
+    "npm-check-updates": "^18.0.1"
   }
 }
