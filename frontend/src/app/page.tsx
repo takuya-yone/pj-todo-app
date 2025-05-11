@@ -7,6 +7,7 @@ import type { NotificationArgsProps } from 'antd'
 import useSWR from 'swr'
 import { TodoCard } from './component/TodoCard'
 import { TodoForm } from './component/TodoForm'
+// import { getTodoHooks } from './hooks/getTodo'
 
 export type NotificationPlacementType = NotificationArgsProps['placement']
 export type NotificationSeverityType = 'success' | 'error' | 'info'
@@ -23,6 +24,8 @@ export default function Home() {
   })
 
   const [api, contextHolder] = notification.useNotification()
+
+  // const { todo, getTodo } = getTodoHooks()
 
   const openNotification = (
     placement: NotificationPlacementType,
@@ -65,6 +68,8 @@ export default function Home() {
       {contextHolder}
       <Divider>Create</Divider>
 
+      {JSON.stringify(todo)}
+
       <Row gutter={[32, 24]} justify="center">
         <Col span={8} style={{ backgroundColor: red[0], margin: '10px' }}>
           <TodoForm endpointUrl={apiEndpoint} openNotification={openNotification} />
@@ -74,7 +79,7 @@ export default function Home() {
       <Divider>List</Divider>
       <Row gutter={[32, 24]}>
         {response.map((item) => (
-          <Col span={8} className="gutter-row" key={item.id}>
+          <Col span={8} class="gutter-row" key={item.id}>
             <TodoCard
               todoItem={item}
               endpointUrl={apiEndpoint}
