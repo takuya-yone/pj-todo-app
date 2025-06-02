@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { TodoItem } from '../types/todo'
+import { TodoItem } from '../../../../types/src/TodoItem'
 
 export const getTodoHooks = () => {
   const [todo, setTodo] = useState<TodoItem[]>([])
