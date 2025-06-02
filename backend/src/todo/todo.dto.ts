@@ -1,5 +1,49 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger'
-import { IsBoolean, IsNotEmpty, IsString } from 'class-validator'
+import { TodoItem } from '@prisma/client'
+import { IsBoolean, IsDate, IsNotEmpty, IsString } from 'class-validator'
+
+export class GetTodoDto {
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  readonly id: string
+
+  @ApiProperty()
+  @IsBoolean()
+  @IsNotEmpty()
+  readonly complete: boolean
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  readonly title: string
+
+  @ApiProperty()
+  @IsString()
+  @IsNotEmpty()
+  readonly comment: string
+
+  @ApiProperty()
+  @IsDate()
+  @IsNotEmpty()
+  readonly createdAt: Date
+
+  @ApiProperty()
+  @IsDate()
+  @IsNotEmpty()
+  readonly updatedAt: Date
+
+  constructor(item: TodoItem) {
+    this.id = item.id
+    this.complete = item.complete
+    this.title = item.title
+    this.comment = item.comment
+    this.createdAt = item.createdAt
+    this.updatedAt = item.updatedAt
+  }
+}
+
+export class GetTodoDtoPT extends PartialType(GetTodoDto) {}
 
 export class CreateTodoDto {
   @ApiProperty()

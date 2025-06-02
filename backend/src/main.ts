@@ -1,5 +1,4 @@
-import { writeFileSync } from 'node:fs'
-import * as path from 'node:path'
+import * as fs from 'fs'
 import { ValidationPipe } from '@nestjs/common'
 import { NestFactory } from '@nestjs/core'
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger'
@@ -12,13 +11,19 @@ async function bootstrap() {
   app.enableCors()
   app.useGlobalPipes(new ValidationPipe({ transform: true }))
 
-  const config = new DocumentBuilder().build()
+  const config = new DocumentBuilder()
+    .setTitle('Example')
+    .setDescription('The cats API description')
+    .setVersion('1.0')
+    .build()
   const document = SwaggerModule.createDocument(app, config, {
     ignoreGlobalPrefix: false,
   })
+  const documentFactory = () => SwaggerModule.createDocument(app, config)
+  fs.writeFileSync('./openapi.yml', dump(documentFactory(), {}))
   SwaggerModule.setup('api/docs', app, document)
-  const outputPath = path.resolve(process.cwd(), 'openapi.yml')
-  writeFileSync(outputPath, dump(document, {}))
+  // const outputPath = path.resolve(process.cwd(), 'openapi.yml')
+  // writeFileSync(outputPath, dump(document, {}))
 
   await app.listen(4000)
 }
