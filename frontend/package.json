@@ -11,21 +11,21 @@
   },
   "dependencies": {
     "@ant-design/colors": "^8.0.0",
-    "@ant-design/nextjs-registry": "^1.0.2",
-    "antd": "^5.25.4",
-    "next": "15.3.3",
+    "@ant-design/nextjs-registry": "^1.1.0",
+    "antd": "^5.27.1",
+    "next": "15.5.0",
     "react": "^19",
     "react-dom": "^19",
     "serve": "^14.2.4",
-    "swr": "^2.3.3"
+    "swr": "^2.3.6"
   },
   "devDependencies": {
-    "@faker-js/faker": "^9.8.0",
-    "@types/node": "^22",
+    "@faker-js/faker": "^10.0.0",
+    "@types/node": "^24",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "msw": "^2.8.7",
-    "orval": "^7.9.0",
+    "msw": "^2.10.5",
+    "orval": "^7.11.2",
     "typescript": "^5"
   }
 }

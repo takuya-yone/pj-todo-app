@@ -1,9 +1,10 @@
 'use client'
 import { blue } from '@ant-design/colors'
-import { TodoItem } from '@prisma/client'
 import { Button, Card, Col, Form, Input, Row, Switch } from 'antd'
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import { useSWRConfig } from 'swr'
+// import { TodoItem } from '@prisma/client'
+import { TodoItem } from '../../../../types/src/TodoItem'
 import { NotificationPlacementType, NotificationSeverityType } from '../page'
 
 export const TodoCard = (props: {
@@ -81,81 +82,79 @@ export const TodoCard = (props: {
   }
 
   return (
-    <>
-      <Form
-        {...layout}
-        form={form}
-        onFinish={onFinish}
-        validateMessages={validateMessages}
-        initialValues={{
-          title: props.todoItem.title,
-          comment: props.todoItem.comment,
-          complete: props.todoItem.complete,
-          id: props.todoItem.id,
-        }}
-      >
-        <Card title={props.todoItem.id} style={{ backgroundColor: blue[0] }}>
-          <Form.Item
-            name="id"
-            label="Id"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-            style={{ display: 'none' }}
-          >
-            <Input disabled={true} />
-          </Form.Item>
-          <Form.Item
-            name="title"
-            label="Title"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            name="comment"
-            label="Comment"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <Input />
-          </Form.Item>
-          <Form.Item
-            name="complete"
-            label="Complete"
-            rules={[
-              {
-                required: true,
-              },
-            ]}
-          >
-            <Switch />
-          </Form.Item>
-          <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-            <Row>
-              <Col span={8} className="gutter-row">
-                <Button type="primary" htmlType="submit">
-                  Submit
-                </Button>
-              </Col>
-              <Col span={8} className="gutter-row">
-                <Button type="primary" danger onClick={() => deleteItem()}>
-                  Delete
-                </Button>
-              </Col>
-            </Row>
-          </Form.Item>
-        </Card>
-      </Form>
-    </>
+    <Form
+      {...layout}
+      form={form}
+      onFinish={onFinish}
+      validateMessages={validateMessages}
+      initialValues={{
+        title: props.todoItem.title,
+        comment: props.todoItem.comment,
+        complete: props.todoItem.complete,
+        id: props.todoItem.id,
+      }}
+    >
+      <Card title={props.todoItem.id} style={{ backgroundColor: blue[0] }}>
+        <Form.Item
+          name="id"
+          label="Id"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+          style={{ display: 'none' }}
+        >
+          <Input disabled={true} />
+        </Form.Item>
+        <Form.Item
+          name="title"
+          label="Title"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          name="comment"
+          label="Comment"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+        <Form.Item
+          name="complete"
+          label="Complete"
+          rules={[
+            {
+              required: true,
+            },
+          ]}
+        >
+          <Switch />
+        </Form.Item>
+        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+          <Row>
+            <Col span={8} className="gutter-row">
+              <Button type="primary" htmlType="submit">
+                Submit
+              </Button>
+            </Col>
+            <Col span={8} className="gutter-row">
+              <Button type="primary" danger onClick={() => deleteItem()}>
+                Delete
+              </Button>
+            </Col>
+          </Row>
+        </Form.Item>
+      </Card>
+    </Form>
   )
 }
