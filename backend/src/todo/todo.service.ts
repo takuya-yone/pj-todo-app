@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common'
-import { TodoItem } from '@prisma/client'
+import { TodoItem } from '../../generated/prisma/client'
 import { PrismaService } from '../prisma/prisma.service'
 import { CreateTodoDto, DeleteTodoDto, UpdateTodoDto } from './todo.dto'
 

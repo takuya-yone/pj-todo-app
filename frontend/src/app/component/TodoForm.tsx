@@ -1,7 +1,7 @@
 'use client'
-import { TodoItem } from '@prisma/client'
 import { Button, Form, Input } from 'antd'
 import { useSWRConfig } from 'swr'
+import { GetTodoDto } from '../model'
 import { NotificationPlacementType, NotificationSeverityType } from '../page'
 
 export const TodoForm = (props: {
@@ -35,7 +35,7 @@ export const TodoForm = (props: {
     },
   }
 
-  const onFinish = (item: TodoItem) => {
+  const onFinish = (item: GetTodoDto) => {
     fetch(props.endpointUrl, {
       method: 'POST',
       mode: 'cors',
@@ -54,43 +54,41 @@ export const TodoForm = (props: {
   }
 
   return (
-    <>
-      <Form
-        {...layout}
-        form={form}
-        onFinish={onFinish}
-        validateMessages={validateMessages}
-        style={{ margin: '10px' }}
+    <Form
+      {...layout}
+      form={form}
+      onFinish={onFinish}
+      validateMessages={validateMessages}
+      style={{ margin: '10px' }}
+    >
+      <Form.Item
+        name="title"
+        label="Title"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
       >
-        <Form.Item
-          name="title"
-          label="Title"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
-        <Form.Item
-          name="comment"
-          label="Comment"
-          rules={[
-            {
-              required: true,
-            },
-          ]}
-        >
-          <Input />
-        </Form.Item>
+        <Input />
+      </Form.Item>
+      <Form.Item
+        name="comment"
+        label="Comment"
+        rules={[
+          {
+            required: true,
+          },
+        ]}
+      >
+        <Input />
+      </Form.Item>
 
-        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-          <Button type="primary" htmlType="submit">
-            Create
-          </Button>
-        </Form.Item>
-      </Form>
-    </>
+      <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+        <Button type="primary" htmlType="submit">
+          Create
+        </Button>
+      </Form.Item>
+    </Form>
   )
 }

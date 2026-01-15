@@ -1,14 +1,13 @@
 'use client'
 import { blue } from '@ant-design/colors'
-import { TodoItem } from '@prisma/client'
 import { Button, Card, Col, Form, Input, Row, Switch } from 'antd'
 import { useEffect } from 'react'
 import { useSWRConfig } from 'swr'
-// import { TodoItem } from '../../../../types/src/TodoItem'
+import { GetTodoDto } from '../model'
 import { NotificationPlacementType, NotificationSeverityType } from '../page'
 
 export const TodoCard = (props: {
-  todoItem: TodoItem
+  todoItem: GetTodoDto
   endpointUrl: string
   openNotification: (
     placement: NotificationPlacementType,
@@ -44,7 +43,7 @@ export const TodoCard = (props: {
     },
   }
 
-  const onFinish = (item: TodoItem) => {
+  const onFinish = (item: GetTodoDto) => {
     fetch(props.endpointUrl, {
       method: 'PUT',
       mode: 'cors',

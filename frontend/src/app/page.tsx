@@ -1,19 +1,19 @@
 'use client'
 
 import { blue, green, red } from '@ant-design/colors'
-import { TodoItem } from '@prisma/client'
+
 import type { NotificationArgsProps } from 'antd'
 import { Col, Divider, notification, Row, Spin, Typography } from 'antd'
 import useSWR from 'swr'
+import { GetTodoDto } from '../app/model'
 import { TodoCard } from './component/TodoCard'
 import { TodoForm } from './component/TodoForm'
-import { getTodoHooks } from './hooks/getTodo'
 
 export type NotificationPlacementType = NotificationArgsProps['placement']
 export type NotificationSeverityType = 'success' | 'error' | 'info'
 
 async function fetcher(key: string, init?: RequestInit) {
-  return fetch(key, init).then((res) => res.json() as Promise<TodoItem[]>)
+  return fetch(key, init).then((res) => res.json() as Promise<GetTodoDto[]>)
 }
 
 export default function Home() {
@@ -24,8 +24,6 @@ export default function Home() {
   })
 
   const [api, contextHolder] = notification.useNotification()
-
-  const { todo, getTodo } = getTodoHooks()
 
   const openNotification = (
     placement: NotificationPlacementType,

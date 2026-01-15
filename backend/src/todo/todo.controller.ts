@@ -1,7 +1,6 @@
-import { Controller } from '@nestjs/common'
-import { Body, Delete, Get, HttpStatus, Post, Put } from '@nestjs/common'
+import { Body, Controller, Delete, Get, HttpStatus, Post, Put } from '@nestjs/common'
 import { ApiResponse } from '@nestjs/swagger'
-import { TodoItem } from '@prisma/client'
+import { TodoItem } from '../../generated/prisma/client'
 import { CreateTodoDto, DeleteTodoDto, GetTodoDto, UpdateTodoDto } from './todo.dto'
 import { TodoService } from './todo.service'
 

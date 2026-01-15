@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { TodoItem } from '../../../../types/src/TodoItem'
 
-export const getTodoHooks = () => {
+export const useTodo = () => {
   const [todo, setTodo] = useState<TodoItem[]>([])
 
   useEffect(() => {

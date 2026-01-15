@@ -1,6 +1,6 @@
 import { ApiProperty, PartialType } from '@nestjs/swagger'
-import { TodoItem } from '@prisma/client'
 import { IsBoolean, IsDate, IsNotEmpty, IsString } from 'class-validator'
+import { TodoItem } from '../../generated/prisma/client'
 
 export class GetTodoDto {
   @ApiProperty()
