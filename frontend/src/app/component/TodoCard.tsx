@@ -1,5 +1,5 @@
 'use client'
-import { blue } from '@ant-design/colors'
+import { blue, green } from '@ant-design/colors'
 import { Button, Card, Col, Form, Input, Row, Switch } from 'antd'
 import { useEffect } from 'react'
 import { GetTodoDto } from '../model'
@@ -14,8 +14,6 @@ type TodoCardProps = {
 
 export const TodoCard = (props: TodoCardProps) => {
   const [form] = Form.useForm()
-
-  const _inputId = Form.useWatch('id', form)
 
   useEffect(() => form.resetFields(), [props.todoItem])
 
@@ -53,7 +51,10 @@ export const TodoCard = (props: TodoCardProps) => {
         id: props.todoItem.id,
       }}
     >
-      <Card title={props.todoItem.id} style={{ backgroundColor: blue[0] }}>
+      <Card
+        title={props.todoItem.id}
+        style={{ backgroundColor: props.todoItem.complete ? green[1] : blue[1] }}
+      >
         <Form.Item
           name="id"
           label="Id"
@@ -99,14 +100,14 @@ export const TodoCard = (props: TodoCardProps) => {
         >
           <Switch />
         </Form.Item>
-        <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
+        <Form.Item wrapperCol={{ offset: 0, span: 24 }}>
           <Row>
-            <Col span={8} className="gutter-row">
+            <Col span={12} style={{ textAlign: 'center' }}>
               <Button type="primary" htmlType="submit" disabled={props.putIsMutating}>
                 Submit
               </Button>
             </Col>
-            <Col span={8} className="gutter-row">
+            <Col span={12} style={{ textAlign: 'center' }}>
               <Button
                 type="primary"
                 danger
