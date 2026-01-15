@@ -1,19 +1,13 @@
 'use client'
 import { Button, Form, Input } from 'antd'
-import { useTodoControllerPostTodo } from '../apiClient'
 import { CreateTodoDto } from '../model'
-import { NotificationPlacementType, NotificationSeverityType } from '../page'
 
 type TodoFormProps = {
-  openNotification: (
-    placement: NotificationPlacementType,
-    type: NotificationSeverityType,
-    message: string,
-  ) => void
+  onPostItem: (item: CreateTodoDto) => Promise<void>
+  postIsMutating: boolean
 }
 
 export const TodoForm = (props: TodoFormProps) => {
-  const { trigger, isMutating } = useTodoControllerPostTodo()
   const [form] = Form.useForm()
   const layout = {
     labelCol: {
@@ -36,20 +30,11 @@ export const TodoForm = (props: TodoFormProps) => {
     },
   }
 
-  const onFinish = async (item: CreateTodoDto) => {
-    const res = await trigger(item)
-    if (res.status === 201) {
-      props.openNotification('bottomRight', 'success', 'Successful Create')
-      return
-    }
-    props.openNotification('bottomRight', 'error', `Error: ${res.data}`)
-  }
-
   return (
     <Form
       {...layout}
       form={form}
-      onFinish={onFinish}
+      onFinish={props.onPostItem}
       validateMessages={validateMessages}
       style={{ margin: '10px' }}
     >
@@ -77,7 +62,7 @@ export const TodoForm = (props: TodoFormProps) => {
       </Form.Item>
 
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" htmlType="submit" disabled={isMutating}>
+        <Button type="primary" htmlType="submit" disabled={props.postIsMutating}>
           Create
         </Button>
       </Form.Item>
