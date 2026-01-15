@@ -2,20 +2,22 @@
 import { blue } from '@ant-design/colors'
 import { Button, Card, Col, Form, Input, Row, Switch } from 'antd'
 import { useEffect } from 'react'
-import { useSWRConfig } from 'swr'
+import { useTodoControllerDeleteTodo, useTodoControllerPutTodo } from '../apiClient'
 import { GetTodoDto } from '../model'
 import { NotificationPlacementType, NotificationSeverityType } from '../page'
 
-export const TodoCard = (props: {
+type TodoCardProps = {
   todoItem: GetTodoDto
-  endpointUrl: string
   openNotification: (
     placement: NotificationPlacementType,
     type: NotificationSeverityType,
     message: string,
   ) => void
-}) => {
-  const { mutate } = useSWRConfig()
+}
+
+export const TodoCard = (props: TodoCardProps) => {
+  const { trigger: updateTrigger } = useTodoControllerPutTodo()
+  const { trigger: deleteTrigger } = useTodoControllerDeleteTodo()
   const [form] = Form.useForm()
 
   const inputId = Form.useWatch('id', form)
@@ -43,41 +45,22 @@ export const TodoCard = (props: {
     },
   }
 
-  const onFinish = (item: GetTodoDto) => {
-    fetch(props.endpointUrl, {
-      method: 'PUT',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(item),
-    })
-      .then(() => {
-        props.openNotification('bottomRight', 'success', 'Successful Update')
-      })
-      .catch((err) => {
-        props.openNotification('bottomRight', 'error', err)
-      })
-      .finally(() => mutate(props.endpointUrl))
+  const onFinish = async (item: GetTodoDto) => {
+    const res = await updateTrigger(item)
+    if (res.status === 200) {
+      props.openNotification('bottomRight', 'success', 'Successful Modify')
+      return
+    }
+    props.openNotification('bottomRight', 'error', `Error: ${res.data}`)
   }
 
-  const deleteItem = () => {
-    console.log(inputId)
-    fetch(props.endpointUrl, {
-      method: 'DELETE',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ id: inputId }),
-    })
-      .then(() => {
-        props.openNotification('bottomRight', 'success', 'Successful Delete')
-      })
-      .catch((err) => {
-        props.openNotification('bottomRight', 'error', err)
-      })
-      .finally(() => mutate(props.endpointUrl))
+  const deleteItem = async (id: string) => {
+    const res = await deleteTrigger({ id: id })
+    if (res.status === 200) {
+      props.openNotification('bottomRight', 'success', 'Successful Delete')
+      return
+    }
+    props.openNotification('bottomRight', 'error', `Error: ${res.data}`)
   }
 
   return (
@@ -147,7 +130,7 @@ export const TodoCard = (props: {
               </Button>
             </Col>
             <Col span={8} className="gutter-row">
-              <Button type="primary" danger onClick={() => deleteItem()}>
+              <Button type="primary" danger onClick={() => deleteItem(inputId)}>
                 Delete
               </Button>
             </Col>

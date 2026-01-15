@@ -34,12 +34,12 @@ paths:
             schema:
               $ref: '#/components/schemas/CreateTodoDto'
       responses:
-        '200':
+        '201':
           description: ''
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/CreateTodoDto'
+                $ref: '#/components/schemas/GetTodoDto'
       tags: *ref_0
     put:
       operationId: TodoController_putTodo
@@ -56,7 +56,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateTodoDto'
+                $ref: '#/components/schemas/GetTodoDto'
       tags: *ref_0
     delete:
       operationId: TodoController_deleteTodo
@@ -73,7 +73,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/DeleteTodoDto'
+                $ref: '#/components/schemas/GetTodoDto'
       tags: *ref_0
 info:
   title: Example

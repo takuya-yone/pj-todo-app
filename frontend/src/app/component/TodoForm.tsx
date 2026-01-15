@@ -1,18 +1,19 @@
 'use client'
 import { Button, Form, Input } from 'antd'
-import { useSWRConfig } from 'swr'
-import { GetTodoDto } from '../model'
+import { useTodoControllerPostTodo } from '../apiClient'
+import { CreateTodoDto } from '../model'
 import { NotificationPlacementType, NotificationSeverityType } from '../page'
 
-export const TodoForm = (props: {
-  endpointUrl: string
+type TodoFormProps = {
   openNotification: (
     placement: NotificationPlacementType,
     type: NotificationSeverityType,
     message: string,
   ) => void
-}) => {
-  const { mutate } = useSWRConfig()
+}
+
+export const TodoForm = (props: TodoFormProps) => {
+  const { trigger, isMutating } = useTodoControllerPostTodo()
   const [form] = Form.useForm()
   const layout = {
     labelCol: {
@@ -35,22 +36,13 @@ export const TodoForm = (props: {
     },
   }
 
-  const onFinish = (item: GetTodoDto) => {
-    fetch(props.endpointUrl, {
-      method: 'POST',
-      mode: 'cors',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(item),
-    })
-      .then(() => {
-        props.openNotification('bottomRight', 'success', 'Successful Create')
-      })
-      .catch((err) => {
-        props.openNotification('bottomRight', 'error', err)
-      })
-      .finally(() => mutate(props.endpointUrl))
+  const onFinish = async (item: CreateTodoDto) => {
+    const res = await trigger(item)
+    if (res.status === 201) {
+      props.openNotification('bottomRight', 'success', 'Successful Create')
+      return
+    }
+    props.openNotification('bottomRight', 'error', `Error: ${res.data}`)
   }
 
   return (
@@ -85,7 +77,7 @@ export const TodoForm = (props: {
       </Form.Item>
 
       <Form.Item wrapperCol={{ offset: 8, span: 16 }}>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit" disabled={isMutating}>
           Create
         </Button>
       </Form.Item>

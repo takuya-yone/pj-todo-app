@@ -7,7 +7,7 @@ module.exports = {
       mode: 'single',
       target: './src/app/apiClient.ts',
       schemas: './src/app/model',
-      client: 'fetch',
+      client: 'swr',
       baseUrl: 'http://localhost:4000',
       mock: true,
     },

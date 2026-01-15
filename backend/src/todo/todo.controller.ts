@@ -1,6 +1,5 @@
 import { Body, Controller, Delete, Get, HttpStatus, Post, Put } from '@nestjs/common'
 import { ApiResponse } from '@nestjs/swagger'
-import { TodoItem } from '../../generated/prisma/client'
 import { CreateTodoDto, DeleteTodoDto, GetTodoDto, UpdateTodoDto } from './todo.dto'
 import { TodoService } from './todo.service'
 
@@ -19,29 +18,32 @@ export class TodoController {
   }
 
   @ApiResponse({
-    status: HttpStatus.OK,
-    type: CreateTodoDto,
+    status: HttpStatus.CREATED,
+    type: GetTodoDto,
   })
   @Post()
-  async postTodo(@Body() createDto: CreateTodoDto): Promise<TodoItem> {
-    return await this.todoService.createTodo(createDto)
+  async postTodo(@Body() createDto: CreateTodoDto): Promise<GetTodoDto> {
+    const todo = await this.todoService.createTodo(createDto)
+    return new GetTodoDto(todo)
   }
 
   @ApiResponse({
     status: HttpStatus.OK,
-    type: UpdateTodoDto,
+    type: GetTodoDto,
   })
   @Put()
-  async putTodo(@Body() updateDto: UpdateTodoDto): Promise<TodoItem> {
-    return await this.todoService.updateTodo(updateDto)
+  async putTodo(@Body() updateDto: UpdateTodoDto): Promise<GetTodoDto> {
+    const todo = await this.todoService.updateTodo(updateDto)
+    return new GetTodoDto(todo)
   }
 
   @ApiResponse({
     status: HttpStatus.OK,
-    type: DeleteTodoDto,
+    type: GetTodoDto,
   })
   @Delete()
-  async deleteTodo(@Body() deleteDto: DeleteTodoDto): Promise<TodoItem> {
-    return await this.todoService.deleteTodo(deleteDto)
+  async deleteTodo(@Body() deleteDto: DeleteTodoDto): Promise<GetTodoDto> {
+    const todo = await this.todoService.deleteTodo(deleteDto)
+    return new GetTodoDto(todo)
   }
 }

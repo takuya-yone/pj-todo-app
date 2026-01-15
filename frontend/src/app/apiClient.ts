@@ -5,6 +5,23 @@
  * The cats API description
  * OpenAPI spec version: 1.0
  */
+import useSwr from 'swr';
+import type {
+  Key,
+  SWRConfiguration
+} from 'swr';
+
+import useSWRMutation from 'swr/mutation';
+import type {
+  SWRMutationConfiguration
+} from 'swr/mutation';
+
+import type {
+  CreateTodoDto,
+  DeleteTodoDto,
+  UpdateTodoDto
+} from './model';
+
 import {
   faker
 } from '@faker-js/faker';
@@ -18,10 +35,7 @@ import type {
 } from 'msw';
 
 import type {
-  CreateTodoDto,
-  DeleteTodoDto,
-  GetTodoDto,
-  UpdateTodoDto
+  GetTodoDto
 } from './model';
 
 export type appControllerGetHelloResponse200 = {
@@ -63,6 +77,28 @@ export const appControllerGetHello = async ( options?: RequestInit): Promise<app
 
 
 
+
+export const getAppControllerGetHelloKey = () => [`http://localhost:4000/api`] as const;
+
+export type AppControllerGetHelloQueryResult = NonNullable<Awaited<ReturnType<typeof appControllerGetHello>>>
+
+export const useAppControllerGetHello = <TError = Promise<unknown>>(
+   options?: { swr?:SWRConfiguration<Awaited<ReturnType<typeof appControllerGetHello>>, TError> & { swrKey?: Key, enabled?: boolean }, fetch?: RequestInit }
+) => {
+  const {swr: swrOptions, fetch: fetchOptions} = options ?? {}
+
+  const isEnabled = swrOptions?.enabled !== false
+  const swrKey = swrOptions?.swrKey ?? (() => isEnabled ? getAppControllerGetHelloKey() : null);
+  const swrFn = () => appControllerGetHello(fetchOptions)
+
+  const query = useSwr<Awaited<ReturnType<typeof swrFn>>, TError>(swrKey, swrFn, swrOptions)
+
+  return {
+    swrKey,
+    ...query
+  }
+}
+
 export type todoControllerGetTodoResponse200 = {
   data: GetTodoDto[]
   status: 200
@@ -102,12 +138,34 @@ export const todoControllerGetTodo = async ( options?: RequestInit): Promise<tod
 
 
 
-export type todoControllerPostTodoResponse200 = {
-  data: CreateTodoDto
-  status: 200
+
+export const getTodoControllerGetTodoKey = () => [`http://localhost:4000/api/todo`] as const;
+
+export type TodoControllerGetTodoQueryResult = NonNullable<Awaited<ReturnType<typeof todoControllerGetTodo>>>
+
+export const useTodoControllerGetTodo = <TError = Promise<unknown>>(
+   options?: { swr?:SWRConfiguration<Awaited<ReturnType<typeof todoControllerGetTodo>>, TError> & { swrKey?: Key, enabled?: boolean }, fetch?: RequestInit }
+) => {
+  const {swr: swrOptions, fetch: fetchOptions} = options ?? {}
+
+  const isEnabled = swrOptions?.enabled !== false
+  const swrKey = swrOptions?.swrKey ?? (() => isEnabled ? getTodoControllerGetTodoKey() : null);
+  const swrFn = () => todoControllerGetTodo(fetchOptions)
+
+  const query = useSwr<Awaited<ReturnType<typeof swrFn>>, TError>(swrKey, swrFn, swrOptions)
+
+  return {
+    swrKey,
+    ...query
+  }
+}
+
+export type todoControllerPostTodoResponse201 = {
+  data: GetTodoDto
+  status: 201
 }
     
-export type todoControllerPostTodoResponseSuccess = (todoControllerPostTodoResponse200) & {
+export type todoControllerPostTodoResponseSuccess = (todoControllerPostTodoResponse201) & {
   headers: Headers;
 };
 ;
@@ -142,8 +200,35 @@ export const todoControllerPostTodo = async (createTodoDto: CreateTodoDto, optio
 
 
 
+
+export const getTodoControllerPostTodoMutationFetcher = ( options?: RequestInit) => {
+  return (_: Key, { arg }: { arg: CreateTodoDto }) => {
+    return todoControllerPostTodo(arg, options);
+  }
+}
+export const getTodoControllerPostTodoMutationKey = () => [`http://localhost:4000/api/todo`] as const;
+
+export type TodoControllerPostTodoMutationResult = NonNullable<Awaited<ReturnType<typeof todoControllerPostTodo>>>
+
+export const useTodoControllerPostTodo = <TError = Promise<unknown>>(
+   options?: { swr?:SWRMutationConfiguration<Awaited<ReturnType<typeof todoControllerPostTodo>>, TError, Key, CreateTodoDto, Awaited<ReturnType<typeof todoControllerPostTodo>>> & { swrKey?: string }, fetch?: RequestInit}
+) => {
+
+  const {swr: swrOptions, fetch: fetchOptions} = options ?? {}
+
+  const swrKey = swrOptions?.swrKey ?? getTodoControllerPostTodoMutationKey();
+  const swrFn = getTodoControllerPostTodoMutationFetcher(fetchOptions);
+
+  const query = useSWRMutation(swrKey, swrFn, swrOptions)
+
+  return {
+    swrKey,
+    ...query
+  }
+}
+
 export type todoControllerPutTodoResponse200 = {
-  data: UpdateTodoDto
+  data: GetTodoDto
   status: 200
 }
     
@@ -182,8 +267,35 @@ export const todoControllerPutTodo = async (updateTodoDto: UpdateTodoDto, option
 
 
 
+
+export const getTodoControllerPutTodoMutationFetcher = ( options?: RequestInit) => {
+  return (_: Key, { arg }: { arg: UpdateTodoDto }) => {
+    return todoControllerPutTodo(arg, options);
+  }
+}
+export const getTodoControllerPutTodoMutationKey = () => [`http://localhost:4000/api/todo`] as const;
+
+export type TodoControllerPutTodoMutationResult = NonNullable<Awaited<ReturnType<typeof todoControllerPutTodo>>>
+
+export const useTodoControllerPutTodo = <TError = Promise<unknown>>(
+   options?: { swr?:SWRMutationConfiguration<Awaited<ReturnType<typeof todoControllerPutTodo>>, TError, Key, UpdateTodoDto, Awaited<ReturnType<typeof todoControllerPutTodo>>> & { swrKey?: string }, fetch?: RequestInit}
+) => {
+
+  const {swr: swrOptions, fetch: fetchOptions} = options ?? {}
+
+  const swrKey = swrOptions?.swrKey ?? getTodoControllerPutTodoMutationKey();
+  const swrFn = getTodoControllerPutTodoMutationFetcher(fetchOptions);
+
+  const query = useSWRMutation(swrKey, swrFn, swrOptions)
+
+  return {
+    swrKey,
+    ...query
+  }
+}
+
 export type todoControllerDeleteTodoResponse200 = {
-  data: DeleteTodoDto
+  data: GetTodoDto
   status: 200
 }
     
@@ -221,13 +333,42 @@ export const todoControllerDeleteTodo = async (deleteTodoDto: DeleteTodoDto, opt
 }
 
 
+
+
+export const getTodoControllerDeleteTodoMutationFetcher = ( options?: RequestInit) => {
+  return (_: Key, { arg }: { arg: DeleteTodoDto }) => {
+    return todoControllerDeleteTodo(arg, options);
+  }
+}
+export const getTodoControllerDeleteTodoMutationKey = () => [`http://localhost:4000/api/todo`] as const;
+
+export type TodoControllerDeleteTodoMutationResult = NonNullable<Awaited<ReturnType<typeof todoControllerDeleteTodo>>>
+
+export const useTodoControllerDeleteTodo = <TError = Promise<unknown>>(
+   options?: { swr?:SWRMutationConfiguration<Awaited<ReturnType<typeof todoControllerDeleteTodo>>, TError, Key, DeleteTodoDto, Awaited<ReturnType<typeof todoControllerDeleteTodo>>> & { swrKey?: string }, fetch?: RequestInit}
+) => {
+
+  const {swr: swrOptions, fetch: fetchOptions} = options ?? {}
+
+  const swrKey = swrOptions?.swrKey ?? getTodoControllerDeleteTodoMutationKey();
+  const swrFn = getTodoControllerDeleteTodoMutationFetcher(fetchOptions);
+
+  const query = useSWRMutation(swrKey, swrFn, swrOptions)
+
+  return {
+    swrKey,
+    ...query
+  }
+}
+
+
 export const getTodoControllerGetTodoResponseMock = (): GetTodoDto[] => (Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({id: faker.string.alpha({length: {min: 10, max: 20}}), complete: faker.datatype.boolean(), title: faker.string.alpha({length: {min: 10, max: 20}}), comment: faker.string.alpha({length: {min: 10, max: 20}}), createdAt: `${faker.date.past().toISOString().split('.')[0]}Z`, updatedAt: `${faker.date.past().toISOString().split('.')[0]}Z`})))
 
-export const getTodoControllerPostTodoResponseMock = (overrideResponse: Partial< CreateTodoDto > = {}): CreateTodoDto => ({title: faker.string.alpha({length: {min: 10, max: 20}}), comment: faker.string.alpha({length: {min: 10, max: 20}}), ...overrideResponse})
+export const getTodoControllerPostTodoResponseMock = (overrideResponse: Partial< GetTodoDto > = {}): GetTodoDto => ({id: faker.string.alpha({length: {min: 10, max: 20}}), complete: faker.datatype.boolean(), title: faker.string.alpha({length: {min: 10, max: 20}}), comment: faker.string.alpha({length: {min: 10, max: 20}}), createdAt: `${faker.date.past().toISOString().split('.')[0]}Z`, updatedAt: `${faker.date.past().toISOString().split('.')[0]}Z`, ...overrideResponse})
 
-export const getTodoControllerPutTodoResponseMock = (overrideResponse: Partial< UpdateTodoDto > = {}): UpdateTodoDto => ({id: faker.string.alpha({length: {min: 10, max: 20}}), title: faker.string.alpha({length: {min: 10, max: 20}}), comment: faker.string.alpha({length: {min: 10, max: 20}}), complete: faker.datatype.boolean(), ...overrideResponse})
+export const getTodoControllerPutTodoResponseMock = (overrideResponse: Partial< GetTodoDto > = {}): GetTodoDto => ({id: faker.string.alpha({length: {min: 10, max: 20}}), complete: faker.datatype.boolean(), title: faker.string.alpha({length: {min: 10, max: 20}}), comment: faker.string.alpha({length: {min: 10, max: 20}}), createdAt: `${faker.date.past().toISOString().split('.')[0]}Z`, updatedAt: `${faker.date.past().toISOString().split('.')[0]}Z`, ...overrideResponse})
 
-export const getTodoControllerDeleteTodoResponseMock = (overrideResponse: Partial< DeleteTodoDto > = {}): DeleteTodoDto => ({id: faker.string.alpha({length: {min: 10, max: 20}}), ...overrideResponse})
+export const getTodoControllerDeleteTodoResponseMock = (overrideResponse: Partial< GetTodoDto > = {}): GetTodoDto => ({id: faker.string.alpha({length: {min: 10, max: 20}}), complete: faker.datatype.boolean(), title: faker.string.alpha({length: {min: 10, max: 20}}), comment: faker.string.alpha({length: {min: 10, max: 20}}), createdAt: `${faker.date.past().toISOString().split('.')[0]}Z`, updatedAt: `${faker.date.past().toISOString().split('.')[0]}Z`, ...overrideResponse})
 
 
 export const getAppControllerGetHelloMockHandler = (overrideResponse?: void | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<void> | void), options?: RequestHandlerOptions) => {
@@ -252,19 +393,19 @@ export const getTodoControllerGetTodoMockHandler = (overrideResponse?: GetTodoDt
   }, options)
 }
 
-export const getTodoControllerPostTodoMockHandler = (overrideResponse?: CreateTodoDto | ((info: Parameters<Parameters<typeof http.post>[1]>[0]) => Promise<CreateTodoDto> | CreateTodoDto), options?: RequestHandlerOptions) => {
+export const getTodoControllerPostTodoMockHandler = (overrideResponse?: GetTodoDto | ((info: Parameters<Parameters<typeof http.post>[1]>[0]) => Promise<GetTodoDto> | GetTodoDto), options?: RequestHandlerOptions) => {
   return http.post('*/api/todo', async (info) => {
   
     return new HttpResponse(JSON.stringify(overrideResponse !== undefined
     ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse)
     : getTodoControllerPostTodoResponseMock()),
-      { status: 200,
+      { status: 201,
         headers: { 'Content-Type': 'application/json' }
       })
   }, options)
 }
 
-export const getTodoControllerPutTodoMockHandler = (overrideResponse?: UpdateTodoDto | ((info: Parameters<Parameters<typeof http.put>[1]>[0]) => Promise<UpdateTodoDto> | UpdateTodoDto), options?: RequestHandlerOptions) => {
+export const getTodoControllerPutTodoMockHandler = (overrideResponse?: GetTodoDto | ((info: Parameters<Parameters<typeof http.put>[1]>[0]) => Promise<GetTodoDto> | GetTodoDto), options?: RequestHandlerOptions) => {
   return http.put('*/api/todo', async (info) => {
   
     return new HttpResponse(JSON.stringify(overrideResponse !== undefined
@@ -276,7 +417,7 @@ export const getTodoControllerPutTodoMockHandler = (overrideResponse?: UpdateTod
   }, options)
 }
 
-export const getTodoControllerDeleteTodoMockHandler = (overrideResponse?: DeleteTodoDto | ((info: Parameters<Parameters<typeof http.delete>[1]>[0]) => Promise<DeleteTodoDto> | DeleteTodoDto), options?: RequestHandlerOptions) => {
+export const getTodoControllerDeleteTodoMockHandler = (overrideResponse?: GetTodoDto | ((info: Parameters<Parameters<typeof http.delete>[1]>[0]) => Promise<GetTodoDto> | GetTodoDto), options?: RequestHandlerOptions) => {
   return http.delete('*/api/todo', async (info) => {
   
     return new HttpResponse(JSON.stringify(overrideResponse !== undefined

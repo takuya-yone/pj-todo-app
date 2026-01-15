@@ -4,24 +4,15 @@ import { blue, green, red } from '@ant-design/colors'
 
 import type { NotificationArgsProps } from 'antd'
 import { Col, Divider, notification, Row, Spin, Typography } from 'antd'
-import useSWR from 'swr'
-import { GetTodoDto } from '../app/model'
+import { useTodoControllerGetTodo } from './apiClient'
 import { TodoCard } from './component/TodoCard'
 import { TodoForm } from './component/TodoForm'
 
 export type NotificationPlacementType = NotificationArgsProps['placement']
 export type NotificationSeverityType = 'success' | 'error' | 'info'
 
-async function fetcher(key: string, init?: RequestInit) {
-  return fetch(key, init).then((res) => res.json() as Promise<GetTodoDto[]>)
-}
-
 export default function Home() {
-  const apiEndpoint = `${process.env.NEXT_PUBLIC_API_ENDPOINT}/todo`
-  const { data: response, error } = useSWR(apiEndpoint, fetcher, {
-    revalidateOnFocus: true,
-    // refreshInterval: 3,
-  })
+  const { data, error } = useTodoControllerGetTodo()
 
   const [api, contextHolder] = notification.useNotification()
 
@@ -55,7 +46,7 @@ export default function Home() {
 
   if (error) return <Typography>failed to load</Typography>
   // if (isLoading) return <Typography>loading...</Typography>
-  if (response === undefined)
+  if (data === undefined)
     return (
       <Spin tip="Loading" size="large">
         <div />
@@ -68,19 +59,15 @@ export default function Home() {
 
       <Row gutter={[32, 24]} justify="center">
         <Col span={8} style={{ backgroundColor: red[0], margin: '10px' }}>
-          <TodoForm endpointUrl={apiEndpoint} openNotification={openNotification} />
+          <TodoForm openNotification={openNotification} />
         </Col>
       </Row>
 
       <Divider>List</Divider>
       <Row gutter={[32, 24]}>
-        {response.map((item) => (
+        {data?.data.map((item) => (
           <Col span={8} key={item.id}>
-            <TodoCard
-              todoItem={item}
-              endpointUrl={apiEndpoint}
-              openNotification={openNotification}
-            />
+            <TodoCard todoItem={item} openNotification={openNotification} />
           </Col>
         ))}
       </Row>
