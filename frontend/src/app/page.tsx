@@ -2,8 +2,8 @@
 
 import { blue, green, red } from '@ant-design/colors'
 import { TodoItem } from '@prisma/client'
-import { Col, Divider, Row, Spin, Typography, notification } from 'antd'
 import type { NotificationArgsProps } from 'antd'
+import { Col, Divider, notification, Row, Spin, Typography } from 'antd'
 import useSWR from 'swr'
 import { TodoCard } from './component/TodoCard'
 import { TodoForm } from './component/TodoForm'
@@ -34,21 +34,21 @@ export default function Home() {
   ) => {
     if (type === 'success') {
       api.success({
-        message: message,
+        title: message,
         placement,
         style: { backgroundColor: green[0] },
       })
     }
     if (type === 'error') {
       api.error({
-        message: message,
+        title: message,
         placement,
         style: { backgroundColor: red[0] },
       })
     }
     if (type === 'info') {
       api.info({
-        message: message,
+        title: message,
         placement,
         style: { backgroundColor: blue[0] },
       })
