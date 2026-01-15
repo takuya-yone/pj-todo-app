@@ -6,8 +6,8 @@ import { GetTodoDto } from '../model'
 
 type TodoCardProps = {
   todoItem: GetTodoDto
-  onPutItem: (item: GetTodoDto) => Promise<void>
-  onDeleteItem: (item: GetTodoDto) => Promise<void>
+  onPutItem: (item: GetTodoDto) => Promise<boolean>
+  onDeleteItem: (item: GetTodoDto) => Promise<boolean>
   putIsMutating: boolean
   deleteIsMutating: boolean
 }

@@ -3,7 +3,7 @@ import { Button, Form, Input } from 'antd'
 import { CreateTodoDto } from '../model'
 
 type TodoFormProps = {
-  onPostItem: (item: CreateTodoDto) => Promise<void>
+  onPostItem: (item: CreateTodoDto) => Promise<boolean>
   postIsMutating: boolean
 }
 
@@ -30,11 +30,18 @@ export const TodoForm = (props: TodoFormProps) => {
     },
   }
 
+  const handleFinish = async (item: CreateTodoDto) => {
+    const success = await props.onPostItem(item)
+    if (success) {
+      form.resetFields()
+    }
+  }
+
   return (
     <Form
       {...layout}
       form={form}
-      onFinish={props.onPostItem}
+      onFinish={handleFinish}
       validateMessages={validateMessages}
       style={{ margin: '10px' }}
     >

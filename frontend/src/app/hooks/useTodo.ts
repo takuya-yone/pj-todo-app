@@ -48,31 +48,34 @@ export const useTodo = () => {
     }
   }
 
-  const onPostItem = async (item: CreateTodoDto) => {
+  const onPostItem = async (item: CreateTodoDto): Promise<boolean> => {
     const res = await postTrigger(item)
     if (res.status === 201) {
       openNotification('bottomRight', 'success', 'Successful Create')
-      return
+      return true
     }
     openNotification('bottomRight', 'error', `Error: ${res.data}`)
+    return false
   }
 
-  const onPutItem = async (item: UpdateTodoDto) => {
+  const onPutItem = async (item: UpdateTodoDto): Promise<boolean> => {
     const res = await putTrigger(item)
     if (res.status === 200) {
       openNotification('bottomRight', 'success', 'Successful Modify')
-      return
+      return true
     }
     openNotification('bottomRight', 'error', `Error: ${res.data}`)
+    return false
   }
 
-  const onDeleteItem = async (item: DeleteTodoDto) => {
+  const onDeleteItem = async (item: DeleteTodoDto): Promise<boolean> => {
     const res = await deleteTrigger({ id: item.id })
     if (res.status === 200) {
       openNotification('bottomRight', 'success', 'Successful Delete')
-      return
+      return true
     }
     openNotification('bottomRight', 'error', `Error: ${res.data}`)
+    return false
   }
 
   return {
