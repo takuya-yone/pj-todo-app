@@ -7,16 +7,14 @@
   "main": "index.js",
   "scripts": {
     "ncu": "ncu -w frontend -w backend",
-    "biome:all": "biome check --apply frontend/src backend types",
-    "biome:frontend": "biome check --apply frontend/src",
-    "biome:backend": "biome check --apply backend",
-    "biome:types": "biome check --apply types"
+    "fix:all": "biome check --apply frontend/app backend",
+    "fix:frontend": "biome check --apply frontend/app",
+    "fix:backend": "biome check --apply backend"
   },
   "license": "ISC",
   "workspaces": [
     "frontend",
-    "backend",
-    "types"
+    "backend"
   ],
   "packageManager": "yarn@4.12.0",
   "devDependencies": {
