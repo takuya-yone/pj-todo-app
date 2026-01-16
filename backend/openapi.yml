@@ -118,8 +118,10 @@ components:
           type: string
         title:
           type: string
+          minLength: 1
         comment:
           type: string
+          minLength: 1
         complete:
           type: boolean
       required:

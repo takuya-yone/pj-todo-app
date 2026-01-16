@@ -1,8 +1,9 @@
 'use client'
 
-import { Col, Divider, Row, Spin, Typography } from 'antd'
 import { TodoCard } from '@/components/TodoCard'
 import { TodoForm } from '@/components/TodoForm'
+import { Separator } from '@/components/ui/separator'
+import { Spinner } from '@/components/ui/spinner'
 import { useTodo } from '@/hooks/useTodo'
 
 export default function Home() {
@@ -15,29 +16,32 @@ export default function Home() {
     putIsMutating,
     onDeleteItem,
     deleteIsMutating,
-    contextHolder,
   } = useTodo()
 
-  if (error) return <Typography>failed to load</Typography>
+  if (error) return <p>failed to load</p>
   if (data === undefined)
     return (
-      <Spin tip="Loading" size="large">
-        <div />
-      </Spin>
+      <div className="w-screen h-screen flex justify-center items-center">
+        <Spinner className="size-80 text-gray-200" />
+      </div>
     )
   return (
     <>
-      {contextHolder}
-      <Divider>Create</Divider>
+      <Separator className="my-8 flex justify-center">
+        <p className="text-lg text-gray-500 font-semibold px-2 -my-4 bg-white">Create</p>
+      </Separator>
 
       <div className="flex justify-center">
         <TodoForm onPostItem={onPostItem} postIsMutating={postIsMutating} />
       </div>
 
-      <Divider>List</Divider>
-      <Row gutter={[32, 24]}>
+      <Separator className="my-8 flex justify-center">
+        <p className="text-lg text-gray-500 font-semibold px-2 -my-4 bg-white">List</p>
+      </Separator>
+
+      <div className="grid grid-cols-3 justify-items-center">
         {data?.data.map((item) => (
-          <Col span={8} key={item.id}>
+          <div key={item.id} className="p-4 col-span-1 w-full max-w-md">
             <TodoCard
               todoItem={item}
               onPutItem={onPutItem}
@@ -45,9 +49,9 @@ export default function Home() {
               putIsMutating={putIsMutating}
               deleteIsMutating={deleteIsMutating}
             />
-          </Col>
+          </div>
         ))}
-      </Row>
+      </div>
     </>
   )
 }

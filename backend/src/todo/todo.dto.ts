@@ -72,12 +72,12 @@ export class UpdateTodoDto {
   @IsNotEmpty()
   readonly id: string
 
-  @ApiProperty()
+  @ApiProperty({ minLength: 1 })
   @IsString()
   @IsNotEmpty()
   readonly title: string
 
-  @ApiProperty()
+  @ApiProperty({ minLength: 1 })
   @IsString()
   @IsNotEmpty()
   readonly comment: string

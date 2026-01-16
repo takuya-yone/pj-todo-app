@@ -38,7 +38,7 @@ export const TodoForm = (props: TodoFormProps) => {
   }
 
   return (
-    <Card className="p-4 w-80 shadow-none bg-stone-100">
+    <Card className="p-4 w-96 shadow-none bg-stone-100">
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
           <FormField

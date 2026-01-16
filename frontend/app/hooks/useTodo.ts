@@ -1,15 +1,10 @@
-import type { NotificationArgsProps } from 'antd'
-import { notification } from 'antd'
+import { toast } from 'sonner'
 import {
   useTodoControllerDeleteTodo,
   useTodoControllerGetTodo,
   useTodoControllerPostTodo,
   useTodoControllerPutTodo,
 } from '@/gen/endpoints/todo/todo'
-export type NotificationPlacementType = NotificationArgsProps['placement']
-export type NotificationSeverityType = 'success' | 'error' | 'info'
-
-import { blue, green, red } from '@ant-design/colors'
 import { CreateTodoDto, DeleteTodoDto, UpdateTodoDto } from '@/gen/models'
 
 export const useTodo = () => {
@@ -18,69 +13,45 @@ export const useTodo = () => {
   const { trigger: putTrigger, isMutating: putIsMutating } = useTodoControllerPutTodo()
   const { trigger: deleteTrigger, isMutating: deleteIsMutating } = useTodoControllerDeleteTodo()
 
-  const [api, contextHolder] = notification.useNotification()
+  const openSuccessToast = (message: string) => {
+    toast.success(message, { style: { background: 'var(--color-green-600)', color: '#fff' } })
+  }
 
-  const openNotification = (
-    placement: NotificationPlacementType,
-    type: NotificationSeverityType,
-    title: string,
-  ) => {
-    if (type === 'success') {
-      api.success({
-        title: title,
-        placement,
-        style: { backgroundColor: green[0] },
-      })
-    }
-    if (type === 'error') {
-      api.error({
-        title: title,
-        placement,
-        style: { backgroundColor: red[0] },
-      })
-    }
-    if (type === 'info') {
-      api.info({
-        title: title,
-        placement,
-        style: { backgroundColor: blue[0] },
-      })
-    }
+  const openErrorToast = (message: string) => {
+    toast.error(message, { style: { background: 'var(--color-red-400)', color: '#fff' } })
   }
 
   const onPostItem = async (item: CreateTodoDto): Promise<boolean> => {
     const res = await postTrigger(item)
     if (res.status === 201) {
-      openNotification('bottomRight', 'success', 'Successful Create')
+      openSuccessToast('Successful Created')
       return true
     }
-    openNotification('bottomRight', 'error', `Error: ${res.data}`)
+    openErrorToast(`Error: ${res.data}`)
     return false
   }
 
   const onPutItem = async (item: UpdateTodoDto): Promise<boolean> => {
     const res = await putTrigger(item)
     if (res.status === 200) {
-      openNotification('bottomRight', 'success', 'Successful Modify')
+      openSuccessToast('Successful Modified')
       return true
     }
-    openNotification('bottomRight', 'error', `Error: ${res.data}`)
+    openErrorToast(`Error: ${res.data}`)
     return false
   }
 
   const onDeleteItem = async (item: DeleteTodoDto): Promise<boolean> => {
     const res = await deleteTrigger({ id: item.id })
     if (res.status === 200) {
-      openNotification('bottomRight', 'success', 'Successful Delete')
+      await openSuccessToast('Successful Deleted')
       return true
     }
-    openNotification('bottomRight', 'error', `Error: ${res.data}`)
+    openErrorToast(`Error: ${res.data}`)
     return false
   }
 
   return {
-    contextHolder,
-    openNotification,
     data,
     error,
     postTrigger,
