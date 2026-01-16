@@ -5,12 +5,12 @@ import {
   useTodoControllerGetTodo,
   useTodoControllerPostTodo,
   useTodoControllerPutTodo,
-} from '../apiClient'
+} from '@/gen/endpoints/todo/todo'
 export type NotificationPlacementType = NotificationArgsProps['placement']
 export type NotificationSeverityType = 'success' | 'error' | 'info'
 
 import { blue, green, red } from '@ant-design/colors'
-import { CreateTodoDto, DeleteTodoDto, UpdateTodoDto } from '../model'
+import { CreateTodoDto, DeleteTodoDto, UpdateTodoDto } from '@/gen/models'
 
 export const useTodo = () => {
   const { data, error } = useTodoControllerGetTodo()

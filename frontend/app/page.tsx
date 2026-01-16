@@ -3,8 +3,8 @@
 import { red } from '@ant-design/colors'
 
 import { Col, Divider, Row, Spin, Typography } from 'antd'
-import { TodoCard } from './component/TodoCard'
-import { TodoForm } from './component/TodoForm'
+import { TodoCard } from './components/TodoCard'
+import { TodoForm } from './components/TodoForm'
 import { useTodo } from './hooks/useTodo'
 
 export default function Home() {

@@ -1,8 +1,11 @@
 'use client'
-import { blue, green } from '@ant-design/colors'
-import { Button, Card, Col, Form, Input, Row, Switch } from 'antd'
+import { Form, Input } from 'antd'
 import { useEffect } from 'react'
-import { GetTodoDto } from '../model'
+import { Button } from '@/components/ui/button'
+import { Card } from '@/components/ui/card'
+import { Switch } from '@/components/ui/switch'
+import { cn } from '@/lib/utils'
+import { GetTodoDto } from '@/model'
 
 type TodoCardProps = {
   todoItem: GetTodoDto
@@ -53,7 +56,7 @@ export const TodoCard = (props: TodoCardProps) => {
     >
       <Card
         title={props.todoItem.id}
-        style={{ backgroundColor: props.todoItem.complete ? green[1] : blue[1] }}
+        className={cn('p-4 max-w-md', props.todoItem.complete ? 'bg-green-100' : 'bg-blue-100')}
       >
         <Form.Item
           name="id"
@@ -101,23 +104,22 @@ export const TodoCard = (props: TodoCardProps) => {
           <Switch />
         </Form.Item>
         <Form.Item wrapperCol={{ offset: 0, span: 24 }}>
-          <Row>
-            <Col span={12} style={{ textAlign: 'center' }}>
-              <Button type="primary" htmlType="submit" disabled={props.putIsMutating}>
-                Submit
-              </Button>
-            </Col>
-            <Col span={12} style={{ textAlign: 'center' }}>
-              <Button
-                type="primary"
-                danger
-                onClick={() => props.onDeleteItem(props.todoItem)}
-                disabled={props.deleteIsMutating}
-              >
-                Delete
-              </Button>
-            </Col>
-          </Row>
+          <div className="grid grid-cols-2 justify-items-center">
+            <Button
+              type="submit"
+              disabled={props.putIsMutating}
+              className="bg-blue-500 hover:bg-blue-700 w-24"
+            >
+              Submit
+            </Button>
+            <Button
+              onClick={() => props.onDeleteItem(props.todoItem)}
+              disabled={props.deleteIsMutating}
+              className="bg-red-500 hover:bg-red-700 w-24"
+            >
+              Delete
+            </Button>
+          </div>
         </Form.Item>
       </Card>
     </Form>

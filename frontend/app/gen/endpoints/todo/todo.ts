@@ -19,86 +19,15 @@ import type {
 import type {
   CreateTodoDto,
   DeleteTodoDto,
+  GetTodoDto,
   UpdateTodoDto
-} from './model';
+} from '../../models';
 
-import {
-  faker
-} from '@faker-js/faker';
-
-import {
-  HttpResponse,
-  http
-} from 'msw';
-import type {
-  RequestHandlerOptions
-} from 'msw';
-
-import type {
-  GetTodoDto
-} from './model';
-
-export type appControllerGetHelloResponse200 = {
-  data: void
-  status: 200
-}
-    
-export type appControllerGetHelloResponseSuccess = (appControllerGetHelloResponse200) & {
-  headers: Headers;
-};
-;
-
-export type appControllerGetHelloResponse = (appControllerGetHelloResponseSuccess)
-
-export const getAppControllerGetHelloUrl = () => {
 
 
   
-
-  return `http://localhost:4000/api`
-}
-
-export const appControllerGetHello = async ( options?: RequestInit): Promise<appControllerGetHelloResponse> => {
   
-  const res = await fetch(getAppControllerGetHelloUrl(),
-  {      
-    ...options,
-    method: 'GET'
-    
-    
-  }
-)
-
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
   
-  const data: appControllerGetHelloResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as appControllerGetHelloResponse
-}
-
-
-
-
-export const getAppControllerGetHelloKey = () => [`http://localhost:4000/api`] as const;
-
-export type AppControllerGetHelloQueryResult = NonNullable<Awaited<ReturnType<typeof appControllerGetHello>>>
-
-export const useAppControllerGetHello = <TError = Promise<unknown>>(
-   options?: { swr?:SWRConfiguration<Awaited<ReturnType<typeof appControllerGetHello>>, TError> & { swrKey?: Key, enabled?: boolean }, fetch?: RequestInit }
-) => {
-  const {swr: swrOptions, fetch: fetchOptions} = options ?? {}
-
-  const isEnabled = swrOptions?.enabled !== false
-  const swrKey = swrOptions?.swrKey ?? (() => isEnabled ? getAppControllerGetHelloKey() : null);
-  const swrFn = () => appControllerGetHello(fetchOptions)
-
-  const query = useSwr<Awaited<ReturnType<typeof swrFn>>, TError>(swrKey, swrFn, swrOptions)
-
-  return {
-    swrKey,
-    ...query
-  }
-}
-
 export type todoControllerGetTodoResponse200 = {
   data: GetTodoDto[]
   status: 200
@@ -159,7 +88,6 @@ export const useTodoControllerGetTodo = <TError = Promise<unknown>>(
     ...query
   }
 }
-
 export type todoControllerPostTodoResponse201 = {
   data: GetTodoDto
   status: 201
@@ -226,7 +154,6 @@ export const useTodoControllerPostTodo = <TError = Promise<unknown>>(
     ...query
   }
 }
-
 export type todoControllerPutTodoResponse200 = {
   data: GetTodoDto
   status: 200
@@ -293,7 +220,6 @@ export const useTodoControllerPutTodo = <TError = Promise<unknown>>(
     ...query
   }
 }
-
 export type todoControllerDeleteTodoResponse200 = {
   data: GetTodoDto
   status: 200
@@ -360,78 +286,3 @@ export const useTodoControllerDeleteTodo = <TError = Promise<unknown>>(
     ...query
   }
 }
-
-
-export const getTodoControllerGetTodoResponseMock = (): GetTodoDto[] => (Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({id: faker.string.alpha({length: {min: 10, max: 20}}), complete: faker.datatype.boolean(), title: faker.string.alpha({length: {min: 10, max: 20}}), comment: faker.string.alpha({length: {min: 10, max: 20}}), createdAt: `${faker.date.past().toISOString().split('.')[0]}Z`, updatedAt: `${faker.date.past().toISOString().split('.')[0]}Z`})))
-
-export const getTodoControllerPostTodoResponseMock = (overrideResponse: Partial< GetTodoDto > = {}): GetTodoDto => ({id: faker.string.alpha({length: {min: 10, max: 20}}), complete: faker.datatype.boolean(), title: faker.string.alpha({length: {min: 10, max: 20}}), comment: faker.string.alpha({length: {min: 10, max: 20}}), createdAt: `${faker.date.past().toISOString().split('.')[0]}Z`, updatedAt: `${faker.date.past().toISOString().split('.')[0]}Z`, ...overrideResponse})
-
-export const getTodoControllerPutTodoResponseMock = (overrideResponse: Partial< GetTodoDto > = {}): GetTodoDto => ({id: faker.string.alpha({length: {min: 10, max: 20}}), complete: faker.datatype.boolean(), title: faker.string.alpha({length: {min: 10, max: 20}}), comment: faker.string.alpha({length: {min: 10, max: 20}}), createdAt: `${faker.date.past().toISOString().split('.')[0]}Z`, updatedAt: `${faker.date.past().toISOString().split('.')[0]}Z`, ...overrideResponse})
-
-export const getTodoControllerDeleteTodoResponseMock = (overrideResponse: Partial< GetTodoDto > = {}): GetTodoDto => ({id: faker.string.alpha({length: {min: 10, max: 20}}), complete: faker.datatype.boolean(), title: faker.string.alpha({length: {min: 10, max: 20}}), comment: faker.string.alpha({length: {min: 10, max: 20}}), createdAt: `${faker.date.past().toISOString().split('.')[0]}Z`, updatedAt: `${faker.date.past().toISOString().split('.')[0]}Z`, ...overrideResponse})
-
-
-export const getAppControllerGetHelloMockHandler = (overrideResponse?: void | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<void> | void), options?: RequestHandlerOptions) => {
-  return http.get('*/api', async (info) => {
-  if (typeof overrideResponse === 'function') {await overrideResponse(info); }
-    return new HttpResponse(null,
-      { status: 200,
-        
-      })
-  }, options)
-}
-
-export const getTodoControllerGetTodoMockHandler = (overrideResponse?: GetTodoDto[] | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<GetTodoDto[]> | GetTodoDto[]), options?: RequestHandlerOptions) => {
-  return http.get('*/api/todo', async (info) => {
-  
-    return new HttpResponse(JSON.stringify(overrideResponse !== undefined
-    ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse)
-    : getTodoControllerGetTodoResponseMock()),
-      { status: 200,
-        headers: { 'Content-Type': 'application/json' }
-      })
-  }, options)
-}
-
-export const getTodoControllerPostTodoMockHandler = (overrideResponse?: GetTodoDto | ((info: Parameters<Parameters<typeof http.post>[1]>[0]) => Promise<GetTodoDto> | GetTodoDto), options?: RequestHandlerOptions) => {
-  return http.post('*/api/todo', async (info) => {
-  
-    return new HttpResponse(JSON.stringify(overrideResponse !== undefined
-    ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse)
-    : getTodoControllerPostTodoResponseMock()),
-      { status: 201,
-        headers: { 'Content-Type': 'application/json' }
-      })
-  }, options)
-}
-
-export const getTodoControllerPutTodoMockHandler = (overrideResponse?: GetTodoDto | ((info: Parameters<Parameters<typeof http.put>[1]>[0]) => Promise<GetTodoDto> | GetTodoDto), options?: RequestHandlerOptions) => {
-  return http.put('*/api/todo', async (info) => {
-  
-    return new HttpResponse(JSON.stringify(overrideResponse !== undefined
-    ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse)
-    : getTodoControllerPutTodoResponseMock()),
-      { status: 200,
-        headers: { 'Content-Type': 'application/json' }
-      })
-  }, options)
-}
-
-export const getTodoControllerDeleteTodoMockHandler = (overrideResponse?: GetTodoDto | ((info: Parameters<Parameters<typeof http.delete>[1]>[0]) => Promise<GetTodoDto> | GetTodoDto), options?: RequestHandlerOptions) => {
-  return http.delete('*/api/todo', async (info) => {
-  
-    return new HttpResponse(JSON.stringify(overrideResponse !== undefined
-    ? (typeof overrideResponse === "function" ? await overrideResponse(info) : overrideResponse)
-    : getTodoControllerDeleteTodoResponseMock()),
-      { status: 200,
-        headers: { 'Content-Type': 'application/json' }
-      })
-  }, options)
-}
-export const getExampleMock = () => [
-  getAppControllerGetHelloMockHandler(),
-  getTodoControllerGetTodoMockHandler(),
-  getTodoControllerPostTodoMockHandler(),
-  getTodoControllerPutTodoMockHandler(),
-  getTodoControllerDeleteTodoMockHandler()
-]

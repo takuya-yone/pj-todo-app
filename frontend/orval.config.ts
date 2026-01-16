@@ -1,15 +1,30 @@
-module.exports = {
+import { defineConfig } from 'orval'
+
+export default defineConfig({
   'swagger-spec-file': {
     input: {
       target: '../backend/openapi.yml',
     },
     output: {
-      mode: 'single',
-      target: './src/app/apiClient.ts',
-      schemas: './src/app/model',
+      mode: 'tags-split',
+      target: 'app/gen/endpoints',
+      schemas: 'app/gen/models',
       client: 'swr',
       baseUrl: 'http://localhost:4000',
       mock: true,
     },
   },
-}
+  // 'zod-schema': {
+  //   input: {
+  //     target: '../backend/openapi.yml',
+  //   },
+  //   output: {
+  //     mode: 'single',
+  //     target: './app/apiClient.ts',
+  //     schemas: './app/model',
+  //     client: 'swr',
+  //     baseUrl: 'http://localhost:4000',
+  //     mock: true,
+  //   },
+  // },
+})

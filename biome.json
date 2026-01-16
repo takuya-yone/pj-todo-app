@@ -63,6 +63,11 @@
       "unsafeParameterDecoratorsEnabled": true
     }
   },
+  "css": {
+    "parser": {
+      "tailwindDirectives": true
+    }
+  },
   "files": {
     "includes": ["**", "!**/cdk.out", "!**/.next", "!**/out", "!**/dist", "!**/coverage"]
   }
