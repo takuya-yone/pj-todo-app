@@ -4,8 +4,8 @@ import { useEffect } from 'react'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
 import { Switch } from '@/components/ui/switch'
+import { GetTodoDto } from '@/gen/models'
 import { cn } from '@/lib/utils'
-import { GetTodoDto } from '@/model'
 
 type TodoCardProps = {
   todoItem: GetTodoDto
