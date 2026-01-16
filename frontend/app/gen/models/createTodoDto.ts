@@ -8,7 +8,7 @@
 
 export interface CreateTodoDto {
   /** @minLength 1 */
-  title: string;
+  title: string
   /** @minLength 1 */
-  comment: string;
+  comment: string
 }

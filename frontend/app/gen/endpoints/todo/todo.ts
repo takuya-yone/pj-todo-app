@@ -5,284 +5,263 @@
  * The cats API description
  * OpenAPI spec version: 1.0
  */
-import useSwr from 'swr';
-import type {
-  Key,
-  SWRConfiguration
-} from 'swr';
 
-import useSWRMutation from 'swr/mutation';
-import type {
-  SWRMutationConfiguration
-} from 'swr/mutation';
+import type { Key, SWRConfiguration } from 'swr'
+import useSwr from 'swr'
+import type { SWRMutationConfiguration } from 'swr/mutation'
+import useSWRMutation from 'swr/mutation'
 
-import type {
-  CreateTodoDto,
-  DeleteTodoDto,
-  GetTodoDto,
-  UpdateTodoDto
-} from '../../models';
+import type { CreateTodoDto, DeleteTodoDto, GetTodoDto, UpdateTodoDto } from '../../models'
 
-
-
-  
-  
-  
 export type todoControllerGetTodoResponse200 = {
   data: GetTodoDto[]
   status: 200
 }
-    
-export type todoControllerGetTodoResponseSuccess = (todoControllerGetTodoResponse200) & {
-  headers: Headers;
-};
-;
 
-export type todoControllerGetTodoResponse = (todoControllerGetTodoResponseSuccess)
+export type todoControllerGetTodoResponseSuccess = todoControllerGetTodoResponse200 & {
+  headers: Headers
+}
+
+export type todoControllerGetTodoResponse = todoControllerGetTodoResponseSuccess
 
 export const getTodoControllerGetTodoUrl = () => {
-
-
-  
-
   return `http://localhost:4000/api/todo`
 }
 
-export const todoControllerGetTodo = async ( options?: RequestInit): Promise<todoControllerGetTodoResponse> => {
-  
-  const res = await fetch(getTodoControllerGetTodoUrl(),
-  {      
+export const todoControllerGetTodo = async (
+  options?: RequestInit,
+): Promise<todoControllerGetTodoResponse> => {
+  const res = await fetch(getTodoControllerGetTodoUrl(), {
     ...options,
-    method: 'GET'
-    
-    
-  }
-)
+    method: 'GET',
+  })
 
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
+  const body = [204, 205, 304].includes(res.status) ? null : await res.text()
+
   const data: todoControllerGetTodoResponse['data'] = body ? JSON.parse(body) : {}
   return { data, status: res.status, headers: res.headers } as todoControllerGetTodoResponse
 }
 
+export const getTodoControllerGetTodoKey = () => [`http://localhost:4000/api/todo`] as const
 
+export type TodoControllerGetTodoQueryResult = NonNullable<
+  Awaited<ReturnType<typeof todoControllerGetTodo>>
+>
 
-
-export const getTodoControllerGetTodoKey = () => [`http://localhost:4000/api/todo`] as const;
-
-export type TodoControllerGetTodoQueryResult = NonNullable<Awaited<ReturnType<typeof todoControllerGetTodo>>>
-
-export const useTodoControllerGetTodo = <TError = Promise<unknown>>(
-   options?: { swr?:SWRConfiguration<Awaited<ReturnType<typeof todoControllerGetTodo>>, TError> & { swrKey?: Key, enabled?: boolean }, fetch?: RequestInit }
-) => {
-  const {swr: swrOptions, fetch: fetchOptions} = options ?? {}
+export const useTodoControllerGetTodo = <TError = Promise<unknown>>(options?: {
+  swr?: SWRConfiguration<Awaited<ReturnType<typeof todoControllerGetTodo>>, TError> & {
+    swrKey?: Key
+    enabled?: boolean
+  }
+  fetch?: RequestInit
+}) => {
+  const { swr: swrOptions, fetch: fetchOptions } = options ?? {}
 
   const isEnabled = swrOptions?.enabled !== false
-  const swrKey = swrOptions?.swrKey ?? (() => isEnabled ? getTodoControllerGetTodoKey() : null);
+  const swrKey = swrOptions?.swrKey ?? (() => (isEnabled ? getTodoControllerGetTodoKey() : null))
   const swrFn = () => todoControllerGetTodo(fetchOptions)
 
   const query = useSwr<Awaited<ReturnType<typeof swrFn>>, TError>(swrKey, swrFn, swrOptions)
 
   return {
     swrKey,
-    ...query
+    ...query,
   }
 }
 export type todoControllerPostTodoResponse201 = {
   data: GetTodoDto
   status: 201
 }
-    
-export type todoControllerPostTodoResponseSuccess = (todoControllerPostTodoResponse201) & {
-  headers: Headers;
-};
-;
 
-export type todoControllerPostTodoResponse = (todoControllerPostTodoResponseSuccess)
+export type todoControllerPostTodoResponseSuccess = todoControllerPostTodoResponse201 & {
+  headers: Headers
+}
+
+export type todoControllerPostTodoResponse = todoControllerPostTodoResponseSuccess
 
 export const getTodoControllerPostTodoUrl = () => {
-
-
-  
-
   return `http://localhost:4000/api/todo`
 }
 
-export const todoControllerPostTodo = async (createTodoDto: CreateTodoDto, options?: RequestInit): Promise<todoControllerPostTodoResponse> => {
-  
-  const res = await fetch(getTodoControllerPostTodoUrl(),
-  {      
+export const todoControllerPostTodo = async (
+  createTodoDto: CreateTodoDto,
+  options?: RequestInit,
+): Promise<todoControllerPostTodoResponse> => {
+  const res = await fetch(getTodoControllerPostTodoUrl(), {
     ...options,
     method: 'POST',
     headers: { 'Content-Type': 'application/json', ...options?.headers },
-    body: JSON.stringify(
-      createTodoDto,)
-  }
-)
+    body: JSON.stringify(createTodoDto),
+  })
 
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
+  const body = [204, 205, 304].includes(res.status) ? null : await res.text()
+
   const data: todoControllerPostTodoResponse['data'] = body ? JSON.parse(body) : {}
   return { data, status: res.status, headers: res.headers } as todoControllerPostTodoResponse
 }
 
-
-
-
-export const getTodoControllerPostTodoMutationFetcher = ( options?: RequestInit) => {
+export const getTodoControllerPostTodoMutationFetcher = (options?: RequestInit) => {
   return (_: Key, { arg }: { arg: CreateTodoDto }) => {
-    return todoControllerPostTodo(arg, options);
+    return todoControllerPostTodo(arg, options)
   }
 }
-export const getTodoControllerPostTodoMutationKey = () => [`http://localhost:4000/api/todo`] as const;
+export const getTodoControllerPostTodoMutationKey = () =>
+  [`http://localhost:4000/api/todo`] as const
 
-export type TodoControllerPostTodoMutationResult = NonNullable<Awaited<ReturnType<typeof todoControllerPostTodo>>>
+export type TodoControllerPostTodoMutationResult = NonNullable<
+  Awaited<ReturnType<typeof todoControllerPostTodo>>
+>
 
-export const useTodoControllerPostTodo = <TError = Promise<unknown>>(
-   options?: { swr?:SWRMutationConfiguration<Awaited<ReturnType<typeof todoControllerPostTodo>>, TError, Key, CreateTodoDto, Awaited<ReturnType<typeof todoControllerPostTodo>>> & { swrKey?: string }, fetch?: RequestInit}
-) => {
+export const useTodoControllerPostTodo = <TError = Promise<unknown>>(options?: {
+  swr?: SWRMutationConfiguration<
+    Awaited<ReturnType<typeof todoControllerPostTodo>>,
+    TError,
+    Key,
+    CreateTodoDto,
+    Awaited<ReturnType<typeof todoControllerPostTodo>>
+  > & { swrKey?: string }
+  fetch?: RequestInit
+}) => {
+  const { swr: swrOptions, fetch: fetchOptions } = options ?? {}
 
-  const {swr: swrOptions, fetch: fetchOptions} = options ?? {}
-
-  const swrKey = swrOptions?.swrKey ?? getTodoControllerPostTodoMutationKey();
-  const swrFn = getTodoControllerPostTodoMutationFetcher(fetchOptions);
+  const swrKey = swrOptions?.swrKey ?? getTodoControllerPostTodoMutationKey()
+  const swrFn = getTodoControllerPostTodoMutationFetcher(fetchOptions)
 
   const query = useSWRMutation(swrKey, swrFn, swrOptions)
 
   return {
     swrKey,
-    ...query
+    ...query,
   }
 }
 export type todoControllerPutTodoResponse200 = {
   data: GetTodoDto
   status: 200
 }
-    
-export type todoControllerPutTodoResponseSuccess = (todoControllerPutTodoResponse200) & {
-  headers: Headers;
-};
-;
 
-export type todoControllerPutTodoResponse = (todoControllerPutTodoResponseSuccess)
+export type todoControllerPutTodoResponseSuccess = todoControllerPutTodoResponse200 & {
+  headers: Headers
+}
+
+export type todoControllerPutTodoResponse = todoControllerPutTodoResponseSuccess
 
 export const getTodoControllerPutTodoUrl = () => {
-
-
-  
-
   return `http://localhost:4000/api/todo`
 }
 
-export const todoControllerPutTodo = async (updateTodoDto: UpdateTodoDto, options?: RequestInit): Promise<todoControllerPutTodoResponse> => {
-  
-  const res = await fetch(getTodoControllerPutTodoUrl(),
-  {      
+export const todoControllerPutTodo = async (
+  updateTodoDto: UpdateTodoDto,
+  options?: RequestInit,
+): Promise<todoControllerPutTodoResponse> => {
+  const res = await fetch(getTodoControllerPutTodoUrl(), {
     ...options,
     method: 'PUT',
     headers: { 'Content-Type': 'application/json', ...options?.headers },
-    body: JSON.stringify(
-      updateTodoDto,)
-  }
-)
+    body: JSON.stringify(updateTodoDto),
+  })
 
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
+  const body = [204, 205, 304].includes(res.status) ? null : await res.text()
+
   const data: todoControllerPutTodoResponse['data'] = body ? JSON.parse(body) : {}
   return { data, status: res.status, headers: res.headers } as todoControllerPutTodoResponse
 }
 
-
-
-
-export const getTodoControllerPutTodoMutationFetcher = ( options?: RequestInit) => {
+export const getTodoControllerPutTodoMutationFetcher = (options?: RequestInit) => {
   return (_: Key, { arg }: { arg: UpdateTodoDto }) => {
-    return todoControllerPutTodo(arg, options);
+    return todoControllerPutTodo(arg, options)
   }
 }
-export const getTodoControllerPutTodoMutationKey = () => [`http://localhost:4000/api/todo`] as const;
+export const getTodoControllerPutTodoMutationKey = () => [`http://localhost:4000/api/todo`] as const
 
-export type TodoControllerPutTodoMutationResult = NonNullable<Awaited<ReturnType<typeof todoControllerPutTodo>>>
+export type TodoControllerPutTodoMutationResult = NonNullable<
+  Awaited<ReturnType<typeof todoControllerPutTodo>>
+>
 
-export const useTodoControllerPutTodo = <TError = Promise<unknown>>(
-   options?: { swr?:SWRMutationConfiguration<Awaited<ReturnType<typeof todoControllerPutTodo>>, TError, Key, UpdateTodoDto, Awaited<ReturnType<typeof todoControllerPutTodo>>> & { swrKey?: string }, fetch?: RequestInit}
-) => {
+export const useTodoControllerPutTodo = <TError = Promise<unknown>>(options?: {
+  swr?: SWRMutationConfiguration<
+    Awaited<ReturnType<typeof todoControllerPutTodo>>,
+    TError,
+    Key,
+    UpdateTodoDto,
+    Awaited<ReturnType<typeof todoControllerPutTodo>>
+  > & { swrKey?: string }
+  fetch?: RequestInit
+}) => {
+  const { swr: swrOptions, fetch: fetchOptions } = options ?? {}
 
-  const {swr: swrOptions, fetch: fetchOptions} = options ?? {}
-
-  const swrKey = swrOptions?.swrKey ?? getTodoControllerPutTodoMutationKey();
-  const swrFn = getTodoControllerPutTodoMutationFetcher(fetchOptions);
+  const swrKey = swrOptions?.swrKey ?? getTodoControllerPutTodoMutationKey()
+  const swrFn = getTodoControllerPutTodoMutationFetcher(fetchOptions)
 
   const query = useSWRMutation(swrKey, swrFn, swrOptions)
 
   return {
     swrKey,
-    ...query
+    ...query,
   }
 }
 export type todoControllerDeleteTodoResponse200 = {
   data: GetTodoDto
   status: 200
 }
-    
-export type todoControllerDeleteTodoResponseSuccess = (todoControllerDeleteTodoResponse200) & {
-  headers: Headers;
-};
-;
 
-export type todoControllerDeleteTodoResponse = (todoControllerDeleteTodoResponseSuccess)
+export type todoControllerDeleteTodoResponseSuccess = todoControllerDeleteTodoResponse200 & {
+  headers: Headers
+}
+
+export type todoControllerDeleteTodoResponse = todoControllerDeleteTodoResponseSuccess
 
 export const getTodoControllerDeleteTodoUrl = () => {
-
-
-  
-
   return `http://localhost:4000/api/todo`
 }
 
-export const todoControllerDeleteTodo = async (deleteTodoDto: DeleteTodoDto, options?: RequestInit): Promise<todoControllerDeleteTodoResponse> => {
-  
-  const res = await fetch(getTodoControllerDeleteTodoUrl(),
-  {      
+export const todoControllerDeleteTodo = async (
+  deleteTodoDto: DeleteTodoDto,
+  options?: RequestInit,
+): Promise<todoControllerDeleteTodoResponse> => {
+  const res = await fetch(getTodoControllerDeleteTodoUrl(), {
     ...options,
     method: 'DELETE',
     headers: { 'Content-Type': 'application/json', ...options?.headers },
-    body: JSON.stringify(
-      deleteTodoDto,)
-  }
-)
+    body: JSON.stringify(deleteTodoDto),
+  })
 
-  const body = [204, 205, 304].includes(res.status) ? null : await res.text();
-  
+  const body = [204, 205, 304].includes(res.status) ? null : await res.text()
+
   const data: todoControllerDeleteTodoResponse['data'] = body ? JSON.parse(body) : {}
   return { data, status: res.status, headers: res.headers } as todoControllerDeleteTodoResponse
 }
 
-
-
-
-export const getTodoControllerDeleteTodoMutationFetcher = ( options?: RequestInit) => {
+export const getTodoControllerDeleteTodoMutationFetcher = (options?: RequestInit) => {
   return (_: Key, { arg }: { arg: DeleteTodoDto }) => {
-    return todoControllerDeleteTodo(arg, options);
+    return todoControllerDeleteTodo(arg, options)
   }
 }
-export const getTodoControllerDeleteTodoMutationKey = () => [`http://localhost:4000/api/todo`] as const;
+export const getTodoControllerDeleteTodoMutationKey = () =>
+  [`http://localhost:4000/api/todo`] as const
 
-export type TodoControllerDeleteTodoMutationResult = NonNullable<Awaited<ReturnType<typeof todoControllerDeleteTodo>>>
+export type TodoControllerDeleteTodoMutationResult = NonNullable<
+  Awaited<ReturnType<typeof todoControllerDeleteTodo>>
+>
 
-export const useTodoControllerDeleteTodo = <TError = Promise<unknown>>(
-   options?: { swr?:SWRMutationConfiguration<Awaited<ReturnType<typeof todoControllerDeleteTodo>>, TError, Key, DeleteTodoDto, Awaited<ReturnType<typeof todoControllerDeleteTodo>>> & { swrKey?: string }, fetch?: RequestInit}
-) => {
+export const useTodoControllerDeleteTodo = <TError = Promise<unknown>>(options?: {
+  swr?: SWRMutationConfiguration<
+    Awaited<ReturnType<typeof todoControllerDeleteTodo>>,
+    TError,
+    Key,
+    DeleteTodoDto,
+    Awaited<ReturnType<typeof todoControllerDeleteTodo>>
+  > & { swrKey?: string }
+  fetch?: RequestInit
+}) => {
+  const { swr: swrOptions, fetch: fetchOptions } = options ?? {}
 
-  const {swr: swrOptions, fetch: fetchOptions} = options ?? {}
-
-  const swrKey = swrOptions?.swrKey ?? getTodoControllerDeleteTodoMutationKey();
-  const swrFn = getTodoControllerDeleteTodoMutationFetcher(fetchOptions);
+  const swrKey = swrOptions?.swrKey ?? getTodoControllerDeleteTodoMutationKey()
+  const swrFn = getTodoControllerDeleteTodoMutationFetcher(fetchOptions)
 
   const query = useSWRMutation(swrKey, swrFn, swrOptions)
 
   return {
     swrKey,
-    ...query
+    ...query,
   }
 }

@@ -7,9 +7,9 @@
   "main": "index.js",
   "scripts": {
     "ncu": "ncu -w frontend -w backend",
-    "fix:all": "biome check --apply frontend/app backend",
-    "fix:frontend": "biome check --apply frontend/app",
-    "fix:backend": "biome check --apply backend"
+    "fix:all": "biome check --write frontend/app backend",
+    "fix:frontend": "biome check --write frontend/app",
+    "fix:backend": "biome check --write backend"
   },
   "license": "ISC",
   "workspaces": [

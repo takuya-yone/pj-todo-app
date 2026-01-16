@@ -7,10 +7,10 @@
  */
 
 export interface UpdateTodoDto {
-  id: string;
+  id: string
   /** @minLength 1 */
-  title: string;
+  title: string
   /** @minLength 1 */
-  comment: string;
-  complete: boolean;
+  comment: string
+  complete: boolean
 }

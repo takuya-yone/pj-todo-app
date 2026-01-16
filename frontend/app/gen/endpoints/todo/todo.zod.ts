@@ -5,58 +5,48 @@
  * The cats API description
  * OpenAPI spec version: 1.0
  */
-import * as zod from 'zod';
-
+import * as zod from 'zod'
 
 export const TodoControllerGetTodoResponseItem = zod.object({
-  "id": zod.string(),
-  "complete": zod.boolean(),
-  "title": zod.string(),
-  "comment": zod.string(),
-  "createdAt": zod.iso.datetime({}),
-  "updatedAt": zod.iso.datetime({})
+  id: zod.string(),
+  complete: zod.boolean(),
+  title: zod.string(),
+  comment: zod.string(),
+  createdAt: zod.iso.datetime({}),
+  updatedAt: zod.iso.datetime({}),
 })
 export const TodoControllerGetTodoResponse = zod.array(TodoControllerGetTodoResponseItem)
 
-
-
-
-
 export const TodoControllerPostTodoBody = zod.object({
-  "title": zod.string().min(1),
-  "comment": zod.string().min(1)
+  title: zod.string().min(1),
+  comment: zod.string().min(1),
 })
 
-
-
-
-
 export const TodoControllerPutTodoBody = zod.object({
-  "id": zod.string(),
-  "title": zod.string().min(1),
-  "comment": zod.string().min(1),
-  "complete": zod.boolean()
+  id: zod.string(),
+  title: zod.string().min(1),
+  comment: zod.string().min(1),
+  complete: zod.boolean(),
 })
 
 export const TodoControllerPutTodoResponse = zod.object({
-  "id": zod.string(),
-  "complete": zod.boolean(),
-  "title": zod.string(),
-  "comment": zod.string(),
-  "createdAt": zod.iso.datetime({}),
-  "updatedAt": zod.iso.datetime({})
+  id: zod.string(),
+  complete: zod.boolean(),
+  title: zod.string(),
+  comment: zod.string(),
+  createdAt: zod.iso.datetime({}),
+  updatedAt: zod.iso.datetime({}),
 })
 
 export const TodoControllerDeleteTodoBody = zod.object({
-  "id": zod.string()
+  id: zod.string(),
 })
 
 export const TodoControllerDeleteTodoResponse = zod.object({
-  "id": zod.string(),
-  "complete": zod.boolean(),
-  "title": zod.string(),
-  "comment": zod.string(),
-  "createdAt": zod.iso.datetime({}),
-  "updatedAt": zod.iso.datetime({})
+  id: zod.string(),
+  complete: zod.boolean(),
+  title: zod.string(),
+  comment: zod.string(),
+  createdAt: zod.iso.datetime({}),
+  updatedAt: zod.iso.datetime({}),
 })
-

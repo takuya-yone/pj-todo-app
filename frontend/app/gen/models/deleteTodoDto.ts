@@ -7,5 +7,5 @@
  */
 
 export interface DeleteTodoDto {
-  id: string;
+  id: string
 }

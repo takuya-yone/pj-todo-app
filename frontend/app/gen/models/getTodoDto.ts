@@ -7,10 +7,10 @@
  */
 
 export interface GetTodoDto {
-  id: string;
-  complete: boolean;
-  title: string;
-  comment: string;
-  createdAt: string;
-  updatedAt: string;
+  id: string
+  complete: boolean
+  title: string
+  comment: string
+  createdAt: string
+  updatedAt: string
 }
