@@ -1,5 +1,6 @@
-import { Controller, Get, HttpStatus } from '@nestjs/common'
+import { Controller, Get, HttpStatus, UseGuards } from '@nestjs/common'
 import { ApiResponse } from '@nestjs/swagger'
+import { JwtGuard } from '../auth/guard/jwt.guard'
 import { GetHealthDto } from './health.dto'
 
 @Controller('health')
@@ -11,5 +12,15 @@ export class HealthController {
   @Get()
   async get(): Promise<GetHealthDto> {
     return new GetHealthDto('health check is OK!')
+  }
+
+  @ApiResponse({
+    status: HttpStatus.OK,
+    type: GetHealthDto,
+  })
+  @Get('auth')
+  @UseGuards(JwtGuard)
+  async authCheck(): Promise<GetHealthDto> {
+    return new GetHealthDto('health check w/ Auth is OK!')
   }
 }

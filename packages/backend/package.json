@@ -16,11 +16,11 @@
     "test:cov": "vitest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "prisma": "prisma",
-    "prisma:local": "dotenv -e .env -- prisma"
+    "prisma": "prisma"
   },
   "dependencies": {
     "@nestjs/common": "^11.1.12",
+    "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.1.12",
     "@nestjs/passport": "^11.0.5",
     "@nestjs/platform-express": "^11.1.12",

@@ -29,7 +29,7 @@ COPY --from=app-builder /app/packages/frontend/out ./packages/frontend/out
 COPY --from=app-builder /app/packages/backend/dist ./packages/backend/dist
 COPY --from=app-builder /app/packages/backend/prisma ./prisma
 COPY --from=app-builder /app/packages/backend/package.json ./package.json
-COPY --from=app-builder /app/packages/backend/env.ts ./env.ts
+# COPY --from=app-builder /app/packages/backend/env.ts ./env.ts
 COPY --from=app-builder /app/packages/backend/prisma.config.ts ./prisma.config.ts
 COPY --from=deps-installer /app/node_modules ./node_modules
 
