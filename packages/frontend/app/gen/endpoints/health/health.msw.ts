@@ -9,17 +9,25 @@ import { faker } from '@faker-js/faker'
 import type { RequestHandlerOptions } from 'msw'
 import { HttpResponse, http } from 'msw'
 
-export const getAppControllerGetResponseMock = (): string[] =>
-  Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, () => faker.word.sample())
+import type { GetHealthDto } from '../../models'
 
-export const getAppControllerGetMockHandler = (
+export const getHealthControllerGetResponseMock = (
+  overrideResponse: Partial<GetHealthDto> = {},
+): GetHealthDto => ({
+  message: faker.string.alpha({ length: { min: 10, max: 20 } }),
+  ...overrideResponse,
+})
+
+export const getHealthControllerGetMockHandler = (
   overrideResponse?:
-    | string[]
-    | ((info: Parameters<Parameters<typeof http.get>[1]>[0]) => Promise<string[]> | string[]),
+    | GetHealthDto
+    | ((
+        info: Parameters<Parameters<typeof http.get>[1]>[0],
+      ) => Promise<GetHealthDto> | GetHealthDto),
   options?: RequestHandlerOptions,
 ) => {
   return http.get(
-    '*/api',
+    '*/api/health',
     async (info) => {
       return new HttpResponse(
         JSON.stringify(
@@ -27,7 +35,7 @@ export const getAppControllerGetMockHandler = (
             ? typeof overrideResponse === 'function'
               ? await overrideResponse(info)
               : overrideResponse
-            : getAppControllerGetResponseMock(),
+            : getHealthControllerGetResponseMock(),
         ),
         { status: 200, headers: { 'Content-Type': 'application/json' } },
       )
@@ -35,4 +43,4 @@ export const getAppControllerGetMockHandler = (
     options,
   )
 }
-export const getAppMock = () => [getAppControllerGetMockHandler()]
+export const getHealthMock = () => [getHealthControllerGetMockHandler()]

@@ -7,5 +7,6 @@
  */
 import * as zod from 'zod'
 
-export const AppControllerGetResponseItem = zod.string()
-export const AppControllerGetResponse = zod.array(AppControllerGetResponseItem)
+export const HealthControllerGetResponse = zod.object({
+  message: zod.string(),
+})

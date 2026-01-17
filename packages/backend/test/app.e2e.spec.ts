@@ -4,7 +4,7 @@ import * as request from 'supertest'
 import { beforeEach, describe, it } from 'vitest'
 import { AppModule } from '../src/app.module'
 
-describe('AppController (e2e)', () => {
+describe('HealthController (e2e)', () => {
   let app: INestApplication
 
   beforeEach(async () => {
@@ -16,7 +16,10 @@ describe('AppController (e2e)', () => {
     await app.init()
   })
 
-  it('/ (GET)', () => {
-    return request.default(app.getHttpServer()).get('/').expect(200).expect('health check is OK!')
+  it('/health (GET)', () => {
+    const expected = {
+      message: 'health check is OK!',
+    }
+    return request.default(app.getHttpServer()).get('/health').expect(200).expect(expected)
   })
 })

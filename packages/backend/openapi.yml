@@ -1,8 +1,8 @@
 openapi: 3.0.0
 paths:
-  /api:
+  /api/health:
     get:
-      operationId: AppController_get
+      operationId: HealthController_get
       parameters: []
       responses:
         '200':
@@ -10,11 +10,9 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: string
+                $ref: '#/components/schemas/GetHealthDto'
       tags:
-        - App
+        - Health
   /api/todo:
     get:
       operationId: TodoController_getTodo
@@ -90,6 +88,13 @@ tags: []
 servers: []
 components:
   schemas:
+    GetHealthDto:
+      type: object
+      properties:
+        message:
+          type: string
+      required:
+        - message
     GetTodoDto:
       type: object
       properties:

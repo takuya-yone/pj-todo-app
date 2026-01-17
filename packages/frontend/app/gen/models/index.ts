@@ -8,5 +8,6 @@
 
 export * from './createTodoDto'
 export * from './deleteTodoDto'
+export * from './getHealthDto'
 export * from './getTodoDto'
 export * from './updateTodoDto'
