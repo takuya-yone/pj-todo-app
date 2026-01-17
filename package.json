@@ -6,10 +6,10 @@
   "author": "yonezawa.takuya.yq2@gmail.com",
   "main": "index.js",
   "scripts": {
-    "ncu": "ncu -w frontend -w backend",
-    "fix:all": "biome check --write frontend/app backend",
-    "fix:frontend": "biome check --write frontend/app",
-    "fix:backend": "biome check --write backend"
+    "ncu": "ncu -w packages",
+    "fix:all": "biome check --write packages/frontend/app backend",
+    "fix:frontend": "biome check --write packages/frontend/app",
+    "fix:backend": "biome check --write packages/backend"
   },
   "license": "ISC",
   "workspaces": [

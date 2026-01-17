@@ -1,5 +1,20 @@
 openapi: 3.0.0
 paths:
+  /api:
+    get:
+      operationId: AppController_get
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+      tags:
+        - App
   /api/todo:
     get:
       operationId: TodoController_getTodo

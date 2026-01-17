@@ -1,6 +1,7 @@
 import { join } from 'node:path'
 import { MiddlewareConsumer, Module, RequestMethod } from '@nestjs/common'
 import { ServeStaticModule } from '@nestjs/serve-static'
+import { AppController } from './app.controller'
 import { LoggerMiddleware } from './middleware/logger/logger.middleware'
 import { PrismaService } from './prisma/prisma.service'
 import { TodoController } from './todo/todo.controller'
@@ -14,7 +15,7 @@ import { TodoService } from './todo/todo.service'
       rootPath: join(__dirname, '../../', 'frontend/out'),
     }),
   ],
-  controllers: [TodoController],
+  controllers: [AppController, TodoController],
   providers: [TodoService, PrismaService],
 })
 export class AppModule {

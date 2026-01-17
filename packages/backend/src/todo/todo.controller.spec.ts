@@ -1,18 +1,28 @@
 import assert from 'node:assert'
+import { Test } from '@nestjs/testing'
 import { beforeEach, describe, expect, it } from 'vitest'
 import { PrismaService } from '../prisma/prisma.service'
 import { TodoController } from './todo.controller'
 import { CreateTodoDto, DeleteTodoDto, UpdateTodoDto } from './todo.dto'
 import { TodoService } from './todo.service'
 
+const mockDto = new CreateTodoDto('titletitle', 'commentcomment')
+
 describe('TodoController', () => {
   let todoController: TodoController
   let todoService: TodoService
   let prismaService: PrismaService
 
-  const mockDto = new CreateTodoDto('titletitle', 'commentcomment')
-
   beforeEach(async () => {
+    const _moduleRef = await Test.createTestingModule({
+      controllers: [TodoController],
+      providers: [TodoService, PrismaService],
+    }).compile()
+
+    // _todoService = moduleRef.get<TodoService>(TodoService)
+    // todoController = moduleRef.get<TodoController>(TodoController)
+    // _prismaService = moduleRef.get<PrismaService>(PrismaService)
+
     prismaService = new PrismaService()
     todoService = new TodoService(prismaService)
     todoController = new TodoController(todoService)
