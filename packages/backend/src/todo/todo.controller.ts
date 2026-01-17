@@ -1,5 +1,6 @@
-import { Body, Controller, Delete, Get, HttpStatus, Post, Put } from '@nestjs/common'
+import { Body, Controller, Delete, Get, HttpStatus, Post, Put, UseGuards } from '@nestjs/common'
 import { ApiResponse } from '@nestjs/swagger'
+import { JwtGuard } from '../auth/guard/jwt.guard'
 import { CreateTodoDto, DeleteTodoDto, GetTodoDto, UpdateTodoDto } from './todo.dto'
 import { TodoService } from './todo.service'
 
@@ -7,6 +8,7 @@ import { TodoService } from './todo.service'
 export class TodoController {
   constructor(private readonly todoService: TodoService) {}
 
+  @UseGuards(JwtGuard)
   @ApiResponse({
     status: HttpStatus.OK,
     type: [GetTodoDto],

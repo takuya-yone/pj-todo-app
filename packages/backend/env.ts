@@ -15,6 +15,10 @@ export class ENV {
   readonly DB_DATABASE: string
   readonly DB_SSLMODE: 'disable' | 'require'
   readonly DB_URL: string
+  readonly COGNITO_CLIENT_ID: string
+  readonly COGNITO_REGION: string
+  readonly COGNITO_USERPOOL_ID: string
+  readonly COGNITO_AUTHORITY: string
 
   constructor() {
     if (
@@ -22,7 +26,11 @@ export class ENV {
       process.env.DB_PASSWORD === undefined ||
       process.env.DB_HOST === undefined ||
       process.env.DB_PORT === undefined ||
-      process.env.DB_DATABASE === undefined
+      process.env.DB_DATABASE === undefined ||
+      process.env.DB_SSLMODE === undefined ||
+      process.env.COGNITO_CLIENT_ID === undefined ||
+      process.env.COGNITO_REGION === undefined ||
+      process.env.COGNITO_USERPOOL_ID === undefined
     ) {
       throw new Error('Environment variables are not properly set.')
     }
@@ -38,6 +46,10 @@ export class ENV {
     this.DB_DATABASE = process.env.DB_DATABASE
     this.DB_SSLMODE = process.env.DB_SSLMODE
     this.DB_URL = `postgresql://${this.DB_USERNAME}:${this.DB_PASSWORD}@${this.DB_HOST}:${this.DB_PORT}/${this.DB_DATABASE}?sslmode=${this.DB_SSLMODE}`
+    this.COGNITO_CLIENT_ID = process.env.COGNITO_CLIENT_ID
+    this.COGNITO_REGION = process.env.COGNITO_REGION
+    this.COGNITO_USERPOOL_ID = process.env.COGNITO_USERPOOL_ID
+    this.COGNITO_AUTHORITY = `https://cognito-idp.${this.COGNITO_REGION}.amazonaws.com/${this.COGNITO_USERPOOL_ID}`
   }
 }
 
