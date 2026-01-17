@@ -2,10 +2,8 @@ import { Injectable, OnModuleInit } from '@nestjs/common'
 import { PrismaMariaDb } from '@prisma/adapter-mariadb'
 import { PrismaPg } from '@prisma/adapter-pg'
 import { PrismaTiDBCloud } from '@tidbcloud/prisma-adapter'
-
+import { ENV } from '../../env'
 import { PrismaClient } from '../../generated/prisma/client'
-
-import { ENV } from '../env'
 
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit {

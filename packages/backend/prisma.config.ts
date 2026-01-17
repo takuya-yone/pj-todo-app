@@ -2,7 +2,7 @@
 // npm install --save-dev prisma dotenv
 import 'dotenv/config'
 import { defineConfig } from 'prisma/config'
-import { ENV } from './src/env'
+import { ENV } from './env'
 
 const env = new ENV()
 
