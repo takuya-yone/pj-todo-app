@@ -1,4 +1,4 @@
-import { Injectable, Logger } from '@nestjs/common'
+import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { PassportStrategy } from '@nestjs/passport'
 import { passportJwtSecret } from 'jwks-rsa'
@@ -19,8 +19,6 @@ export interface Claim {
 // jwt.guard.tsでのAuthGuard('jwt')に合わせる。
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy, 'jwtCognito') {
-  private readonly logger = new Logger(JwtStrategy.name)
-
   constructor(readonly configService: ConfigService) {
     super({
       // ヘッダからBearerトークンを取得
@@ -36,12 +34,12 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwtCognito') {
       secretOrKeyProvider: passportJwtSecret({
         // 公開鍵をキャッシュする。これがfalseだと、毎リクエストごとに
         // 公開鍵をHTTPリクエストで取得する必要がある。
-        cache: true,
+        cache: false,
         rateLimit: true,
         jwksRequestsPerMinute: 5,
         jwksUri: configService.get('cognito.jwksUri') ?? '',
       }),
-      // passReqToCallback: true, // これをtrueにするとvalidateの第一引数にRequestを使用できる。
+      passReqToCallback: false, // これをtrueにするとvalidateの第一引数にRequestを使用できる。
     })
   }
 
@@ -49,7 +47,6 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwtCognito') {
   // 検証後に実行されることに注意。JWTが向こうであればそもそも実行されない。
   // validate自体はPromiseにすることも可能。
   public validate(payload: Claim): string {
-    this.logger.log(`JWT validate called. payload: ${JSON.stringify(payload)}`)
     return payload.email
   }
 }
