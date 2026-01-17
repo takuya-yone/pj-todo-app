@@ -24,6 +24,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetHealthDto'
+      security:
+        - bearer: []
       tags: *ref_0
   /api/todo:
     get:
@@ -99,6 +101,11 @@ info:
 tags: []
 servers: []
 components:
+  securitySchemes:
+    bearer:
+      scheme: bearer
+      bearerFormat: JWT
+      type: http
   schemas:
     GetHealthDto:
       type: object
