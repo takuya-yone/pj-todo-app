@@ -18,6 +18,13 @@ export const getHealthControllerGetResponseMock = (
   ...overrideResponse,
 })
 
+export const getHealthControllerAuthCheckResponseMock = (
+  overrideResponse: Partial<GetHealthDto> = {},
+): GetHealthDto => ({
+  message: faker.string.alpha({ length: { min: 10, max: 20 } }),
+  ...overrideResponse,
+})
+
 export const getHealthControllerGetMockHandler = (
   overrideResponse?:
     | GetHealthDto
@@ -43,4 +50,33 @@ export const getHealthControllerGetMockHandler = (
     options,
   )
 }
-export const getHealthMock = () => [getHealthControllerGetMockHandler()]
+
+export const getHealthControllerAuthCheckMockHandler = (
+  overrideResponse?:
+    | GetHealthDto
+    | ((
+        info: Parameters<Parameters<typeof http.get>[1]>[0],
+      ) => Promise<GetHealthDto> | GetHealthDto),
+  options?: RequestHandlerOptions,
+) => {
+  return http.get(
+    '*/api/health/auth',
+    async (info) => {
+      return new HttpResponse(
+        JSON.stringify(
+          overrideResponse !== undefined
+            ? typeof overrideResponse === 'function'
+              ? await overrideResponse(info)
+              : overrideResponse
+            : getHealthControllerAuthCheckResponseMock(),
+        ),
+        { status: 200, headers: { 'Content-Type': 'application/json' } },
+      )
+    },
+    options,
+  )
+}
+export const getHealthMock = () => [
+  getHealthControllerGetMockHandler(),
+  getHealthControllerAuthCheckMockHandler(),
+]
