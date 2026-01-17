@@ -11,7 +11,7 @@ import { HttpResponse, http } from 'msw'
 
 import type { GetTodoDto } from '../../models'
 
-export const getTodoControllerGetTodoResponseMock = (): GetTodoDto[] =>
+export const getTodoControllerGetResponseMock = (): GetTodoDto[] =>
   Array.from({ length: faker.number.int({ min: 1, max: 10 }) }, (_, i) => i + 1).map(() => ({
     id: faker.string.alpha({ length: { min: 10, max: 20 } }),
     complete: faker.datatype.boolean(),
@@ -21,7 +21,7 @@ export const getTodoControllerGetTodoResponseMock = (): GetTodoDto[] =>
     updatedAt: `${faker.date.past().toISOString().split('.')[0]}Z`,
   }))
 
-export const getTodoControllerPostTodoResponseMock = (
+export const getTodoControllerCreateResponseMock = (
   overrideResponse: Partial<GetTodoDto> = {},
 ): GetTodoDto => ({
   id: faker.string.alpha({ length: { min: 10, max: 20 } }),
@@ -33,7 +33,7 @@ export const getTodoControllerPostTodoResponseMock = (
   ...overrideResponse,
 })
 
-export const getTodoControllerPutTodoResponseMock = (
+export const getTodoControllerUpdateResponseMock = (
   overrideResponse: Partial<GetTodoDto> = {},
 ): GetTodoDto => ({
   id: faker.string.alpha({ length: { min: 10, max: 20 } }),
@@ -45,7 +45,7 @@ export const getTodoControllerPutTodoResponseMock = (
   ...overrideResponse,
 })
 
-export const getTodoControllerDeleteTodoResponseMock = (
+export const getTodoControllerDeleteResponseMock = (
   overrideResponse: Partial<GetTodoDto> = {},
 ): GetTodoDto => ({
   id: faker.string.alpha({ length: { min: 10, max: 20 } }),
@@ -57,7 +57,7 @@ export const getTodoControllerDeleteTodoResponseMock = (
   ...overrideResponse,
 })
 
-export const getTodoControllerGetTodoMockHandler = (
+export const getTodoControllerGetMockHandler = (
   overrideResponse?:
     | GetTodoDto[]
     | ((
@@ -74,7 +74,7 @@ export const getTodoControllerGetTodoMockHandler = (
             ? typeof overrideResponse === 'function'
               ? await overrideResponse(info)
               : overrideResponse
-            : getTodoControllerGetTodoResponseMock(),
+            : getTodoControllerGetResponseMock(),
         ),
         { status: 200, headers: { 'Content-Type': 'application/json' } },
       )
@@ -83,7 +83,7 @@ export const getTodoControllerGetTodoMockHandler = (
   )
 }
 
-export const getTodoControllerPostTodoMockHandler = (
+export const getTodoControllerCreateMockHandler = (
   overrideResponse?:
     | GetTodoDto
     | ((info: Parameters<Parameters<typeof http.post>[1]>[0]) => Promise<GetTodoDto> | GetTodoDto),
@@ -98,7 +98,7 @@ export const getTodoControllerPostTodoMockHandler = (
             ? typeof overrideResponse === 'function'
               ? await overrideResponse(info)
               : overrideResponse
-            : getTodoControllerPostTodoResponseMock(),
+            : getTodoControllerCreateResponseMock(),
         ),
         { status: 201, headers: { 'Content-Type': 'application/json' } },
       )
@@ -107,7 +107,7 @@ export const getTodoControllerPostTodoMockHandler = (
   )
 }
 
-export const getTodoControllerPutTodoMockHandler = (
+export const getTodoControllerUpdateMockHandler = (
   overrideResponse?:
     | GetTodoDto
     | ((info: Parameters<Parameters<typeof http.put>[1]>[0]) => Promise<GetTodoDto> | GetTodoDto),
@@ -122,7 +122,7 @@ export const getTodoControllerPutTodoMockHandler = (
             ? typeof overrideResponse === 'function'
               ? await overrideResponse(info)
               : overrideResponse
-            : getTodoControllerPutTodoResponseMock(),
+            : getTodoControllerUpdateResponseMock(),
         ),
         { status: 200, headers: { 'Content-Type': 'application/json' } },
       )
@@ -131,7 +131,7 @@ export const getTodoControllerPutTodoMockHandler = (
   )
 }
 
-export const getTodoControllerDeleteTodoMockHandler = (
+export const getTodoControllerDeleteMockHandler = (
   overrideResponse?:
     | GetTodoDto
     | ((
@@ -148,7 +148,7 @@ export const getTodoControllerDeleteTodoMockHandler = (
             ? typeof overrideResponse === 'function'
               ? await overrideResponse(info)
               : overrideResponse
-            : getTodoControllerDeleteTodoResponseMock(),
+            : getTodoControllerDeleteResponseMock(),
         ),
         { status: 200, headers: { 'Content-Type': 'application/json' } },
       )
@@ -157,8 +157,8 @@ export const getTodoControllerDeleteTodoMockHandler = (
   )
 }
 export const getTodoMock = () => [
-  getTodoControllerGetTodoMockHandler(),
-  getTodoControllerPostTodoMockHandler(),
-  getTodoControllerPutTodoMockHandler(),
-  getTodoControllerDeleteTodoMockHandler(),
+  getTodoControllerGetMockHandler(),
+  getTodoControllerCreateMockHandler(),
+  getTodoControllerUpdateMockHandler(),
+  getTodoControllerDeleteMockHandler(),
 ]

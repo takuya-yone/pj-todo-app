@@ -13,7 +13,7 @@ import {
   FormMessage,
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
-import { TodoControllerPostTodoBody as formSchema } from '@/gen/endpoints/todo/todo.zod'
+import { TodoControllerCreateBody as formSchema } from '@/gen/endpoints/todo/todo.zod'
 import { CreateTodoDto } from '@/gen/models'
 
 type TodoFormProps = {

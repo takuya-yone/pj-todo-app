@@ -15,7 +15,7 @@ paths:
         - Health
   /api/todo:
     get:
-      operationId: TodoController_getTodo
+      operationId: TodoController_get
       parameters: []
       responses:
         '200':
@@ -29,7 +29,7 @@ paths:
       tags: &ref_0
         - Todo
     post:
-      operationId: TodoController_postTodo
+      operationId: TodoController_create
       parameters: []
       requestBody:
         required: true
@@ -46,7 +46,7 @@ paths:
                 $ref: '#/components/schemas/GetTodoDto'
       tags: *ref_0
     put:
-      operationId: TodoController_putTodo
+      operationId: TodoController_update
       parameters: []
       requestBody:
         required: true
@@ -63,7 +63,7 @@ paths:
                 $ref: '#/components/schemas/GetTodoDto'
       tags: *ref_0
     delete:
-      operationId: TodoController_deleteTodo
+      operationId: TodoController_delete
       parameters: []
       requestBody:
         required: true

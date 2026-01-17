@@ -7,7 +7,7 @@
  */
 import * as zod from 'zod'
 
-export const TodoControllerGetTodoResponseItem = zod.object({
+export const TodoControllerGetResponseItem = zod.object({
   id: zod.string(),
   complete: zod.boolean(),
   title: zod.string(),
@@ -15,21 +15,21 @@ export const TodoControllerGetTodoResponseItem = zod.object({
   createdAt: zod.iso.datetime({}),
   updatedAt: zod.iso.datetime({}),
 })
-export const TodoControllerGetTodoResponse = zod.array(TodoControllerGetTodoResponseItem)
+export const TodoControllerGetResponse = zod.array(TodoControllerGetResponseItem)
 
-export const TodoControllerPostTodoBody = zod.object({
+export const TodoControllerCreateBody = zod.object({
   title: zod.string().min(1),
   comment: zod.string().min(1),
 })
 
-export const TodoControllerPutTodoBody = zod.object({
+export const TodoControllerUpdateBody = zod.object({
   id: zod.string(),
   title: zod.string().min(1),
   comment: zod.string().min(1),
   complete: zod.boolean(),
 })
 
-export const TodoControllerPutTodoResponse = zod.object({
+export const TodoControllerUpdateResponse = zod.object({
   id: zod.string(),
   complete: zod.boolean(),
   title: zod.string(),
@@ -38,11 +38,11 @@ export const TodoControllerPutTodoResponse = zod.object({
   updatedAt: zod.iso.datetime({}),
 })
 
-export const TodoControllerDeleteTodoBody = zod.object({
+export const TodoControllerDeleteBody = zod.object({
   id: zod.string(),
 })
 
-export const TodoControllerDeleteTodoResponse = zod.object({
+export const TodoControllerDeleteResponse = zod.object({
   id: zod.string(),
   complete: zod.boolean(),
   title: zod.string(),

@@ -14,7 +14,7 @@ import {
 } from '@/components/ui/form'
 import { Input } from '@/components/ui/input'
 import { Switch } from '@/components/ui/switch'
-import { TodoControllerPutTodoBody as formSchema } from '@/gen/endpoints/todo/todo.zod'
+import { TodoControllerUpdateBody as formSchema } from '@/gen/endpoints/todo/todo.zod'
 import { DeleteTodoDto, GetTodoDto, UpdateTodoDto } from '@/gen/models'
 import { cn } from '@/lib/utils'
 

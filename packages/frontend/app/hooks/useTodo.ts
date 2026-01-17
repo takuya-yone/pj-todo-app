@@ -1,17 +1,17 @@
 import { toast } from 'sonner'
 import {
-  useTodoControllerDeleteTodo,
-  useTodoControllerGetTodo,
-  useTodoControllerPostTodo,
-  useTodoControllerPutTodo,
+  useTodoControllerCreate,
+  useTodoControllerDelete,
+  useTodoControllerGet,
+  useTodoControllerUpdate,
 } from '@/gen/endpoints/todo/todo'
 import { CreateTodoDto, DeleteTodoDto, UpdateTodoDto } from '@/gen/models'
 
 export const useTodo = () => {
-  const { data, error } = useTodoControllerGetTodo()
-  const { trigger: postTrigger, isMutating: postIsMutating } = useTodoControllerPostTodo()
-  const { trigger: putTrigger, isMutating: putIsMutating } = useTodoControllerPutTodo()
-  const { trigger: deleteTrigger, isMutating: deleteIsMutating } = useTodoControllerDeleteTodo()
+  const { data, error } = useTodoControllerGet()
+  const { trigger: postTrigger, isMutating: postIsMutating } = useTodoControllerCreate()
+  const { trigger: putTrigger, isMutating: putIsMutating } = useTodoControllerUpdate()
+  const { trigger: deleteTrigger, isMutating: deleteIsMutating } = useTodoControllerDelete()
 
   const openSuccessToast = (message: string) => {
     toast.success(message, { style: { background: 'var(--color-green-600)', color: '#fff' } })

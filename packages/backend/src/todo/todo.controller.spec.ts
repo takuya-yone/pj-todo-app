@@ -29,14 +29,14 @@ describe('TodoController', () => {
   })
 
   describe('Todo', () => {
-    it('postTodo', async () => {
-      const result = await todoController.postTodo(mockDto)
+    it('create', async () => {
+      const result = await todoController.create(mockDto)
       expect(result.title).toBe(mockDto.title)
       expect(result.comment).toBe(mockDto.comment)
       expect(result.complete).toBe(false)
     })
-    it('getTodo', async () => {
-      const result = await todoController.getTodo()
+    it('get', async () => {
+      const result = await todoController.get()
       expect(result.length).toBeGreaterThan(1)
 
       const last = result.pop()
@@ -44,27 +44,27 @@ describe('TodoController', () => {
       expect(last.title).toBe(mockDto.title)
       expect(last.comment).toBe(mockDto.comment)
     })
-    it('updateTodo', async () => {
-      const item = (await todoController.getTodo()).pop()
+    it('update', async () => {
+      const item = (await todoController.get()).pop()
       assert(item)
 
       const mockUpdateDto = new UpdateTodoDto(item.id, 'titletitle2', 'commentcomment2', true)
-      await todoController.putTodo(mockUpdateDto)
+      await todoController.update(mockUpdateDto)
 
-      const newItem = (await todoController.getTodo()).pop()
+      const newItem = (await todoController.get()).pop()
       assert(newItem)
       expect(newItem.id).toBe(mockUpdateDto.id)
       expect(newItem.title).toBe(mockUpdateDto.title)
       expect(newItem.comment).toBe(mockUpdateDto.comment)
       expect(newItem.complete).toBe(mockUpdateDto.complete)
     })
-    it('deleteTodo', async () => {
-      const item = (await todoController.getTodo()).pop()
+    it('delete', async () => {
+      const item = (await todoController.get()).pop()
       assert(item)
 
       const mockDeleteDto = new DeleteTodoDto(item.id)
-      await todoController.deleteTodo(mockDeleteDto)
-      const newItem = (await todoController.getTodo()).pop()
+      await todoController.delete(mockDeleteDto)
+      const newItem = (await todoController.get()).pop()
       expect(newItem?.id).not.toBe(mockDeleteDto.id)
     })
   })
