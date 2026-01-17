@@ -1,5 +1,5 @@
 import { Controller, Get, HttpStatus, UseGuards } from '@nestjs/common'
-import { ApiBearerAuth, ApiResponse } from '@nestjs/swagger'
+import { ApiResponse } from '@nestjs/swagger'
 import { JwtGuard } from '../auth/guard/jwt.guard'
 import { GetHealthDto } from './health.dto'
 
@@ -18,7 +18,7 @@ export class HealthController {
     status: HttpStatus.OK,
     type: GetHealthDto,
   })
-  @ApiBearerAuth()
+  // @ApiBearerAuth()
   @Get('auth')
   @UseGuards(JwtGuard)
   async authCheck(): Promise<GetHealthDto> {
