@@ -1,18 +1,46 @@
 import { Injectable, OnModuleInit } from '@nestjs/common'
+import { PrismaMariaDb } from '@prisma/adapter-mariadb'
+import { PrismaPg } from '@prisma/adapter-pg'
 import { PrismaTiDBCloud } from '@tidbcloud/prisma-adapter'
+
 import { PrismaClient } from '../../generated/prisma/client'
+
+import { ENV } from '../env'
 
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit {
   constructor() {
-    const adapter = new PrismaTiDBCloud({
-      host: process.env.DB_HOST,
-      username: process.env.DB_USERNAME,
-      password: process.env.DB_PASSWORD,
-      database: process.env.DB_DATABASE,
+    const env = new ENV()
+
+    const _tidbAdapter = new PrismaTiDBCloud({
+      host: env.DB_HOST,
+      username: env.DB_USERNAME,
+      password: env.DB_PASSWORD,
+      database: env.DB_DATABASE,
     })
 
-    super({ adapter: adapter })
+    const _mariaDbAdapter = new PrismaMariaDb({
+      host: env.DB_HOST,
+      user: env.DB_USERNAME,
+      password: env.DB_PASSWORD,
+      database: env.DB_DATABASE,
+      ssl: env.DB_SSLMODE === 'require',
+      allowPublicKeyRetrieval: true,
+    })
+
+    const pgAdapter = new PrismaPg(
+      {
+        host: env.DB_HOST,
+        user: env.DB_USERNAME,
+        password: env.DB_PASSWORD,
+        database: env.DB_DATABASE,
+        port: env.DB_PORT,
+        ssl: env.DB_SSLMODE === 'require',
+      },
+      { schema: 'public' },
+    )
+
+    super({ adapter: pgAdapter })
   }
   async onModuleInit() {
     await this.$connect()

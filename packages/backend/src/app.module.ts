@@ -12,7 +12,7 @@ import { TodoService } from './todo/todo.service'
   imports: [
     TodoModule,
     ServeStaticModule.forRoot({
-      rootPath: join(__dirname, '../../', 'frontend/out'),
+      rootPath: join(__dirname, '../../../', 'frontend/out'),
     }),
   ],
   controllers: [HealthController, TodoController],

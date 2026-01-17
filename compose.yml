@@ -1,15 +1,49 @@
 services:
   application:
     # image: 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/pj-todo-app-mono:1.0.0
-    image: asia-northeast1-docker.pkg.dev/yonezawa-sandbox/pj-todo-app/mono:1.0.1
+    # image: asia-northeast1-docker.pkg.dev/yonezawa-sandbox/pj-todo-app/mono:1.0.1
     # platform: linux/amd64
+    container_name: app
+    hostname: app-server
     build:
       context: .
       dockerfile: "./Dockerfile"
     environment:
-      DATABASE_URL: "mysql://mysqluser:mysqlpass@database-server:3306/test"
+      DB_USERNAME: postgres
+      DB_PASSWORD: postgres
+      DB_HOST: db-server
+      DB_PORT: 5432
+      DB_DATABASE: test
+      DB_SSLMODE: disable
     ports:
       - "4000:4000"
+    depends_on:
+      - database
+    entrypoint:
+      [
+        "sh",
+        "-c",
+        "yarn prisma migrate deploy && node packages/backend/dist/src/main.js",
+      ]
+    # depends_on:
+    #   database:
+    #     condition: service_started
+  database:
+    container_name: db
+    hostname: db-server
+    image: postgres:18-alpine
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: test
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 1s
+      timeout: 5s
+      retries: 10
+
   # frontend:
   #   image: 123456789012.dkr.ecr.ap-northeast-1.amazonaws.com/pj-todo-app-frontend:1.0.0
   #   container_name: frontend

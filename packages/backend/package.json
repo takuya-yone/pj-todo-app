@@ -16,8 +16,8 @@
     "test:cov": "vitest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "prisma": "dotenv -e .env -- prisma",
-    "prisma:local": "dotenv -e .env.local -- prisma"
+    "prisma": "prisma",
+    "prisma:local": "dotenv -e .env -- prisma"
   },
   "dependencies": {
     "@nestjs/common": "^11.1.11",
@@ -25,6 +25,8 @@
     "@nestjs/platform-express": "^11.1.11",
     "@nestjs/serve-static": "^5.0.4",
     "@nestjs/swagger": "^11.2.5",
+    "@prisma/adapter-mariadb": "^7.2.0",
+    "@prisma/adapter-pg": "^7.2.0",
     "@prisma/client": "7.2.0",
     "@tidbcloud/prisma-adapter": "^6.17.0",
     "@tidbcloud/serverless": "^0.2.0",

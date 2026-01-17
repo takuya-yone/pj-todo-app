@@ -2,13 +2,16 @@
 // npm install --save-dev prisma dotenv
 import 'dotenv/config'
 import { defineConfig } from 'prisma/config'
+import { ENV } from './src/env'
+
+const env = new ENV()
 
 export default defineConfig({
   schema: 'prisma/schema.prisma',
   migrations: {
     path: 'prisma/migrations',
   },
-  // datasource: {
-  //   url: env('DATABASE_URL'),
-  // },
+  datasource: {
+    url: env.DB_URL,
+  },
 })

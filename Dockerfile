@@ -6,34 +6,34 @@ ENV NODE_ENV=production
 RUN corepack enable npm yarn pnpm
 COPY . /app
 WORKDIR /app
-RUN yarn install
+RUN yarn workspaces focus frontend backend
 RUN yarn workspace backend prisma generate
 RUN yarn workspace backend build
 RUN yarn workspace frontend build
 
-# build nextjs
+# install dependencies
 FROM base AS deps-installer
 ENV NODE_ENV=production
 RUN corepack enable npm yarn pnpm
 COPY . /app
 WORKDIR /app
 RUN yarn workspaces focus backend
-RUN yarn workspace backend prisma generate
 
-############### Nginx ###############
+############### App ###############
 
 FROM base AS runner
-COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.1 /lambda-adapter /opt/extensions/lambda-adapter
-ENV NODE_ENV=production 
-COPY --from=app-builder /app/frontend/out ./frontend/out
-COPY --from=app-builder /app/backend/dist ./backend/dist
+ENV NODE_ENV=production
+RUN corepack enable npm yarn pnpm
+WORKDIR /app
+COPY --from=app-builder /app/packages/frontend/out ./packages/frontend/out
+COPY --from=app-builder /app/packages/backend/dist ./packages/backend/dist
+COPY --from=app-builder /app/packages/backend/prisma ./prisma
+COPY --from=app-builder /app/packages/backend/package.json ./package.json
+COPY --from=app-builder /app/packages/backend/prisma.config.ts ./prisma.config.ts
 COPY --from=deps-installer /app/node_modules ./node_modules
-COPY --from=app-builder /app/backend/prisma ./backend/prisma
-# COPY --from=builder /app/backend/.env ./.env
-
 
 # WORKDIR /backend
-CMD ["node", "backend/dist/main.js"]
+ENTRYPOINT ["node", "packages/backend/dist/src/main.js"]
 
 EXPOSE 4000
 
