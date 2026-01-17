@@ -7,7 +7,7 @@
   "main": "index.js",
   "scripts": {
     "ncu": "ncu -w packages",
-    "fix:all": "biome check --write packages/frontend/app backend",
+    "fix:all": "biome check --write packages/frontend/app packages/backend",
     "fix:frontend": "biome check --write packages/frontend/app",
     "fix:backend": "biome check --write packages/backend"
   },
