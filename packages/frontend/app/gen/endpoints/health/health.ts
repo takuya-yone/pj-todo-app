@@ -8,8 +8,10 @@
 
 import type { Key, SWRConfiguration } from 'swr'
 import useSwr from 'swr'
+import type { SWRMutationConfiguration } from 'swr/mutation'
+import useSWRMutation from 'swr/mutation'
 
-import type { GetHealthDto } from '../../models'
+import type { GetHealthDto, UserCredsDto } from '../../models'
 
 export type healthControllerCheckResponse200 = {
   data: GetHealthDto
@@ -60,6 +62,72 @@ export const useHealthControllerCheck = <TError = Promise<unknown>>(options?: {
   const swrFn = () => healthControllerCheck(fetchOptions)
 
   const query = useSwr<Awaited<ReturnType<typeof swrFn>>, TError>(swrKey, swrFn, swrOptions)
+
+  return {
+    swrKey,
+    ...query,
+  }
+}
+export type healthControllerGetJwtResponse200 = {
+  data: GetHealthDto
+  status: 200
+}
+
+export type healthControllerGetJwtResponseSuccess = healthControllerGetJwtResponse200 & {
+  headers: Headers
+}
+
+export type healthControllerGetJwtResponse = healthControllerGetJwtResponseSuccess
+
+export const getHealthControllerGetJwtUrl = () => {
+  return `http://localhost:4000/api/health/jwt`
+}
+
+export const healthControllerGetJwt = async (
+  userCredsDto: UserCredsDto,
+  options?: RequestInit,
+): Promise<healthControllerGetJwtResponse> => {
+  const res = await fetch(getHealthControllerGetJwtUrl(), {
+    ...options,
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json', ...options?.headers },
+    body: JSON.stringify(userCredsDto),
+  })
+
+  const body = [204, 205, 304].includes(res.status) ? null : await res.text()
+
+  const data: healthControllerGetJwtResponse['data'] = body ? JSON.parse(body) : {}
+  return { data, status: res.status, headers: res.headers } as healthControllerGetJwtResponse
+}
+
+export const getHealthControllerGetJwtMutationFetcher = (options?: RequestInit) => {
+  return (_: Key, { arg }: { arg: UserCredsDto }) => {
+    return healthControllerGetJwt(arg, options)
+  }
+}
+export const getHealthControllerGetJwtMutationKey = () =>
+  [`http://localhost:4000/api/health/jwt`] as const
+
+export type HealthControllerGetJwtMutationResult = NonNullable<
+  Awaited<ReturnType<typeof healthControllerGetJwt>>
+>
+
+export const useHealthControllerGetJwt = <TError = Promise<unknown>>(options?: {
+  swr?: SWRMutationConfiguration<
+    Awaited<ReturnType<typeof healthControllerGetJwt>>,
+    TError,
+    Key,
+    UserCredsDto,
+    Awaited<ReturnType<typeof healthControllerGetJwt>>
+  > & { swrKey?: string }
+  fetch?: RequestInit
+}) => {
+  const { swr: swrOptions, fetch: fetchOptions } = options ?? {}
+
+  const swrKey = swrOptions?.swrKey ?? getHealthControllerGetJwtMutationKey()
+  const swrFn = getHealthControllerGetJwtMutationFetcher(fetchOptions)
+
+  const query = useSWRMutation(swrKey, swrFn, swrOptions)
 
   return {
     swrKey,

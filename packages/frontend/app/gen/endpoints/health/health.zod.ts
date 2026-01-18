@@ -11,6 +11,15 @@ export const HealthControllerCheckResponse = zod.object({
   message: zod.string(),
 })
 
+export const HealthControllerGetJwtBody = zod.object({
+  username: zod.string(),
+  password: zod.string(),
+})
+
+export const HealthControllerGetJwtResponse = zod.object({
+  message: zod.string(),
+})
+
 export const HealthControllerAuthCheckResponse = zod.object({
   message: zod.string(),
 })
