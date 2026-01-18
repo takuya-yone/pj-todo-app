@@ -1,7 +1,7 @@
-import { Controller, Get, HttpStatus, UseGuards } from '@nestjs/common'
+import { Body, Controller, Get, HttpStatus, Post, UseGuards } from '@nestjs/common'
 import { ApiBearerAuth, ApiResponse } from '@nestjs/swagger'
 import { JwtGuard } from '../auth/guard/jwt.guard'
-import { GetHealthDto } from './health.dto'
+import { GetHealthDto, UserCredsDto } from './health.dto'
 import { HealthService } from './health.service'
 
 @Controller('health')
@@ -14,6 +14,15 @@ export class HealthController {
   @Get()
   async check(): Promise<GetHealthDto> {
     return new GetHealthDto('health check is OK!')
+  }
+
+  @ApiResponse({
+    status: HttpStatus.OK,
+    type: GetHealthDto,
+  })
+  @Post('jwt')
+  async getJwt(@Body() userCredsDto: UserCredsDto): Promise<GetHealthDto> {
+    return this.healthService.generateJwtForUser(userCredsDto.username, userCredsDto.password)
   }
 
   @ApiResponse({

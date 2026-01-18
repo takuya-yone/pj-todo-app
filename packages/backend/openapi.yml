@@ -1,44 +1,5 @@
 openapi: 3.0.0
 paths:
-  /api/health:
-    get:
-      operationId: HealthController_check
-      parameters: []
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetHealthDto'
-      tags: &ref_0
-        - Health
-  /api/health/auth:
-    get:
-      operationId: HealthController_authCheck
-      parameters: []
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetHealthDto'
-      security:
-        - bearer: []
-      tags: *ref_0
-  /api/health/deep:
-    get:
-      operationId: HealthController_deepCheck
-      parameters: []
-      responses:
-        '200':
-          description: ''
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/GetHealthDto'
-      tags: *ref_0
   /api/todo:
     get:
       operationId: TodoController_get
@@ -52,7 +13,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/GetTodoDto'
-      tags: &ref_1
+      tags: &ref_0
         - Todo
     post:
       operationId: TodoController_create
@@ -70,7 +31,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetTodoDto'
-      tags: *ref_1
+      tags: *ref_0
     put:
       operationId: TodoController_update
       parameters: []
@@ -87,7 +48,7 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetTodoDto'
-      tags: *ref_1
+      tags: *ref_0
     delete:
       operationId: TodoController_delete
       parameters: []
@@ -104,6 +65,63 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/GetTodoDto'
+      tags: *ref_0
+  /api/health:
+    get:
+      operationId: HealthController_check
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetHealthDto'
+      tags: &ref_1
+        - Health
+  /api/health/jwt:
+    post:
+      operationId: HealthController_getJwt
+      parameters: []
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCredsDto'
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetHealthDto'
+      tags: *ref_1
+  /api/health/auth:
+    get:
+      operationId: HealthController_authCheck
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetHealthDto'
+      security:
+        - bearer: []
+      tags: *ref_1
+  /api/health/deep:
+    get:
+      operationId: HealthController_deepCheck
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetHealthDto'
       tags: *ref_1
 info:
   title: Example
@@ -119,13 +137,6 @@ components:
       bearerFormat: JWT
       type: http
   schemas:
-    GetHealthDto:
-      type: object
-      properties:
-        message:
-          type: string
-      required:
-        - message
     GetTodoDto:
       type: object
       properties:
@@ -187,3 +198,20 @@ components:
           type: string
       required:
         - id
+    GetHealthDto:
+      type: object
+      properties:
+        message:
+          type: string
+      required:
+        - message
+    UserCredsDto:
+      type: object
+      properties:
+        username:
+          type: string
+        password:
+          type: string
+      required:
+        - username
+        - password
