@@ -8,30 +8,37 @@ export class TodoService {
   constructor(private prisma: PrismaService) {}
 
   async getTodos(): Promise<TodoItem[]> {
-    return this.prisma.todoItem.findMany()
+    const todos = await this.prisma.todoItem.findMany({
+      include: {
+        itemMetadatas: true,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+    })
+    return todos
   }
 
   async createTodo(item: CreateTodoDto): Promise<TodoItem> {
-    return this.prisma.todoItem.create({ data: item })
+    const todo = this.prisma.todoItem.create({ data: item })
+    return todo
   }
 
   async updateTodo(item: UpdateTodoDto): Promise<TodoItem> {
-    return this.prisma.todoItem.update({
+    const todo = this.prisma.todoItem.update({
       where: {
         id: item.id,
       },
       data: item,
     })
+    return todo
   }
   async deleteTodo(item: DeleteTodoDto): Promise<TodoItem> {
-    return this.prisma.todoItem.delete({
+    const todo = this.prisma.todoItem.delete({
       where: {
         id: item.id,
       },
     })
+    return todo
   }
-
-  // getDummy(): string[] {
-  //   return ['aaa', 'bbb', 'ccc']
-  // }
 }

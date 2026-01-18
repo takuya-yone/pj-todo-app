@@ -23,7 +23,7 @@ model TodoItem {
   comment          String
   createdAt        DateTime          @default(now())
   updatedAt        DateTime          @updatedAt
-  todoItemMetadata TodoItemMetadata?
+  itemMetadatas    TodoItemMetadata[]
 
   @@map("todo")
 }
