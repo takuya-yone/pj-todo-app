@@ -1,13 +1,18 @@
 import { Injectable } from '@nestjs/common'
 import { TodoItem } from '../../generated/prisma/client'
+import { TodoItemGetPayload } from '../../generated/prisma/models'
 import { PrismaService } from '../prisma/prisma.service'
 import { CreateTodoDto, DeleteTodoDto, UpdateTodoDto } from './todo.dto'
+
+type TodoItemWithMetadata = TodoItemGetPayload<{
+  include: { itemMetadatas: true }
+}>
 
 @Injectable()
 export class TodoService {
   constructor(private prisma: PrismaService) {}
 
-  async getTodos(): Promise<TodoItem[]> {
+  async getTodos(): Promise<TodoItemWithMetadata[]> {
     const todos = await this.prisma.todoItem.findMany({
       include: {
         itemMetadatas: true,
