@@ -1,19 +1,39 @@
 generator client {
-  provider = "prisma-client"
-  output   = "../generated/prisma"
-  moduleFormat = "cjs"
-  generatedFileExtension = "ts" 
+  provider               = "prisma-client"
+  output                 = "../generated/prisma"
+  moduleFormat           = "cjs"
+  generatedFileExtension = "ts"
 }
 
 datasource db {
   provider = "postgresql"
 }
 
+model HealthMessage {
+  id      Int    @id @default(autoincrement())
+  message String
+
+  @@map("health")
+}
+
 model TodoItem {
-  id        String   @id @default(cuid())
-  complete  Boolean  @default(false)
-  title     String 
-  comment   String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id               String            @id @default(cuid())
+  complete         Boolean           @default(false)
+  title            String
+  comment          String
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  todoItemMetadata TodoItemMetadata?
+
+  @@map("todo")
+}
+
+model TodoItemMetadata {
+  id       Int       @id @default(autoincrement())
+  todoId   String    @unique
+  priority Int
+  dueDate  DateTime?
+  todoItem TodoItem  @relation(fields: [todoId], references: [id], onDelete: Cascade)
+
+  @@map("todo_metadata")
 }

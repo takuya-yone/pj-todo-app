@@ -14,6 +14,7 @@ type ConfigType = {
     host: string
     port: number
     database: string
+    schema: string
     sslmode: 'disable' | 'require'
     dbUrl: string
   }
@@ -27,6 +28,7 @@ const configuration = (): ConfigType => {
     process.env.DB_PORT === undefined ||
     process.env.DB_DATABASE === undefined ||
     process.env.DB_SSLMODE === undefined ||
+    process.env.DB_SCHEMA === undefined ||
     process.env.COGNITO_CLIENT_ID === undefined ||
     process.env.COGNITO_REGION === undefined ||
     process.env.COGNITO_USERPOOL_ID === undefined
@@ -54,6 +56,7 @@ const configuration = (): ConfigType => {
       host: process.env.DB_HOST,
       port: Number(process.env.DB_PORT),
       database: process.env.DB_DATABASE,
+      schema: process.env.DB_SCHEMA,
       sslmode: process.env.DB_SSLMODE,
       dbUrl: `postgresql://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@${process.env.DB_HOST}:${process.env.DB_PORT}/${process.env.DB_DATABASE}?sslmode=${process.env.DB_SSLMODE}`,
     },

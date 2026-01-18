@@ -6,6 +6,7 @@ import { AppController } from './app.controller'
 import { AuthModule } from './auth/auth.module'
 import configuration from './config/configuration'
 import { HealthController } from './health/health.controller'
+import { HealthService } from './health/health.service'
 import { LoggerMiddleware } from './middleware/logger/logger.middleware'
 import { PrismaService } from './prisma/prisma.service'
 import { TodoController } from './todo/todo.controller'
@@ -22,7 +23,7 @@ import { TodoService } from './todo/todo.service'
     }),
   ],
   controllers: [AppController, HealthController, TodoController],
-  providers: [TodoService, PrismaService],
+  providers: [HealthService, TodoService, PrismaService],
 })
 export class AppModule {
   configure(consumer: MiddlewareConsumer) {
