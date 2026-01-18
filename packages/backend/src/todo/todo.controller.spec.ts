@@ -1,6 +1,7 @@
-import assert from 'node:assert'
+import { ConfigModule, ConfigService } from '@nestjs/config'
 import { Test } from '@nestjs/testing'
-import { beforeEach, describe, expect, it } from 'vitest'
+import { assert, beforeEach, describe, expect, it } from 'vitest'
+import configuration from '../config/configuration'
 import { PrismaService } from '../prisma/prisma.service'
 import { TodoController } from './todo.controller'
 import { CreateTodoDto, DeleteTodoDto, UpdateTodoDto } from './todo.dto'
@@ -11,19 +12,18 @@ const mockDto = new CreateTodoDto('titletitle', 'commentcomment')
 describe('TodoController', () => {
   let todoController: TodoController
   let todoService: TodoService
+  let configService: ConfigService
   let prismaService: PrismaService
 
   beforeEach(async () => {
-    const _moduleRef = await Test.createTestingModule({
-      controllers: [TodoController],
-      providers: [TodoService, PrismaService],
+    const moduleFixture = await Test.createTestingModule({
+      imports: [ConfigModule.forRoot({ load: [configuration], isGlobal: true })],
+      controllers: [],
+      providers: [],
     }).compile()
+    configService = moduleFixture.get<ConfigService>(ConfigService)
 
-    // _todoService = moduleRef.get<TodoService>(TodoService)
-    // todoController = moduleRef.get<TodoController>(TodoController)
-    // _prismaService = moduleRef.get<PrismaService>(PrismaService)
-
-    prismaService = new PrismaService()
+    prismaService = new PrismaService(configService)
     todoService = new TodoService(prismaService)
     todoController = new TodoController(todoService)
   })
@@ -38,7 +38,6 @@ describe('TodoController', () => {
     it('get', async () => {
       const result = await todoController.get()
       expect(result.length).toBeGreaterThan(1)
-
       const last = result.pop()
       assert(last)
       expect(last.title).toBe(mockDto.title)

@@ -17,7 +17,7 @@ describe('HealthController', () => {
 
   describe('get', () => {
     it('should return "health check is OK!"', async () => {
-      expect(await healthController.get()).toEqual(new GetHealthDto('health check is OK!'))
+      expect(await healthController.check()).toEqual(new GetHealthDto('health check is OK!'))
     })
   })
 })

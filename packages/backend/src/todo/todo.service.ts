@@ -18,7 +18,7 @@ export class TodoService {
         itemMetadatas: true,
       },
       orderBy: {
-        createdAt: 'desc',
+        createdAt: 'asc',
       },
     })
     return todos
