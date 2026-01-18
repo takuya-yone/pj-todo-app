@@ -1,7 +1,7 @@
 # This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
 # For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
 
-name: FRONTEND MAIN CI
+name: MAIN CI
 
 on:
   push:
@@ -59,8 +59,9 @@ jobs:
 
       - name: Copy environment file
         run: cp .env.example .env
-
-      - name: Build frontend
+      - name: Prisma generate
+        run: yarn prisma generate
+      - name: Build backend
         run: yarn build
 
   actions-timeline:
