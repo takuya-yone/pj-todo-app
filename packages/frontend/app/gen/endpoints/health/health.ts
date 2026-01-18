@@ -11,43 +11,43 @@ import useSwr from 'swr'
 
 import type { GetHealthDto } from '../../models'
 
-export type healthControllerGetResponse200 = {
+export type healthControllerCheckResponse200 = {
   data: GetHealthDto
   status: 200
 }
 
-export type healthControllerGetResponseSuccess = healthControllerGetResponse200 & {
+export type healthControllerCheckResponseSuccess = healthControllerCheckResponse200 & {
   headers: Headers
 }
 
-export type healthControllerGetResponse = healthControllerGetResponseSuccess
+export type healthControllerCheckResponse = healthControllerCheckResponseSuccess
 
-export const getHealthControllerGetUrl = () => {
+export const getHealthControllerCheckUrl = () => {
   return `http://localhost:4000/api/health`
 }
 
-export const healthControllerGet = async (
+export const healthControllerCheck = async (
   options?: RequestInit,
-): Promise<healthControllerGetResponse> => {
-  const res = await fetch(getHealthControllerGetUrl(), {
+): Promise<healthControllerCheckResponse> => {
+  const res = await fetch(getHealthControllerCheckUrl(), {
     ...options,
     method: 'GET',
   })
 
   const body = [204, 205, 304].includes(res.status) ? null : await res.text()
 
-  const data: healthControllerGetResponse['data'] = body ? JSON.parse(body) : {}
-  return { data, status: res.status, headers: res.headers } as healthControllerGetResponse
+  const data: healthControllerCheckResponse['data'] = body ? JSON.parse(body) : {}
+  return { data, status: res.status, headers: res.headers } as healthControllerCheckResponse
 }
 
-export const getHealthControllerGetKey = () => [`http://localhost:4000/api/health`] as const
+export const getHealthControllerCheckKey = () => [`http://localhost:4000/api/health`] as const
 
-export type HealthControllerGetQueryResult = NonNullable<
-  Awaited<ReturnType<typeof healthControllerGet>>
+export type HealthControllerCheckQueryResult = NonNullable<
+  Awaited<ReturnType<typeof healthControllerCheck>>
 >
 
-export const useHealthControllerGet = <TError = Promise<unknown>>(options?: {
-  swr?: SWRConfiguration<Awaited<ReturnType<typeof healthControllerGet>>, TError> & {
+export const useHealthControllerCheck = <TError = Promise<unknown>>(options?: {
+  swr?: SWRConfiguration<Awaited<ReturnType<typeof healthControllerCheck>>, TError> & {
     swrKey?: Key
     enabled?: boolean
   }
@@ -56,8 +56,8 @@ export const useHealthControllerGet = <TError = Promise<unknown>>(options?: {
   const { swr: swrOptions, fetch: fetchOptions } = options ?? {}
 
   const isEnabled = swrOptions?.enabled !== false
-  const swrKey = swrOptions?.swrKey ?? (() => (isEnabled ? getHealthControllerGetKey() : null))
-  const swrFn = () => healthControllerGet(fetchOptions)
+  const swrKey = swrOptions?.swrKey ?? (() => (isEnabled ? getHealthControllerCheckKey() : null))
+  const swrFn = () => healthControllerCheck(fetchOptions)
 
   const query = useSwr<Awaited<ReturnType<typeof swrFn>>, TError>(swrKey, swrFn, swrOptions)
 
@@ -115,6 +115,63 @@ export const useHealthControllerAuthCheck = <TError = Promise<unknown>>(options?
   const swrKey =
     swrOptions?.swrKey ?? (() => (isEnabled ? getHealthControllerAuthCheckKey() : null))
   const swrFn = () => healthControllerAuthCheck(fetchOptions)
+
+  const query = useSwr<Awaited<ReturnType<typeof swrFn>>, TError>(swrKey, swrFn, swrOptions)
+
+  return {
+    swrKey,
+    ...query,
+  }
+}
+export type healthControllerDeepCheckResponse200 = {
+  data: GetHealthDto
+  status: 200
+}
+
+export type healthControllerDeepCheckResponseSuccess = healthControllerDeepCheckResponse200 & {
+  headers: Headers
+}
+
+export type healthControllerDeepCheckResponse = healthControllerDeepCheckResponseSuccess
+
+export const getHealthControllerDeepCheckUrl = () => {
+  return `http://localhost:4000/api/health/deep`
+}
+
+export const healthControllerDeepCheck = async (
+  options?: RequestInit,
+): Promise<healthControllerDeepCheckResponse> => {
+  const res = await fetch(getHealthControllerDeepCheckUrl(), {
+    ...options,
+    method: 'GET',
+  })
+
+  const body = [204, 205, 304].includes(res.status) ? null : await res.text()
+
+  const data: healthControllerDeepCheckResponse['data'] = body ? JSON.parse(body) : {}
+  return { data, status: res.status, headers: res.headers } as healthControllerDeepCheckResponse
+}
+
+export const getHealthControllerDeepCheckKey = () =>
+  [`http://localhost:4000/api/health/deep`] as const
+
+export type HealthControllerDeepCheckQueryResult = NonNullable<
+  Awaited<ReturnType<typeof healthControllerDeepCheck>>
+>
+
+export const useHealthControllerDeepCheck = <TError = Promise<unknown>>(options?: {
+  swr?: SWRConfiguration<Awaited<ReturnType<typeof healthControllerDeepCheck>>, TError> & {
+    swrKey?: Key
+    enabled?: boolean
+  }
+  fetch?: RequestInit
+}) => {
+  const { swr: swrOptions, fetch: fetchOptions } = options ?? {}
+
+  const isEnabled = swrOptions?.enabled !== false
+  const swrKey =
+    swrOptions?.swrKey ?? (() => (isEnabled ? getHealthControllerDeepCheckKey() : null))
+  const swrFn = () => healthControllerDeepCheck(fetchOptions)
 
   const query = useSwr<Awaited<ReturnType<typeof swrFn>>, TError>(swrKey, swrFn, swrOptions)
 

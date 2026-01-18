@@ -7,10 +7,14 @@
  */
 import * as zod from 'zod'
 
-export const HealthControllerGetResponse = zod.object({
+export const HealthControllerCheckResponse = zod.object({
   message: zod.string(),
 })
 
 export const HealthControllerAuthCheckResponse = zod.object({
+  message: zod.string(),
+})
+
+export const HealthControllerDeepCheckResponse = zod.object({
   message: zod.string(),
 })

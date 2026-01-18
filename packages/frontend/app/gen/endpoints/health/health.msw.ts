@@ -11,7 +11,7 @@ import { HttpResponse, http } from 'msw'
 
 import type { GetHealthDto } from '../../models'
 
-export const getHealthControllerGetResponseMock = (
+export const getHealthControllerCheckResponseMock = (
   overrideResponse: Partial<GetHealthDto> = {},
 ): GetHealthDto => ({
   message: faker.string.alpha({ length: { min: 10, max: 20 } }),
@@ -25,7 +25,14 @@ export const getHealthControllerAuthCheckResponseMock = (
   ...overrideResponse,
 })
 
-export const getHealthControllerGetMockHandler = (
+export const getHealthControllerDeepCheckResponseMock = (
+  overrideResponse: Partial<GetHealthDto> = {},
+): GetHealthDto => ({
+  message: faker.string.alpha({ length: { min: 10, max: 20 } }),
+  ...overrideResponse,
+})
+
+export const getHealthControllerCheckMockHandler = (
   overrideResponse?:
     | GetHealthDto
     | ((
@@ -42,7 +49,7 @@ export const getHealthControllerGetMockHandler = (
             ? typeof overrideResponse === 'function'
               ? await overrideResponse(info)
               : overrideResponse
-            : getHealthControllerGetResponseMock(),
+            : getHealthControllerCheckResponseMock(),
         ),
         { status: 200, headers: { 'Content-Type': 'application/json' } },
       )
@@ -76,7 +83,34 @@ export const getHealthControllerAuthCheckMockHandler = (
     options,
   )
 }
+
+export const getHealthControllerDeepCheckMockHandler = (
+  overrideResponse?:
+    | GetHealthDto
+    | ((
+        info: Parameters<Parameters<typeof http.get>[1]>[0],
+      ) => Promise<GetHealthDto> | GetHealthDto),
+  options?: RequestHandlerOptions,
+) => {
+  return http.get(
+    '*/api/health/deep',
+    async (info) => {
+      return new HttpResponse(
+        JSON.stringify(
+          overrideResponse !== undefined
+            ? typeof overrideResponse === 'function'
+              ? await overrideResponse(info)
+              : overrideResponse
+            : getHealthControllerDeepCheckResponseMock(),
+        ),
+        { status: 200, headers: { 'Content-Type': 'application/json' } },
+      )
+    },
+    options,
+  )
+}
 export const getHealthMock = () => [
-  getHealthControllerGetMockHandler(),
+  getHealthControllerCheckMockHandler(),
   getHealthControllerAuthCheckMockHandler(),
+  getHealthControllerDeepCheckMockHandler(),
 ]
