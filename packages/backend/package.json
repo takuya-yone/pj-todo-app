@@ -19,6 +19,7 @@
     "get:cognito:id-token": "dotenv -e .env ts-node ./utils/get-cognito-id-token-helper.ts"
   },
   "dependencies": {
+    "@aws-sdk/client-cognito-identity-provider": "^3.971.0",
     "@nestjs/common": "^11.1.12",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.1.12",
@@ -43,7 +44,6 @@
     "rxjs": "^7.8.2"
   },
   "devDependencies": {
-    "@aws-sdk/client-cognito-identity-provider": "^3.971.0",
     "@nestjs/cli": "^11.0.16",
     "@nestjs/schematics": "^11.0.9",
     "@nestjs/testing": "^11.1.12",
