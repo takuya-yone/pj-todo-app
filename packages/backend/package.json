@@ -19,7 +19,7 @@
     "get:cognito:id-token": "dotenv -e .env ts-node ./utils/get-cognito-id-token-helper.ts"
   },
   "dependencies": {
-    "@aws-sdk/client-cognito-identity-provider": "^3.972.0",
+    "@aws-sdk/client-cognito-identity-provider": "^3.974.0",
     "@nestjs/common": "^11.1.12",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.1.12",
@@ -51,7 +51,7 @@
     "@types/node": "^25.0.10",
     "@types/passport": "^1",
     "@types/passport-jwt": "^4",
-    "@vitest/coverage-v8": "4.0.17",
+    "@vitest/coverage-v8": "4.0.18",
     "dotenv": "^17.2.3",
     "dotenv-cli": "^11.0.0",
     "source-map-support": "^0.5.21",
@@ -61,7 +61,7 @@
     "tsconfig-paths": "^4.2.0",
     "tsx": "^4.21.0",
     "typescript": "^5.9.3",
-    "vitest": "^4.0.17"
+    "vitest": "^4.0.18"
   },
   "jest": {
     "moduleFileExtensions": [
