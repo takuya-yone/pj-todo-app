@@ -38,17 +38,21 @@ export const TodoForm = (props: TodoFormProps) => {
   }
 
   return (
-    <Card className="p-4 w-96 shadow-none bg-stone-100">
+    <Card className="rainbow-border p-6 w-full max-w-lg shadow-lg">
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
           <FormField
             control={form.control}
             name="title"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Title</FormLabel>
+                <FormLabel className="font-semibold">タイトル</FormLabel>
                 <FormControl>
-                  <Input placeholder="title" {...field} />
+                  <Input
+                    placeholder="やることを入力..."
+                    className="focus:ring-2 focus:ring-purple-300 transition-shadow"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -59,17 +63,25 @@ export const TodoForm = (props: TodoFormProps) => {
             name="comment"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Comment</FormLabel>
+                <FormLabel className="font-semibold">コメント</FormLabel>
                 <FormControl>
-                  <Input placeholder="comment" {...field} />
+                  <Input
+                    placeholder="メモを追加..."
+                    className="focus:ring-2 focus:ring-purple-300 transition-shadow"
+                    {...field}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
             )}
           />
           <div className="flex justify-center">
-            <Button type="submit" className="bg-blue-500 hover:bg-blue-700 w-24">
-              Submit
+            <Button
+              type="submit"
+              disabled={props.postIsMutating}
+              className="btn-gradient-primary rounded-full px-8 text-white font-semibold shadow-md"
+            >
+              追加する
             </Button>
           </div>
         </form>

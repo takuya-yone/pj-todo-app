@@ -26,7 +26,12 @@ export default function RootLayout({
   return (
     <html lang="ja">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <main>{children}</main>
+        <header className="pt-10 pb-6 text-center">
+          <h1 className="gradient-text text-5xl font-extrabold tracking-tight">Todo App</h1>
+
+          <div className="mt-6 mx-auto w-24 h-1 rounded-full bg-linear-to-r from-pink-400 via-purple-400 to-cyan-400" />
+        </header>
+        <main className="pb-16">{children}</main>
         <Toaster />
       </body>
     </html>
