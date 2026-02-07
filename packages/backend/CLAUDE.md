@@ -2,6 +2,8 @@
 
 This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
 
+See also the root `../../CLAUDE.md` for monorepo-wide commands, architecture overview, and code style rules.
+
 ## Commands
 
 All commands run from the monorepo root unless noted. From this directory, use `yarn` directly instead of `yarn workspace backend`.
@@ -19,6 +21,7 @@ yarn prisma migrate dev     # Create/apply migrations
 ```
 
 Lint and format from monorepo root:
+
 ```sh
 yarn fix:backend            # Biome lint + format
 ```
@@ -47,6 +50,7 @@ NestJS application with global prefix `/api`. All routes are under `/api/*`.
 Schema at `prisma/schema.prisma`. Generated client output at `generated/prisma/` (CommonJS format, configured in `prisma.config.ts`).
 
 Models use `@@map` to set table names:
+
 - `TodoItem` → `todo` table (CUID primary key)
 - `TodoItemMetadata` → `todo_metadata` table (cascade delete from TodoItem)
 - `HealthMessage` → `health` table
