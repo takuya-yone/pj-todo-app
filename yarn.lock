@@ -158,9 +158,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/client-cognito-identity-provider@npm:^3.985.0":
-  version: 3.985.0
-  resolution: "@aws-sdk/client-cognito-identity-provider@npm:3.985.0"
+"@aws-sdk/client-cognito-identity-provider@npm:^3.986.0":
+  version: 3.986.0
+  resolution: "@aws-sdk/client-cognito-identity-provider@npm:3.986.0"
   dependencies:
     "@aws-crypto/sha256-browser": "npm:5.2.0"
     "@aws-crypto/sha256-js": "npm:5.2.0"
@@ -172,7 +172,7 @@ __metadata:
     "@aws-sdk/middleware-user-agent": "npm:^3.972.7"
     "@aws-sdk/region-config-resolver": "npm:^3.972.3"
     "@aws-sdk/types": "npm:^3.973.1"
-    "@aws-sdk/util-endpoints": "npm:3.985.0"
+    "@aws-sdk/util-endpoints": "npm:3.986.0"
     "@aws-sdk/util-user-agent-browser": "npm:^3.972.3"
     "@aws-sdk/util-user-agent-node": "npm:^3.972.5"
     "@smithy/config-resolver": "npm:^4.4.6"
@@ -201,7 +201,7 @@ __metadata:
     "@smithy/util-retry": "npm:^4.2.8"
     "@smithy/util-utf8": "npm:^4.2.0"
     tslib: "npm:^2.6.2"
-  checksum: 10c0/aaf221921ddca5580b91ed34c6b3b9be91e8329466cfe9f6683dea2ba89fc9f02101f003208fcfa715c4f0372063682cdceecd31401a77dcde4cb9542bf457c8
+  checksum: 10c0/ded77bdc08e4f8a728e81d30e10d8bf8ffc62a31b71576f062286779703fccbbbe7077d0b134345741cfb9d2b1fafd193ae4efe79e96fb6a52a822649e9a0163
   languageName: node
   linkType: hard
 
@@ -561,6 +561,19 @@ __metadata:
     "@smithy/util-endpoints": "npm:^3.2.8"
     tslib: "npm:^2.6.2"
   checksum: 10c0/3f47d3a9de91222c6a2fe9973664d97a86a898545b13dbae61484110a96089fe88ecca8ce997ca0a3a47d3679e0aa0dbfc05c7f73e5d2a0a2f3dd7294c8cac6d
+  languageName: node
+  linkType: hard
+
+"@aws-sdk/util-endpoints@npm:3.986.0":
+  version: 3.986.0
+  resolution: "@aws-sdk/util-endpoints@npm:3.986.0"
+  dependencies:
+    "@aws-sdk/types": "npm:^3.973.1"
+    "@smithy/types": "npm:^4.12.0"
+    "@smithy/url-parser": "npm:^4.2.8"
+    "@smithy/util-endpoints": "npm:^3.2.8"
+    tslib: "npm:^2.6.2"
+  checksum: 10c0/d30c843d109e0ac5da2103445f5299b5b08cb94634ac0d72509c16c39b8e423bbba2f3cb22f44862fe4252e862e95db33bf2472ce301facef9592ef52bb96c33
   languageName: node
   linkType: hard
 
@@ -4253,30 +4266,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^25":
-  version: 25.2.0
-  resolution: "@types/node@npm:25.2.0"
-  dependencies:
-    undici-types: "npm:~7.16.0"
-  checksum: 10c0/89559ea0de5c8c2da051b384f2cd3161012446816e05d18841838f814e57eb1865f000622e903f08d14f5242736063ed4003a4a359730fdd367e35e2122a8fce
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^24.0.13":
-  version: 24.10.10
-  resolution: "@types/node@npm:24.10.10"
-  dependencies:
-    undici-types: "npm:~7.16.0"
-  checksum: 10c0/ae6871069373cf9ea2f9f9c6d42af6d0a66a213f8688c1b4ced6466cbcdd0f926e4603480a454b1df330feb1243d2ac50749895eddf5667e25e6873d3f8b9488
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^25.2.2":
+"@types/node@npm:*, @types/node@npm:^25, @types/node@npm:^25.2.2":
   version: 25.2.2
   resolution: "@types/node@npm:25.2.2"
   dependencies:
     undici-types: "npm:~7.16.0"
   checksum: 10c0/45aa45b00df0aac4712c2d6e934a6ed21ac54e0284dd726df1c7620b8c7d36a4fb601b9f8fe1d2951298d1ee7618cf8275688e329c295eb36e8b8fa827a8e334
+  languageName: node
+  linkType: hard
+
+"@types/node@npm:^24.0.13":
+  version: 24.10.12
+  resolution: "@types/node@npm:24.10.12"
+  dependencies:
+    undici-types: "npm:~7.16.0"
+  checksum: 10c0/fa39b88c8d82a2cec41544bee3426c4b78a13cc3c5ccf6fcb6c9528a68466ffcc73772833c612c7bb7e5fe1bc8e38002d1d543152e43b20b0600096cf6f210d1
   languageName: node
   linkType: hard
 
@@ -4994,7 +4998,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "backend@workspace:packages/backend"
   dependencies:
-    "@aws-sdk/client-cognito-identity-provider": "npm:^3.985.0"
+    "@aws-sdk/client-cognito-identity-provider": "npm:^3.986.0"
     "@nestjs/cli": "npm:^11.0.16"
     "@nestjs/common": "npm:^11.1.13"
     "@nestjs/config": "npm:^4.0.3"
