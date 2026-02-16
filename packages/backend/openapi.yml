@@ -79,6 +79,18 @@ paths:
                 $ref: '#/components/schemas/GetHealthDto'
       tags: &ref_1
         - Health
+  /api/health/sse:
+    get:
+      operationId: HealthController_sse
+      parameters: []
+      responses:
+        '200':
+          description: ''
+          content:
+            text/event-stream:
+              schema:
+                $ref: '#/components/schemas/MessageEventDto'
+      tags: *ref_1
   /api/health/jwt:
     post:
       operationId: HealthController_getJwt
@@ -205,6 +217,22 @@ components:
           type: string
       required:
         - message
+    MessageEventDto:
+      type: object
+      properties:
+        data:
+          type: object
+        id:
+          type: string
+        type:
+          type: string
+        retry:
+          type: number
+      required:
+        - data
+        - id
+        - type
+        - retry
     UserCredsDto:
       type: object
       properties:

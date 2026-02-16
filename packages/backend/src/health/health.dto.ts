@@ -32,3 +32,29 @@ export class UserCredsDto {
 }
 
 export class UserCredsDtoPT extends PartialType(UserCredsDto) {}
+
+export class MessageEventDto {
+  @ApiProperty()
+  @IsNotEmpty()
+  readonly data: string | object
+
+  @ApiProperty()
+  @IsString()
+  readonly id?: string
+
+  @ApiProperty()
+  @IsString()
+  readonly type?: string
+
+  @ApiProperty()
+  readonly retry?: number
+
+  constructor(data: string | object, id?: string, type?: string, retry?: number) {
+    this.data = data
+    this.id = id
+    this.type = type
+    this.retry = retry
+  }
+}
+
+export class MessageEventDtoPT extends PartialType(MessageEventDto) {}

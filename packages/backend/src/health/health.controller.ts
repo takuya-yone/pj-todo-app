@@ -1,8 +1,19 @@
-import { Body, Controller, Get, HttpStatus, Post, UseGuards } from '@nestjs/common'
-import { ApiBearerAuth, ApiResponse } from '@nestjs/swagger'
+import {
+  Body,
+  Controller,
+  Get,
+  HttpStatus,
+  MessageEvent,
+  Post,
+  Sse,
+  UseGuards,
+} from '@nestjs/common'
+import { ApiBearerAuth, ApiProduces, ApiResponse } from '@nestjs/swagger'
+import { interval, map, Observable } from 'rxjs'
 import { JwtGuard } from '../auth/guard/jwt.guard'
-import { GetHealthDto, UserCredsDto } from './health.dto'
+import { GetHealthDto, MessageEventDto, UserCredsDto } from './health.dto'
 import { HealthService } from './health.service'
+// import {  } from '@nestjs/common'
 
 @Controller('health')
 export class HealthController {
@@ -14,6 +25,21 @@ export class HealthController {
   @Get()
   async check(): Promise<GetHealthDto> {
     return new GetHealthDto('health check is OK!')
+  }
+
+  @ApiResponse({
+    status: HttpStatus.OK,
+    type: MessageEventDto,
+  })
+  @ApiProduces('text/event-stream')
+  @Get('sse')
+  @Sse()
+  sse(): Observable<MessageEvent> {
+    return interval(1000).pipe(
+      map((count) => ({
+        data: `Update #${count}`,
+      })),
+    )
   }
 
   @ApiResponse({
