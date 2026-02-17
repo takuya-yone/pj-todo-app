@@ -158,9 +158,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/client-cognito-identity-provider@npm:^3.990.0":
-  version: 3.990.0
-  resolution: "@aws-sdk/client-cognito-identity-provider@npm:3.990.0"
+"@aws-sdk/client-cognito-identity-provider@npm:^3.991.0":
+  version: 3.991.0
+  resolution: "@aws-sdk/client-cognito-identity-provider@npm:3.991.0"
   dependencies:
     "@aws-crypto/sha256-browser": "npm:5.2.0"
     "@aws-crypto/sha256-js": "npm:5.2.0"
@@ -172,7 +172,7 @@ __metadata:
     "@aws-sdk/middleware-user-agent": "npm:^3.972.10"
     "@aws-sdk/region-config-resolver": "npm:^3.972.3"
     "@aws-sdk/types": "npm:^3.973.1"
-    "@aws-sdk/util-endpoints": "npm:3.990.0"
+    "@aws-sdk/util-endpoints": "npm:3.991.0"
     "@aws-sdk/util-user-agent-browser": "npm:^3.972.3"
     "@aws-sdk/util-user-agent-node": "npm:^3.972.8"
     "@smithy/config-resolver": "npm:^4.4.6"
@@ -201,7 +201,7 @@ __metadata:
     "@smithy/util-retry": "npm:^4.2.8"
     "@smithy/util-utf8": "npm:^4.2.0"
     tslib: "npm:^2.6.2"
-  checksum: 10c0/4eb88850dd526c91687ef0cb3fcdb9cdfc5e09420da3cd889525fdb7923be0421940a6907bd878a8d25b14c6f72ec968fd61ec56a32c4beb493c4bbd5c20a5dc
+  checksum: 10c0/a2e9930bb2d8f0daddd9c73440887706ccd645fbe2ac90caa2782d0b3aa72db91c3628eade7b6d5b04b8d07ccf62d0219ceed167e65648a8e341335d33faf45b
   languageName: node
   linkType: hard
 
@@ -551,6 +551,19 @@ __metadata:
     "@smithy/util-endpoints": "npm:^3.2.8"
     tslib: "npm:^2.6.2"
   checksum: 10c0/f345d8ac45e9b82176a47569611d6caf9dc5da6968ee65dd265aaec54361717104c817c1a55ce52df010fff6352707477322a762084dee349fa5e194766c7e79
+  languageName: node
+  linkType: hard
+
+"@aws-sdk/util-endpoints@npm:3.991.0":
+  version: 3.991.0
+  resolution: "@aws-sdk/util-endpoints@npm:3.991.0"
+  dependencies:
+    "@aws-sdk/types": "npm:^3.973.1"
+    "@smithy/types": "npm:^4.12.0"
+    "@smithy/url-parser": "npm:^4.2.8"
+    "@smithy/util-endpoints": "npm:^3.2.8"
+    tslib: "npm:^2.6.2"
+  checksum: 10c0/d98592ec279b5899f4aba132c1b93e507d5a56b446b34f837b185896b8f140e97adf45b27652569d33d51512485e5b837d27f671e9e871600732d21f44c5751e
   languageName: node
   linkType: hard
 
@@ -932,18 +945,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@biomejs/biome@npm:^2.3.15":
-  version: 2.4.1
-  resolution: "@biomejs/biome@npm:2.4.1"
+"@biomejs/biome@npm:^2.4.2":
+  version: 2.4.2
+  resolution: "@biomejs/biome@npm:2.4.2"
   dependencies:
-    "@biomejs/cli-darwin-arm64": "npm:2.4.1"
-    "@biomejs/cli-darwin-x64": "npm:2.4.1"
-    "@biomejs/cli-linux-arm64": "npm:2.4.1"
-    "@biomejs/cli-linux-arm64-musl": "npm:2.4.1"
-    "@biomejs/cli-linux-x64": "npm:2.4.1"
-    "@biomejs/cli-linux-x64-musl": "npm:2.4.1"
-    "@biomejs/cli-win32-arm64": "npm:2.4.1"
-    "@biomejs/cli-win32-x64": "npm:2.4.1"
+    "@biomejs/cli-darwin-arm64": "npm:2.4.2"
+    "@biomejs/cli-darwin-x64": "npm:2.4.2"
+    "@biomejs/cli-linux-arm64": "npm:2.4.2"
+    "@biomejs/cli-linux-arm64-musl": "npm:2.4.2"
+    "@biomejs/cli-linux-x64": "npm:2.4.2"
+    "@biomejs/cli-linux-x64-musl": "npm:2.4.2"
+    "@biomejs/cli-win32-arm64": "npm:2.4.2"
+    "@biomejs/cli-win32-x64": "npm:2.4.2"
   dependenciesMeta:
     "@biomejs/cli-darwin-arm64":
       optional: true
@@ -963,62 +976,62 @@ __metadata:
       optional: true
   bin:
     biome: bin/biome
-  checksum: 10c0/49afddd92d2d562d850a4cf0b1e56731c2c2e4ea973055f9e57012c40cbcb2046bb0c970f5339d05c8eee0e011f69c6d8d5d6fbf7630ad5c829b68bd5187c779
+  checksum: 10c0/1386dfd94642350c82594a6aac2ffdc041a37c5f58fcba5d5055ed952372f3d38e87f29cd4a946114f4af8a29d4c8d007887993b440fbb81460ec12f0a5b841f
   languageName: node
   linkType: hard
 
-"@biomejs/cli-darwin-arm64@npm:2.4.1":
-  version: 2.4.1
-  resolution: "@biomejs/cli-darwin-arm64@npm:2.4.1"
+"@biomejs/cli-darwin-arm64@npm:2.4.2":
+  version: 2.4.2
+  resolution: "@biomejs/cli-darwin-arm64@npm:2.4.2"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-darwin-x64@npm:2.4.1":
-  version: 2.4.1
-  resolution: "@biomejs/cli-darwin-x64@npm:2.4.1"
+"@biomejs/cli-darwin-x64@npm:2.4.2":
+  version: 2.4.2
+  resolution: "@biomejs/cli-darwin-x64@npm:2.4.2"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-arm64-musl@npm:2.4.1":
-  version: 2.4.1
-  resolution: "@biomejs/cli-linux-arm64-musl@npm:2.4.1"
+"@biomejs/cli-linux-arm64-musl@npm:2.4.2":
+  version: 2.4.2
+  resolution: "@biomejs/cli-linux-arm64-musl@npm:2.4.2"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-arm64@npm:2.4.1":
-  version: 2.4.1
-  resolution: "@biomejs/cli-linux-arm64@npm:2.4.1"
+"@biomejs/cli-linux-arm64@npm:2.4.2":
+  version: 2.4.2
+  resolution: "@biomejs/cli-linux-arm64@npm:2.4.2"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-x64-musl@npm:2.4.1":
-  version: 2.4.1
-  resolution: "@biomejs/cli-linux-x64-musl@npm:2.4.1"
+"@biomejs/cli-linux-x64-musl@npm:2.4.2":
+  version: 2.4.2
+  resolution: "@biomejs/cli-linux-x64-musl@npm:2.4.2"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-x64@npm:2.4.1":
-  version: 2.4.1
-  resolution: "@biomejs/cli-linux-x64@npm:2.4.1"
+"@biomejs/cli-linux-x64@npm:2.4.2":
+  version: 2.4.2
+  resolution: "@biomejs/cli-linux-x64@npm:2.4.2"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@biomejs/cli-win32-arm64@npm:2.4.1":
-  version: 2.4.1
-  resolution: "@biomejs/cli-win32-arm64@npm:2.4.1"
+"@biomejs/cli-win32-arm64@npm:2.4.2":
+  version: 2.4.2
+  resolution: "@biomejs/cli-win32-arm64@npm:2.4.2"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-win32-x64@npm:2.4.1":
-  version: 2.4.1
-  resolution: "@biomejs/cli-win32-x64@npm:2.4.1"
+"@biomejs/cli-win32-x64@npm:2.4.2":
+  version: 2.4.2
+  resolution: "@biomejs/cli-win32-x64@npm:2.4.2"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -4964,7 +4977,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "backend@workspace:packages/backend"
   dependencies:
-    "@aws-sdk/client-cognito-identity-provider": "npm:^3.990.0"
+    "@aws-sdk/client-cognito-identity-provider": "npm:^3.991.0"
     "@nestjs/cli": "npm:^11.0.16"
     "@nestjs/common": "npm:^11.1.13"
     "@nestjs/config": "npm:^4.0.3"
@@ -6761,7 +6774,7 @@ __metadata:
     "@types/react-dom": "npm:^19"
     class-variance-authority: "npm:^0.7.1"
     clsx: "npm:^2.1.1"
-    lucide-react: "npm:^0.564.0"
+    lucide-react: "npm:^0.570.0"
     msw: "npm:^2.12.10"
     next: "npm:16.1.6"
     next-themes: "npm:^0.4.6"
@@ -8074,12 +8087,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lucide-react@npm:^0.564.0":
-  version: 0.564.0
-  resolution: "lucide-react@npm:0.564.0"
+"lucide-react@npm:^0.570.0":
+  version: 0.570.0
+  resolution: "lucide-react@npm:0.570.0"
   peerDependencies:
     react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
-  checksum: 10c0/b2f58ed64d98102ab49d78956200958afcd30a033f3e2c3fc47b4890317d6c41671592f4ca5840e6884d973e4b193c01e42a72fb39c62d5c080d7725b21dc249
+  checksum: 10c0/779fb729ef775f39b6e97cf66cad807db6ea830b048d22adafeeeebe6fc6fc2b7f8ca534fb523d97f04a5af242fa579a5669e769c6607da18153e54187c33054
   languageName: node
   linkType: hard
 
@@ -9234,7 +9247,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "pj-todo-app@workspace:."
   dependencies:
-    "@biomejs/biome": "npm:^2.3.15"
+    "@biomejs/biome": "npm:^2.4.2"
     npm-check-updates: "npm:^19.3.2"
   languageName: unknown
   linkType: soft
