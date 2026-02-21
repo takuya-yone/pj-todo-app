@@ -19,7 +19,7 @@
     "get:cognito:id-token": "dotenv -e .env ts-node ./utils/get-cognito-id-token-helper.ts"
   },
   "dependencies": {
-    "@aws-sdk/client-cognito-identity-provider": "^3.993.0",
+    "@aws-sdk/client-cognito-identity-provider": "^3.994.0",
     "@nestjs/common": "^11.1.14",
     "@nestjs/config": "^4.0.3",
     "@nestjs/core": "^11.1.14",
@@ -27,9 +27,9 @@
     "@nestjs/platform-express": "^11.1.14",
     "@nestjs/serve-static": "^5.0.4",
     "@nestjs/swagger": "^11.2.6",
-    "@prisma/adapter-mariadb": "^7.4.0",
-    "@prisma/adapter-pg": "^7.4.0",
-    "@prisma/client": "7.4.0",
+    "@prisma/adapter-mariadb": "^7.4.1",
+    "@prisma/adapter-pg": "^7.4.1",
+    "@prisma/client": "7.4.1",
     "@tidbcloud/prisma-adapter": "^6.17.0",
     "@tidbcloud/serverless": "^0.2.0",
     "@types/supertest": "^6.0.3",
@@ -39,7 +39,7 @@
     "jwks-rsa": "^3.2.2",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
-    "prisma": "^7.4.0",
+    "prisma": "^7.4.1",
     "reflect-metadata": "^0.2.2",
     "rxjs": "^7.8.2"
   },
