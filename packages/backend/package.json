@@ -29,7 +29,7 @@
     "@nestjs/swagger": "^11.2.6",
     "@prisma/adapter-mariadb": "^7.4.1",
     "@prisma/adapter-pg": "^7.4.1",
-    "@prisma/client": "7.4.1",
+    "@prisma/client": "7.4.2",
     "@tidbcloud/prisma-adapter": "^6.17.0",
     "@tidbcloud/serverless": "^0.2.0",
     "@types/supertest": "^6.0.3",
