@@ -19,12 +19,12 @@
     "get:cognito:id-token": "dotenv -e .env ts-node ./utils/get-cognito-id-token-helper.ts"
   },
   "dependencies": {
-    "@aws-sdk/client-cognito-identity-provider": "^3.1008.0",
-    "@nestjs/common": "^11.1.16",
+    "@aws-sdk/client-cognito-identity-provider": "^3.1009.0",
+    "@nestjs/common": "^11.1.17",
     "@nestjs/config": "^4.0.3",
-    "@nestjs/core": "^11.1.16",
+    "@nestjs/core": "^11.1.17",
     "@nestjs/passport": "^11.0.5",
-    "@nestjs/platform-express": "^11.1.16",
+    "@nestjs/platform-express": "^11.1.17",
     "@nestjs/serve-static": "^5.0.4",
     "@nestjs/swagger": "^11.2.6",
     "@prisma/adapter-mariadb": "^7.5.0",
@@ -46,7 +46,7 @@
   "devDependencies": {
     "@nestjs/cli": "^11.0.16",
     "@nestjs/schematics": "^11.0.9",
-    "@nestjs/testing": "^11.1.16",
+    "@nestjs/testing": "^11.1.17",
     "@types/express": "^5.0.6",
     "@types/node": "^25.5.0",
     "@types/passport": "^1",
