@@ -15,7 +15,7 @@
   "workspaces": [
     "packages/*"
   ],
-  "packageManager": "yarn@4.12.0",
+  "packageManager": "yarn@4.13.0",
   "devDependencies": {
     "@biomejs/biome": "^2.4.8",
     "npm-check-updates": "^19.6.5"
