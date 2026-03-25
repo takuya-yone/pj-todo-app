@@ -138,9 +138,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/client-cognito-identity-provider@npm:^3.1015.0":
-  version: 3.1015.0
-  resolution: "@aws-sdk/client-cognito-identity-provider@npm:3.1015.0"
+"@aws-sdk/client-cognito-identity-provider@npm:^3.1016.0":
+  version: 3.1016.0
+  resolution: "@aws-sdk/client-cognito-identity-provider@npm:3.1016.0"
   dependencies:
     "@aws-crypto/sha256-browser": "npm:5.2.0"
     "@aws-crypto/sha256-js": "npm:5.2.0"
@@ -181,7 +181,7 @@ __metadata:
     "@smithy/util-retry": "npm:^4.2.12"
     "@smithy/util-utf8": "npm:^4.2.2"
     tslib: "npm:^2.6.2"
-  checksum: 10c0/605051c4c0b8e1e254cf9bdd114d06c5e6a1d7c5440b129eeb8f1e92fc91acdc6db9ec2d2959121ee2f5042592a32c57a82b16394a220bc0ec481f321f7fd5fd
+  checksum: 10c0/0e664d492a912afd24645b38b0ea9a062ff3b8424784e1d930566047c83bda35823aefaeaa05e6c3e5f288be686e67f3e01362a03d0951abdf21cfcf5e997484
   languageName: node
   linkType: hard
 
@@ -4879,7 +4879,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "backend@workspace:packages/backend"
   dependencies:
-    "@aws-sdk/client-cognito-identity-provider": "npm:^3.1015.0"
+    "@aws-sdk/client-cognito-identity-provider": "npm:^3.1016.0"
     "@nestjs/cli": "npm:^11.0.16"
     "@nestjs/common": "npm:^11.1.17"
     "@nestjs/config": "npm:^4.0.3"
