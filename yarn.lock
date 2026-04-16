@@ -31,25 +31,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@angular-devkit/core@npm:19.2.23":
-  version: 19.2.23
-  resolution: "@angular-devkit/core@npm:19.2.23"
-  dependencies:
-    ajv: "npm:8.18.0"
-    ajv-formats: "npm:3.0.1"
-    jsonc-parser: "npm:3.3.1"
-    picomatch: "npm:4.0.4"
-    rxjs: "npm:7.8.1"
-    source-map: "npm:0.7.4"
-  peerDependencies:
-    chokidar: ^4.0.0
-  peerDependenciesMeta:
-    chokidar:
-      optional: true
-  checksum: 10c0/aa7e73527b0533608ffde7f61f95a972b8698b33dcdd056af2a1e2a6d05616a0880f5f8890de0fff9efcc4c92af936d6d65ae99bb9acfb7cd3d015bddcdfc13d
-  languageName: node
-  linkType: hard
-
 "@angular-devkit/core@npm:19.2.24":
   version: 19.2.24
   resolution: "@angular-devkit/core@npm:19.2.24"
@@ -95,19 +76,6 @@ __metadata:
     ora: "npm:5.4.1"
     rxjs: "npm:7.8.1"
   checksum: 10c0/393d2148f2a75efdeeadad7cb47bb55cf490c56928cec5f9acb18cd8098aa7a8de48e6e8f5063431a6fd7df569e0fb75bb0cfeb8a9a6e7924e6be625e1779b6f
-  languageName: node
-  linkType: hard
-
-"@angular-devkit/schematics@npm:19.2.23":
-  version: 19.2.23
-  resolution: "@angular-devkit/schematics@npm:19.2.23"
-  dependencies:
-    "@angular-devkit/core": "npm:19.2.23"
-    jsonc-parser: "npm:3.3.1"
-    magic-string: "npm:0.30.17"
-    ora: "npm:5.4.1"
-    rxjs: "npm:7.8.1"
-  checksum: 10c0/7bb3aace75af85ba5fd50d9c3173adca9690df2de40ace20af03d89649400f6b79b417213ecbc41963e6f667ae866f820b9bb796ee4cd41b903fefbd6e79ced8
   languageName: node
   linkType: hard
 
@@ -910,18 +878,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@biomejs/biome@npm:^2.4.11":
-  version: 2.4.11
-  resolution: "@biomejs/biome@npm:2.4.11"
+"@biomejs/biome@npm:^2.4.12":
+  version: 2.4.12
+  resolution: "@biomejs/biome@npm:2.4.12"
   dependencies:
-    "@biomejs/cli-darwin-arm64": "npm:2.4.11"
-    "@biomejs/cli-darwin-x64": "npm:2.4.11"
-    "@biomejs/cli-linux-arm64": "npm:2.4.11"
-    "@biomejs/cli-linux-arm64-musl": "npm:2.4.11"
-    "@biomejs/cli-linux-x64": "npm:2.4.11"
-    "@biomejs/cli-linux-x64-musl": "npm:2.4.11"
-    "@biomejs/cli-win32-arm64": "npm:2.4.11"
-    "@biomejs/cli-win32-x64": "npm:2.4.11"
+    "@biomejs/cli-darwin-arm64": "npm:2.4.12"
+    "@biomejs/cli-darwin-x64": "npm:2.4.12"
+    "@biomejs/cli-linux-arm64": "npm:2.4.12"
+    "@biomejs/cli-linux-arm64-musl": "npm:2.4.12"
+    "@biomejs/cli-linux-x64": "npm:2.4.12"
+    "@biomejs/cli-linux-x64-musl": "npm:2.4.12"
+    "@biomejs/cli-win32-arm64": "npm:2.4.12"
+    "@biomejs/cli-win32-x64": "npm:2.4.12"
   dependenciesMeta:
     "@biomejs/cli-darwin-arm64":
       optional: true
@@ -941,62 +909,62 @@ __metadata:
       optional: true
   bin:
     biome: bin/biome
-  checksum: 10c0/5e9edd2bd54f87786a6acc681843128e95eea663d0cd61dfe2e7789683a4d1008e4855f405055c1dc4095d723b1b6a290320d240707f199d1814c955d18c6eab
+  checksum: 10c0/8f03b07f33d7e1efee615945cdc907b7fdc9160d70b204a74ce1b65bdf0ca47c7bfe5e2fafd5b832927f0d4bee4ae3182d93e603e3e5ecf5d91734cff888133b
   languageName: node
   linkType: hard
 
-"@biomejs/cli-darwin-arm64@npm:2.4.11":
-  version: 2.4.11
-  resolution: "@biomejs/cli-darwin-arm64@npm:2.4.11"
+"@biomejs/cli-darwin-arm64@npm:2.4.12":
+  version: 2.4.12
+  resolution: "@biomejs/cli-darwin-arm64@npm:2.4.12"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-darwin-x64@npm:2.4.11":
-  version: 2.4.11
-  resolution: "@biomejs/cli-darwin-x64@npm:2.4.11"
+"@biomejs/cli-darwin-x64@npm:2.4.12":
+  version: 2.4.12
+  resolution: "@biomejs/cli-darwin-x64@npm:2.4.12"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-arm64-musl@npm:2.4.11":
-  version: 2.4.11
-  resolution: "@biomejs/cli-linux-arm64-musl@npm:2.4.11"
+"@biomejs/cli-linux-arm64-musl@npm:2.4.12":
+  version: 2.4.12
+  resolution: "@biomejs/cli-linux-arm64-musl@npm:2.4.12"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-arm64@npm:2.4.11":
-  version: 2.4.11
-  resolution: "@biomejs/cli-linux-arm64@npm:2.4.11"
+"@biomejs/cli-linux-arm64@npm:2.4.12":
+  version: 2.4.12
+  resolution: "@biomejs/cli-linux-arm64@npm:2.4.12"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-x64-musl@npm:2.4.11":
-  version: 2.4.11
-  resolution: "@biomejs/cli-linux-x64-musl@npm:2.4.11"
+"@biomejs/cli-linux-x64-musl@npm:2.4.12":
+  version: 2.4.12
+  resolution: "@biomejs/cli-linux-x64-musl@npm:2.4.12"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@biomejs/cli-linux-x64@npm:2.4.11":
-  version: 2.4.11
-  resolution: "@biomejs/cli-linux-x64@npm:2.4.11"
+"@biomejs/cli-linux-x64@npm:2.4.12":
+  version: 2.4.12
+  resolution: "@biomejs/cli-linux-x64@npm:2.4.12"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@biomejs/cli-win32-arm64@npm:2.4.11":
-  version: 2.4.11
-  resolution: "@biomejs/cli-win32-arm64@npm:2.4.11"
+"@biomejs/cli-win32-arm64@npm:2.4.12":
+  version: 2.4.12
+  resolution: "@biomejs/cli-win32-arm64@npm:2.4.12"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@biomejs/cli-win32-x64@npm:2.4.11":
-  version: 2.4.11
-  resolution: "@biomejs/cli-win32-x64@npm:2.4.11"
+"@biomejs/cli-win32-x64@npm:2.4.12":
+  version: 2.4.12
+  resolution: "@biomejs/cli-win32-x64@npm:2.4.12"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -2208,9 +2176,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/cli@npm:^11.0.19":
-  version: 11.0.19
-  resolution: "@nestjs/cli@npm:11.0.19"
+"@nestjs/cli@npm:^11.0.21":
+  version: 11.0.21
+  resolution: "@nestjs/cli@npm:11.0.21"
   dependencies:
     "@angular-devkit/core": "npm:19.2.24"
     "@angular-devkit/schematics": "npm:19.2.24"
@@ -2240,7 +2208,7 @@ __metadata:
       optional: true
   bin:
     nest: bin/nest.js
-  checksum: 10c0/c0e6aa491b3aa00c3c841fbad4720b841c74cd04b63d5f3b7a555f2d48f4587832b700855c3a270f61519209984e2329132222585479913f91009d33c096bd9b
+  checksum: 10c0/1806e58004443fefbfa1773edd821430bea227b006e6280ab56587d07826d5c4db21e55ad0bb7a0a28115734a6e63c91a43414454d79c2e6329846fa22a72e7e
   languageName: node
   linkType: hard
 
@@ -2367,18 +2335,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/schematics@npm:^11.0.10":
-  version: 11.0.10
-  resolution: "@nestjs/schematics@npm:11.0.10"
+"@nestjs/schematics@npm:^11.1.0":
+  version: 11.1.0
+  resolution: "@nestjs/schematics@npm:11.1.0"
   dependencies:
-    "@angular-devkit/core": "npm:19.2.23"
-    "@angular-devkit/schematics": "npm:19.2.23"
-    comment-json: "npm:4.6.2"
+    "@angular-devkit/core": "npm:19.2.24"
+    "@angular-devkit/schematics": "npm:19.2.24"
+    comment-json: "npm:5.0.0"
     jsonc-parser: "npm:3.3.1"
     pluralize: "npm:8.0.0"
   peerDependencies:
+    prettier: ^3.0.0
     typescript: ">=4.8.2"
-  checksum: 10c0/e6462c5d165e8fa6ab9ccf8589cf22cd536787b664cbd223d611c289bebc1b09f5cd05491a9d4a2d0de88d28a1ef4a87682ba38c11e32be769196beff479d603
+  peerDependenciesMeta:
+    prettier:
+      optional: true
+  checksum: 10c0/040ea9b5ffa47d0da3eaf508aafb24d19ea604897bbb68cf8ba6392c654681569a40fcb2d79269fe32dcde6e79792d6ad93c9cf2ceac5c9b5a13e13598eb949a
   languageName: node
   linkType: hard
 
@@ -2404,16 +2376,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/swagger@npm:^11.2.7":
-  version: 11.2.7
-  resolution: "@nestjs/swagger@npm:11.2.7"
+"@nestjs/swagger@npm:^11.3.0":
+  version: 11.3.0
+  resolution: "@nestjs/swagger@npm:11.3.0"
   dependencies:
     "@microsoft/tsdoc": "npm:0.16.0"
     "@nestjs/mapped-types": "npm:2.1.1"
     js-yaml: "npm:4.1.1"
     lodash: "npm:4.18.1"
     path-to-regexp: "npm:8.4.2"
-    swagger-ui-dist: "npm:5.32.2"
+    swagger-ui-dist: "npm:5.32.4"
   peerDependencies:
     "@fastify/static": ^8.0.0 || ^9.0.0
     "@nestjs/common": ^11.0.1
@@ -2428,7 +2400,7 @@ __metadata:
       optional: true
     class-validator:
       optional: true
-  checksum: 10c0/34f491ccdf1f57174eb5aeb78956a59ec2738e494bbf98f53e915936b6859502bbdd9bb19b909f70f20579d8000fbca2be122fde9539320ea6428ecba74b6bdf
+  checksum: 10c0/e7032639971430a52da0ccbde88587c4e4014acd09dff806ff84b5f14c0ac76ed8cc733b783181c5d231de217e05afcea0f03e19d65e50eec03a0fcbc9b6a6ba
   languageName: node
   linkType: hard
 
@@ -2451,65 +2423,65 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@next/env@npm:16.2.3":
-  version: 16.2.3
-  resolution: "@next/env@npm:16.2.3"
-  checksum: 10c0/56c3fee8ea226efe59ef065e054380f872c00c45c9fe4475eaa45f80773c3c1adc3ead3ccdd77447d3c1aeb4b3004aaaa033dd4a100d3e572fd01b83f992dde8
+"@next/env@npm:16.2.4":
+  version: 16.2.4
+  resolution: "@next/env@npm:16.2.4"
+  checksum: 10c0/4bf41f0da7cc97ca2a2f2b7f3fc81e14aba2afc280d32163b134b8f642b315fbabb5d9c224a783d8e759bbc73eedfc9acd048e772950395aa1e6290dd386d209
   languageName: node
   linkType: hard
 
-"@next/swc-darwin-arm64@npm:16.2.3":
-  version: 16.2.3
-  resolution: "@next/swc-darwin-arm64@npm:16.2.3"
+"@next/swc-darwin-arm64@npm:16.2.4":
+  version: 16.2.4
+  resolution: "@next/swc-darwin-arm64@npm:16.2.4"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@next/swc-darwin-x64@npm:16.2.3":
-  version: 16.2.3
-  resolution: "@next/swc-darwin-x64@npm:16.2.3"
+"@next/swc-darwin-x64@npm:16.2.4":
+  version: 16.2.4
+  resolution: "@next/swc-darwin-x64@npm:16.2.4"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@next/swc-linux-arm64-gnu@npm:16.2.3":
-  version: 16.2.3
-  resolution: "@next/swc-linux-arm64-gnu@npm:16.2.3"
+"@next/swc-linux-arm64-gnu@npm:16.2.4":
+  version: 16.2.4
+  resolution: "@next/swc-linux-arm64-gnu@npm:16.2.4"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@next/swc-linux-arm64-musl@npm:16.2.3":
-  version: 16.2.3
-  resolution: "@next/swc-linux-arm64-musl@npm:16.2.3"
+"@next/swc-linux-arm64-musl@npm:16.2.4":
+  version: 16.2.4
+  resolution: "@next/swc-linux-arm64-musl@npm:16.2.4"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@next/swc-linux-x64-gnu@npm:16.2.3":
-  version: 16.2.3
-  resolution: "@next/swc-linux-x64-gnu@npm:16.2.3"
+"@next/swc-linux-x64-gnu@npm:16.2.4":
+  version: 16.2.4
+  resolution: "@next/swc-linux-x64-gnu@npm:16.2.4"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@next/swc-linux-x64-musl@npm:16.2.3":
-  version: 16.2.3
-  resolution: "@next/swc-linux-x64-musl@npm:16.2.3"
+"@next/swc-linux-x64-musl@npm:16.2.4":
+  version: 16.2.4
+  resolution: "@next/swc-linux-x64-musl@npm:16.2.4"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@next/swc-win32-arm64-msvc@npm:16.2.3":
-  version: 16.2.3
-  resolution: "@next/swc-win32-arm64-msvc@npm:16.2.3"
+"@next/swc-win32-arm64-msvc@npm:16.2.4":
+  version: 16.2.4
+  resolution: "@next/swc-win32-arm64-msvc@npm:16.2.4"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@next/swc-win32-x64-msvc@npm:16.2.3":
-  version: 16.2.3
-  resolution: "@next/swc-win32-x64-msvc@npm:16.2.3"
+"@next/swc-win32-x64-msvc@npm:16.2.4":
+  version: 16.2.4
+  resolution: "@next/swc-win32-x64-msvc@npm:16.2.4"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -2621,27 +2593,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@orval/angular@npm:8.7.0":
-  version: 8.7.0
-  resolution: "@orval/angular@npm:8.7.0"
+"@orval/angular@npm:8.8.0":
+  version: 8.8.0
+  resolution: "@orval/angular@npm:8.8.0"
   dependencies:
-    "@orval/core": "npm:8.7.0"
-  checksum: 10c0/86661367dcba796d25721ad553ab678d63a0d3e2cc4fddedceaa81ccee0b68d6dd34ea04f4aee2ae379c6aa96d71ad62a3f76ade9abe7a64a51c9bb0c68a0ecc
+    "@orval/core": "npm:8.8.0"
+  checksum: 10c0/ab416d5c06bc4d56f49ccae960dd5ff97a68686d4a0a3178588b4e2abbaa252a3a01a306d90064c943cace130f0f18a09d6cd935d88a684bd3de6533b19fcb7b
   languageName: node
   linkType: hard
 
-"@orval/axios@npm:8.7.0":
-  version: 8.7.0
-  resolution: "@orval/axios@npm:8.7.0"
+"@orval/axios@npm:8.8.0":
+  version: 8.8.0
+  resolution: "@orval/axios@npm:8.8.0"
   dependencies:
-    "@orval/core": "npm:8.7.0"
-  checksum: 10c0/fa7decc89f3d061bbc589a8ad4aaf46ed6661424e2cec8af7fc19c77d958589849d14b2582e9502e5e72fa2d4c74ee48e0c7fe8989b7d63ee5ce0769bf8c2d44
+    "@orval/core": "npm:8.8.0"
+  checksum: 10c0/bb263412db8e4a0ceb28b984dd26df6c3a2efc639c818d2a9cae5ab06be36fd381aa208605a6abbcd8820875b167680caa0552ec83aaf1813a75f39826e3aed0
   languageName: node
   linkType: hard
 
-"@orval/core@npm:8.7.0":
-  version: 8.7.0
-  resolution: "@orval/core@npm:8.7.0"
+"@orval/core@npm:8.8.0":
+  version: 8.8.0
+  resolution: "@orval/core@npm:8.8.0"
   dependencies:
     "@scalar/openapi-types": "npm:0.6.1"
     acorn: "npm:^8.15.0"
@@ -2659,91 +2631,91 @@ __metadata:
   peerDependenciesMeta:
     "@faker-js/faker":
       optional: true
-  checksum: 10c0/142571f576131422368ba99601c95d283d121b924f442ce8b0ccc7b9c30b6c912ec2a6295f2b81692206a42d6bca0834ecf7bf098fd49c2c01a25e24e04b5b00
+  checksum: 10c0/d4289d7fb1fb2483c58222109e62fbf232714221ca84af96d85124b5d3ce18381d35b3f1910e047731f40f000b49ced7a1487269972297158abe1dbe5fafa6fc
   languageName: node
   linkType: hard
 
-"@orval/fetch@npm:8.7.0":
-  version: 8.7.0
-  resolution: "@orval/fetch@npm:8.7.0"
+"@orval/fetch@npm:8.8.0":
+  version: 8.8.0
+  resolution: "@orval/fetch@npm:8.8.0"
   dependencies:
-    "@orval/core": "npm:8.7.0"
+    "@orval/core": "npm:8.8.0"
     "@scalar/openapi-types": "npm:0.6.1"
-  checksum: 10c0/25b8aad9cce1f76435805480af32c88aecbc7d1e1ff4b5687be4ae16945c59429bf7595b830a32f5ed4a4d482f372feefd9be66e368af8a54375be9fc85151d0
+  checksum: 10c0/537bc51c9e16efd7813913a02c34872e4eacdd321b9d7efd68fa8ab8309cd5d622592c99c30dd9666befc60d8d1a4454cefb9f51dbcf4754648ff843233191b3
   languageName: node
   linkType: hard
 
-"@orval/hono@npm:8.7.0":
-  version: 8.7.0
-  resolution: "@orval/hono@npm:8.7.0"
+"@orval/hono@npm:8.8.0":
+  version: 8.8.0
+  resolution: "@orval/hono@npm:8.8.0"
   dependencies:
-    "@orval/core": "npm:8.7.0"
-    "@orval/zod": "npm:8.7.0"
+    "@orval/core": "npm:8.8.0"
+    "@orval/zod": "npm:8.8.0"
     fs-extra: "npm:^11.3.2"
     remeda: "npm:^2.33.6"
-  checksum: 10c0/c83a48f502594fcd4cc48b5002f1eec18479957de5087781dc6efdeca5cea8431c25e97de2dd9bf84558d343ae01e8a6f07ca7258519c2a71f277ee6f405bdd3
+  checksum: 10c0/bcc0b83ec08540e87ec6e4420f01ff0c05df658afe5c85543e11c04a7cafb2b3a0f05f85fae560cbbdbe5d1c8af4a2930ca1e79652ad9c9a513462a704a87301
   languageName: node
   linkType: hard
 
-"@orval/mcp@npm:8.7.0":
-  version: 8.7.0
-  resolution: "@orval/mcp@npm:8.7.0"
+"@orval/mcp@npm:8.8.0":
+  version: 8.8.0
+  resolution: "@orval/mcp@npm:8.8.0"
   dependencies:
-    "@orval/core": "npm:8.7.0"
-    "@orval/fetch": "npm:8.7.0"
-    "@orval/zod": "npm:8.7.0"
-  checksum: 10c0/0bf104168006c23c0462c7ce2bb11d8e66b97c4850c8df5a55e7a9a3011f64bfb716ad0734764a0936b120b4c0b6ad599bcc60a9a6796b1bb115354c29988cce
+    "@orval/core": "npm:8.8.0"
+    "@orval/fetch": "npm:8.8.0"
+    "@orval/zod": "npm:8.8.0"
+  checksum: 10c0/1fbcc0811169ce51e673a492f2942eb2ddeb494474e4444a408afb7ac7774c69e1c0b455a0c20b7cf441d21ffc159169fe84921c8cab9453a59aa7ac376fad8d
   languageName: node
   linkType: hard
 
-"@orval/mock@npm:8.7.0":
-  version: 8.7.0
-  resolution: "@orval/mock@npm:8.7.0"
+"@orval/mock@npm:8.8.0":
+  version: 8.8.0
+  resolution: "@orval/mock@npm:8.8.0"
   dependencies:
-    "@orval/core": "npm:8.7.0"
+    "@orval/core": "npm:8.8.0"
     remeda: "npm:^2.33.6"
-  checksum: 10c0/4439064ed1007a97d3783e10b92ba2a09ba6ec44ba97791ca838e7b35dc8a913dc83cf7b073f982066302ccd04d8c63f56138f9912412a136c65a104a84beef6
+  checksum: 10c0/1ff168663e98d40e3b91c7e59cf539f3c892380305f079534a0a5ca9f1183817784e655c038d712b81294f4413bc3ee4d34cc9df44e4d94d6a1ddd5264956448
   languageName: node
   linkType: hard
 
-"@orval/query@npm:8.7.0":
-  version: 8.7.0
-  resolution: "@orval/query@npm:8.7.0"
+"@orval/query@npm:8.8.0":
+  version: 8.8.0
+  resolution: "@orval/query@npm:8.8.0"
   dependencies:
-    "@orval/core": "npm:8.7.0"
-    "@orval/fetch": "npm:8.7.0"
+    "@orval/core": "npm:8.8.0"
+    "@orval/fetch": "npm:8.8.0"
     remeda: "npm:^2.33.6"
-  checksum: 10c0/db629384bf46266c43f94b1a0ed5c87627b0f983ec31234d5c8ff0ce2e9d84beca7a98dd7f10598c0a975343e9fbac9a8dd2ef54b2976155039bce8f31dd63c3
+  checksum: 10c0/66f8873f7dcc6814f834c89bb5903cddcf4c74980af2d88fbbb790936876e05d806a8a454dc095a38d0fe3ebc6bc3134b30465289797e37727c23ae5b563dde1
   languageName: node
   linkType: hard
 
-"@orval/solid-start@npm:8.7.0":
-  version: 8.7.0
-  resolution: "@orval/solid-start@npm:8.7.0"
+"@orval/solid-start@npm:8.8.0":
+  version: 8.8.0
+  resolution: "@orval/solid-start@npm:8.8.0"
   dependencies:
-    "@orval/core": "npm:8.7.0"
+    "@orval/core": "npm:8.8.0"
     "@scalar/openapi-types": "npm:0.6.1"
-  checksum: 10c0/e7a3256bf9940012bc0249cb89d78f14f21817399864efecdebd714dbf3090609b85572dec9d5ef15421131d480f546d9dfbaf675d3f0ec87adda962b22ac5b7
+  checksum: 10c0/28d42560bb05266de888b37a6541cfd36deee03bff89e5756005f9ece255082ff8264f0c72ca7bb381d88d2ce7f4102a448592269145e5152e37d60ba641d1d3
   languageName: node
   linkType: hard
 
-"@orval/swr@npm:8.7.0":
-  version: 8.7.0
-  resolution: "@orval/swr@npm:8.7.0"
+"@orval/swr@npm:8.8.0":
+  version: 8.8.0
+  resolution: "@orval/swr@npm:8.8.0"
   dependencies:
-    "@orval/core": "npm:8.7.0"
-    "@orval/fetch": "npm:8.7.0"
-  checksum: 10c0/979a1b81b8b232a61b55752fca7407d26ad3b3deb3ca3f555420d9c825757f35ca9a211787725488bce3c1a1a9cc205617d96271b9e1e7d020ec59e916ac2e5b
+    "@orval/core": "npm:8.8.0"
+    "@orval/fetch": "npm:8.8.0"
+  checksum: 10c0/0e8fb20ebc57ee15b388e5d4feb908523f9ea08c8ad0c32a63df815fdea75667388608cb6adf2e36010ea1d091a9a68d16d0e9cd307d5b19378b8fbdf7c99513
   languageName: node
   linkType: hard
 
-"@orval/zod@npm:8.7.0":
-  version: 8.7.0
-  resolution: "@orval/zod@npm:8.7.0"
+"@orval/zod@npm:8.8.0":
+  version: 8.8.0
+  resolution: "@orval/zod@npm:8.8.0"
   dependencies:
-    "@orval/core": "npm:8.7.0"
+    "@orval/core": "npm:8.8.0"
     remeda: "npm:^2.33.6"
-  checksum: 10c0/c6813ecbdc0d2fb6e334544372f6fc6b2bd5a2b06e6b39de692d9f91a5c202f59616794a2467ae4e382e4fec0256edd8bed0cf73e3ff17fdabfa08a7c016773a
+  checksum: 10c0/8dfbd59d04454fde597560b49ce148ae9736b1f2bb835436456f7a1c42308a96315bba6880dbd609f251744648aecf9b3d8d7b4158923fcc63c57c23d9c4232e
   languageName: node
   linkType: hard
 
@@ -5116,15 +5088,15 @@ __metadata:
   resolution: "backend@workspace:packages/backend"
   dependencies:
     "@aws-sdk/client-cognito-identity-provider": "npm:^3.1030.0"
-    "@nestjs/cli": "npm:^11.0.19"
+    "@nestjs/cli": "npm:^11.0.21"
     "@nestjs/common": "npm:^11.1.19"
     "@nestjs/config": "npm:^4.0.4"
     "@nestjs/core": "npm:^11.1.19"
     "@nestjs/passport": "npm:^11.0.5"
     "@nestjs/platform-express": "npm:^11.1.19"
-    "@nestjs/schematics": "npm:^11.0.10"
+    "@nestjs/schematics": "npm:^11.1.0"
     "@nestjs/serve-static": "npm:^5.0.5"
-    "@nestjs/swagger": "npm:^11.2.7"
+    "@nestjs/swagger": "npm:^11.3.0"
     "@nestjs/testing": "npm:^11.1.19"
     "@prisma/adapter-mariadb": "npm:^7.7.0"
     "@prisma/adapter-pg": "npm:^7.7.0"
@@ -5757,13 +5729,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"comment-json@npm:4.6.2":
-  version: 4.6.2
-  resolution: "comment-json@npm:4.6.2"
+"comment-json@npm:5.0.0":
+  version: 5.0.0
+  resolution: "comment-json@npm:5.0.0"
   dependencies:
     array-timsort: "npm:^1.0.3"
     esprima: "npm:^4.0.1"
-  checksum: 10c0/8965ec6c40612aa0cc66d4324ff5819cf205c997f3a84dd82dffe4e6398449e37bbc5765184bc9149e95d15994f0c2740cee82284828fa1c0f733a669022d3dd
+  checksum: 10c0/86172bcdfc33e3f3da23819151a11a0a30e0d632c255c66541e511b6d41e549a10f1011c1467ded5ea5fe08096769cacfeb84107bbab2347f506aab926ad9082
   languageName: node
   linkType: hard
 
@@ -7038,9 +7010,9 @@ __metadata:
     clsx: "npm:^2.1.1"
     lucide-react: "npm:^0.577.0"
     msw: "npm:^2.13.3"
-    next: "npm:16.2.3"
+    next: "npm:16.2.4"
     next-themes: "npm:^0.4.6"
-    orval: "npm:^8.7.0"
+    orval: "npm:^8.8.0"
     react: "npm:^19"
     react-dom: "npm:^19"
     react-hook-form: "npm:^7.72.1"
@@ -8829,19 +8801,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"next@npm:16.2.3":
-  version: 16.2.3
-  resolution: "next@npm:16.2.3"
+"next@npm:16.2.4":
+  version: 16.2.4
+  resolution: "next@npm:16.2.4"
   dependencies:
-    "@next/env": "npm:16.2.3"
-    "@next/swc-darwin-arm64": "npm:16.2.3"
-    "@next/swc-darwin-x64": "npm:16.2.3"
-    "@next/swc-linux-arm64-gnu": "npm:16.2.3"
-    "@next/swc-linux-arm64-musl": "npm:16.2.3"
-    "@next/swc-linux-x64-gnu": "npm:16.2.3"
-    "@next/swc-linux-x64-musl": "npm:16.2.3"
-    "@next/swc-win32-arm64-msvc": "npm:16.2.3"
-    "@next/swc-win32-x64-msvc": "npm:16.2.3"
+    "@next/env": "npm:16.2.4"
+    "@next/swc-darwin-arm64": "npm:16.2.4"
+    "@next/swc-darwin-x64": "npm:16.2.4"
+    "@next/swc-linux-arm64-gnu": "npm:16.2.4"
+    "@next/swc-linux-arm64-musl": "npm:16.2.4"
+    "@next/swc-linux-x64-gnu": "npm:16.2.4"
+    "@next/swc-linux-x64-musl": "npm:16.2.4"
+    "@next/swc-win32-arm64-msvc": "npm:16.2.4"
+    "@next/swc-win32-x64-msvc": "npm:16.2.4"
     "@swc/helpers": "npm:0.5.15"
     baseline-browser-mapping: "npm:^2.9.19"
     caniuse-lite: "npm:^1.0.30001579"
@@ -8885,7 +8857,7 @@ __metadata:
       optional: true
   bin:
     next: dist/bin/next
-  checksum: 10c0/8a9d27fc773d69f7f471cf1a23bde2ab2950e0411ef3e0d5c1664ed9654e94c3304eae1c4283ec0fa4e70e7b3f4416913350e118e0c18e8b055693dc5d021883
+  checksum: 10c0/81dc1ef30141891dc5cc999a0a6210c68305b585b3a7508799767572a9fb7e4c7dcb5a50f5fa3fabadf6a46c2273405360b1d6f17f89edd891da1746ae31c186
   languageName: node
   linkType: hard
 
@@ -9136,22 +9108,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"orval@npm:^8.7.0":
-  version: 8.7.0
-  resolution: "orval@npm:8.7.0"
+"orval@npm:^8.8.0":
+  version: 8.8.0
+  resolution: "orval@npm:8.8.0"
   dependencies:
     "@commander-js/extra-typings": "npm:^14.0.0"
-    "@orval/angular": "npm:8.7.0"
-    "@orval/axios": "npm:8.7.0"
-    "@orval/core": "npm:8.7.0"
-    "@orval/fetch": "npm:8.7.0"
-    "@orval/hono": "npm:8.7.0"
-    "@orval/mcp": "npm:8.7.0"
-    "@orval/mock": "npm:8.7.0"
-    "@orval/query": "npm:8.7.0"
-    "@orval/solid-start": "npm:8.7.0"
-    "@orval/swr": "npm:8.7.0"
-    "@orval/zod": "npm:8.7.0"
+    "@orval/angular": "npm:8.8.0"
+    "@orval/axios": "npm:8.8.0"
+    "@orval/core": "npm:8.8.0"
+    "@orval/fetch": "npm:8.8.0"
+    "@orval/hono": "npm:8.8.0"
+    "@orval/mcp": "npm:8.8.0"
+    "@orval/mock": "npm:8.8.0"
+    "@orval/query": "npm:8.8.0"
+    "@orval/solid-start": "npm:8.8.0"
+    "@orval/swr": "npm:8.8.0"
+    "@orval/zod": "npm:8.8.0"
     "@scalar/json-magic": "npm:^0.12.4"
     "@scalar/openapi-parser": "npm:^0.25.6"
     "@scalar/openapi-types": "npm:0.6.1"
@@ -9176,7 +9148,7 @@ __metadata:
       optional: true
   bin:
     orval: dist/bin/orval.mjs
-  checksum: 10c0/c0aad42c3a8adff7a5e24a8e173b0b36ca77d8fbcb0887bc5095c30945dedf1f396ba639bf5f30331aaaa77f2e3f8867e08c7fe9943cbbe45bcd592e5120ee56
+  checksum: 10c0/17f99fce0120204bf9426a5c8158a7958f36c616e46d44e113bdf10ad35e8863256255f0bd8cb945bacf8eda61ea6ef20428ee7a69a6efed764b49a0b36c1dfa
   languageName: node
   linkType: hard
 
@@ -9503,7 +9475,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "pj-todo-app@workspace:."
   dependencies:
-    "@biomejs/biome": "npm:^2.4.11"
+    "@biomejs/biome": "npm:^2.4.12"
     npm-check-updates: "npm:^20.0.2"
   languageName: unknown
   linkType: soft
@@ -10780,12 +10752,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"swagger-ui-dist@npm:5.32.2":
-  version: 5.32.2
-  resolution: "swagger-ui-dist@npm:5.32.2"
+"swagger-ui-dist@npm:5.32.4":
+  version: 5.32.4
+  resolution: "swagger-ui-dist@npm:5.32.4"
   dependencies:
     "@scarf/scarf": "npm:=1.4.0"
-  checksum: 10c0/b6a6469edd97bf416695e910378e4b202dfc9f4ee2eeffba6e791bc987d70763bdd3a05c8004c4f9b39043497d80158db2985e231df7bf2b571d8fb37387f41e
+  checksum: 10c0/3622e845557b842e4ded510c5043c970f11a3bdeb6c09c5829647e04bf6637a705a4d4faaf978b819cc5ea8785289a18a5050fe74fcc64b760b6b8a1f22e3e7b
   languageName: node
   linkType: hard
 
