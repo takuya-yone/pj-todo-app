@@ -9066,13 +9066,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"npm-check-updates@npm:^20.0.2":
-  version: 20.0.2
-  resolution: "npm-check-updates@npm:20.0.2"
+"npm-check-updates@npm:^21.0.2":
+  version: 21.0.2
+  resolution: "npm-check-updates@npm:21.0.2"
   bin:
     ncu: build/cli.js
     npm-check-updates: build/cli.js
-  checksum: 10c0/28e2dcf4d1524cdba505f162a958af4515be3f41dd85472153029306d0c8a7c0998c605bd8d94d76b93d23e8de2605e0988cbae980233d9a156ef1a3c0266b0b
+  checksum: 10c0/c00c4f77ebf074138c3c4ed55a8eb934bb7793ec849bd59fd63dc070856098420149b14ea28f3deaf81c6c2b8836864f1f1eed06ca899c28a9e53ebb88e1908a
   languageName: node
   linkType: hard
 
@@ -9602,7 +9602,7 @@ __metadata:
   resolution: "pj-todo-app@workspace:."
   dependencies:
     "@biomejs/biome": "npm:^2.4.12"
-    npm-check-updates: "npm:^20.0.2"
+    npm-check-updates: "npm:^21.0.2"
   languageName: unknown
   linkType: soft
 
