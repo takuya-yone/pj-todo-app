@@ -138,9 +138,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@aws-sdk/client-cognito-identity-provider@npm:^3.1041.0":
-  version: 3.1041.0
-  resolution: "@aws-sdk/client-cognito-identity-provider@npm:3.1041.0"
+"@aws-sdk/client-cognito-identity-provider@npm:^3.1042.0":
+  version: 3.1042.0
+  resolution: "@aws-sdk/client-cognito-identity-provider@npm:3.1042.0"
   dependencies:
     "@aws-crypto/sha256-browser": "npm:5.2.0"
     "@aws-crypto/sha256-js": "npm:5.2.0"
@@ -181,7 +181,7 @@ __metadata:
     "@smithy/util-retry": "npm:^4.3.6"
     "@smithy/util-utf8": "npm:^4.2.2"
     tslib: "npm:^2.6.2"
-  checksum: 10c0/0cedc755129055f65edb2aeecbc1053422d7737929c01d45e47c0054f90eaa6b4d9ce98f1489714052f9ce34bde650548ac44ed79d0160c178e3329936bd9fae
+  checksum: 10c0/2b1577fff47a1eaad84f404c62d28b06ab9a11243cefcb5e39b2e54d0efb5e81f7fbd676496f396b0799d9a4430fe9d47e458950844b4b93f09ffe3aa5553846
   languageName: node
   linkType: hard
 
@@ -5210,7 +5210,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "backend@workspace:packages/backend"
   dependencies:
-    "@aws-sdk/client-cognito-identity-provider": "npm:^3.1041.0"
+    "@aws-sdk/client-cognito-identity-provider": "npm:^3.1042.0"
     "@nestjs/cli": "npm:^11.0.21"
     "@nestjs/common": "npm:^11.1.19"
     "@nestjs/config": "npm:^4.0.4"
@@ -7142,7 +7142,7 @@ __metadata:
     class-variance-authority: "npm:^0.7.1"
     clsx: "npm:^2.1.1"
     lucide-react: "npm:^0.577.0"
-    msw: "npm:^2.14.2"
+    msw: "npm:^2.14.3"
     next: "npm:16.2.4"
     next-themes: "npm:^0.4.6"
     orval: "npm:^8.9.1"
@@ -8826,9 +8826,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:^2.14.2":
-  version: 2.14.2
-  resolution: "msw@npm:2.14.2"
+"msw@npm:^2.14.3":
+  version: 2.14.3
+  resolution: "msw@npm:2.14.3"
   dependencies:
     "@inquirer/confirm": "npm:^6.0.11"
     "@mswjs/interceptors": "npm:^0.41.3"
@@ -8841,7 +8841,7 @@ __metadata:
     outvariant: "npm:^1.4.3"
     path-to-regexp: "npm:^6.3.0"
     picocolors: "npm:^1.1.1"
-    rettime: "npm:^0.11.7"
+    rettime: "npm:^0.11.11"
     statuses: "npm:^2.0.2"
     strict-event-emitter: "npm:^0.5.1"
     tough-cookie: "npm:^6.0.1"
@@ -8855,7 +8855,7 @@ __metadata:
       optional: true
   bin:
     msw: cli/index.js
-  checksum: 10c0/85dcf819047167b925fcb55b19a38533697e2ea27f341f637a21d311482478ee568d87ccf4a65c388fb7e90c238976b6ae06db3271f53dbc99add2cbc6719b44
+  checksum: 10c0/c2b6c20ed1993e4a9ca4ba860bf543248800e7af213c16225a0b40cce172b83faf704e83a8822f079ed16b8c6a09361ac92cbeeb7dc2f3c3d7b9af638390c545
   languageName: node
   linkType: hard
 
@@ -10068,10 +10068,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rettime@npm:^0.11.7":
-  version: 0.11.7
-  resolution: "rettime@npm:0.11.7"
-  checksum: 10c0/8b8636eac1184548b9527d20da1ddb5bf7e59acdefceb12fd9a846884d935ba90cbfa7607556f0cb821e66d4b0b78c6a26a6c7954901553592c98cf6f63c6d41
+"rettime@npm:^0.11.11":
+  version: 0.11.11
+  resolution: "rettime@npm:0.11.11"
+  checksum: 10c0/021fc9d9870ce04f032952e63fc5576f3f8e7c9c15513b1a479a64646df90239802eef6d60a98cbfb6ac87bb623d4f120a8ee71193d02984e3d2915c28695f6e
   languageName: node
   linkType: hard
 
