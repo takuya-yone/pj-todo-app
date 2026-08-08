@@ -1,28 +1,28 @@
 # 外部イメージをbaseステージとして扱う
-FROM node:20-alpine AS base
+FROM node:24-alpine AS base
 
 # baseステージをもとにbuilderステージを開始
 FROM base AS builder
 
 WORKDIR /app
 
-COPY package.json yarn.lock ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
 ENV NODE_ENV=production 
 
-RUN corepack enable npm yarn pnpm
+RUN npm install -g corepack && corepack enable pnpm
 
-RUN yarn install
+RUN pnpm install --frozen-lockfile --prod=false
 
 COPY . .
 
 
-RUN yarn workspace backend build
-RUN yarn workspace backend prisma:local generate
-# RUN yarn workspace backend prisma:local migrate deploy
+RUN pnpm --filter backend run build
+RUN pnpm --filter backend exec prisma generate
+# RUN pnpm --filter backend exec prisma migrate deploy
 
 FROM base AS runner
-COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.1 /lambda-adapter /opt/extensions/lambda-adapter
+COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:1.1.0 /lambda-adapter /opt/extensions/lambda-adapter
 
 WORKDIR /app
 

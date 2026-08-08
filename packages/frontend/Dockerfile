@@ -1,21 +1,21 @@
 # 外部イメージをbaseステージとして扱う
-FROM node:20-alpine AS base
+FROM node:24-alpine AS base
 
 # baseステージをもとにbuilderステージを開始
 FROM base AS builder
 
 WORKDIR /app
 
-COPY package.json yarn.lock ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
-RUN corepack enable npm yarn pnpm
+RUN npm install -g corepack && corepack enable pnpm
 
-RUN yarn install
+RUN pnpm install --frozen-lockfile --prod=false
 
 COPY . .
 
-RUN yarn workspace backend prisma generate
-RUN yarn workspace frontend build
+RUN pnpm --filter backend run prisma generate
+RUN pnpm --filter frontend run build
 
 
 # COPY --from=builder /app/frontend/next.config.mjs ./
@@ -27,10 +27,10 @@ RUN yarn workspace frontend build
 
 ############### Nginx ###############
 
-FROM nginx:1.23.1-alpine
+FROM nginx:1.31.3-alpine
 COPY ./frontend/nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY ./frontend/nginx/nginx.conf /etc/nginx/nginx.conf
-COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.1 /lambda-adapter /opt/extensions/lambda-adapter
+COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:1.1.0 /lambda-adapter /opt/extensions/lambda-adapter
 COPY --from=builder  /app/frontend/out/ /usr/share/nginx/html
 ENV PORT 8080
 EXPOSE 8080

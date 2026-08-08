@@ -6,24 +6,24 @@ See also the root `../../CLAUDE.md` for monorepo-wide commands, architecture ove
 
 ## Commands
 
-All commands run from the monorepo root unless noted. From this directory, use `yarn` directly instead of `yarn workspace backend`.
+All commands run from the monorepo root unless noted. From this directory, use `pnpm` directly instead of `pnpm --filter backend`.
 
 ```sh
-yarn start:dev              # Dev server with --watch and .env loaded (port 4000)
-yarn build                  # Production build (nest build → dist/)
-yarn test                   # Run tests (Vitest)
-yarn test:watch             # Tests in watch mode
-yarn test:cov               # Tests with coverage (vitest --coverage)
+pnpm start:dev              # Dev server with --watch and .env loaded (port 4000)
+pnpm build                  # Production build (nest build → dist/)
+pnpm test                   # Run tests (Vitest)
+pnpm test:watch             # Tests in watch mode
+pnpm test:cov               # Tests with coverage (vitest --coverage)
 vitest run src/todo         # Run tests for a single module
 vitest run src/todo/todo.controller.spec.ts  # Run a single test file
-yarn prisma generate        # Generate Prisma client (required before build)
-yarn prisma migrate dev     # Create/apply migrations
+pnpm exec prisma generate   # Generate Prisma client (required before build)
+pnpm exec prisma migrate dev # Create/apply migrations
 ```
 
 Lint and format from monorepo root:
 
 ```sh
-yarn fix:backend            # Biome lint + format
+pnpm fix:backend            # Biome lint + format
 ```
 
 ## Architecture
