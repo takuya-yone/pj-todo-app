@@ -1,7 +1,7 @@
 FROM node:26-alpine AS base
 # node:26-alpine は corepack を同梱していないため明示的に導入する。
 # pnpm 自体のバージョンは package.json の packageManager フィールドから解決される。
-RUN npm install -g corepack@0.35.0 && corepack enable pnpm
+RUN npm install -g corepack && corepack enable pnpm
 
 # build nextjs
 FROM base AS app-builder
