@@ -20,11 +20,13 @@ services:
       - "4000:4000"
     depends_on:
       - database
+    # runner イメージにはワークスペースルートの package.json (packageManager) が
+    # 無いため、パッケージマネージャーを介さず prisma CLI を直接呼び出す
     entrypoint:
       [
         "sh",
         "-c",
-        "yarn prisma migrate deploy && node packages/backend/dist/src/main.js",
+        "./node_modules/.bin/prisma migrate deploy && node packages/backend/dist/src/main.js",
       ]
     # depends_on:
     #   database:

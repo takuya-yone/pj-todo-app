@@ -6,16 +6,16 @@ FROM base AS builder
 
 WORKDIR /app
 
-COPY package.json yarn.lock ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
-RUN corepack enable npm yarn pnpm
+RUN npm install -g corepack@0.35.0 && corepack enable pnpm
 
-RUN yarn install
+RUN pnpm install --frozen-lockfile --prod=false
 
 COPY . .
 
-RUN yarn workspace backend prisma generate
-RUN yarn workspace frontend build
+RUN pnpm --filter backend exec prisma generate
+RUN pnpm --filter frontend run build
 
 
 # COPY --from=builder /app/frontend/next.config.mjs ./

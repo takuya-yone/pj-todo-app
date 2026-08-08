@@ -12,57 +12,57 @@ on:
 jobs:
   frontend-build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: packages/frontend
 
     steps:
       - uses: actions/checkout@v7
 
+      # pnpm のバージョンは package.json の packageManager から解決される
       - name: Enable Corepack
-        run: corepack enable
+        run: corepack enable pnpm
 
       - name: Use Node.js
         uses: actions/setup-node@v7
         with:
           node-version-file: .node-version
-          cache: "yarn"
+          cache: "pnpm"
 
+      # ワークスペースルートで実行し、全プロジェクトの依存を解決する
       - name: Install dependencies
-        run: yarn install --immutable
+        run: pnpm install --frozen-lockfile
 
       - name: Copy environment file
         run: cp .env.example .env
+        working-directory: packages/frontend
 
       - name: Build frontend
-        run: yarn build
+        run: pnpm --filter frontend run build
 
   backend-build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: packages/backend
     steps:
       - uses: actions/checkout@v7
 
       - name: Enable Corepack
-        run: corepack enable
+        run: corepack enable pnpm
 
       - name: Use Node.js
         uses: actions/setup-node@v7
         with:
           node-version-file: .node-version
-          cache: "yarn"
+          cache: "pnpm"
 
       - name: Install dependencies
-        run: yarn install --immutable
+        run: pnpm install --frozen-lockfile
 
       - name: Copy environment file
         run: cp .env.example .env
+        working-directory: packages/backend
+
       - name: Prisma generate
-        run: yarn prisma generate
+        run: pnpm --filter backend exec prisma generate
+
       - name: Build backend
-        run: yarn build
+        run: pnpm --filter backend run build
 
   actions-timeline:
     needs: [frontend-build, backend-build]

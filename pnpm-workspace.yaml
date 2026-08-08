@@ -1,0 +1,21 @@
+packages:
+  - "packages/*"
+
+# Yarn の `nodeLinker: node-modules` 相当のフラットな node_modules を作る。
+# Prisma / NestJS / Next.js のツールチェーンと、Dockerfile の `COPY node_modules` を
+# そのまま動かすためにシンボリックリンクなしのレイアウトを維持する。
+nodeLinker: hoisted
+
+# pnpm 10 以降、依存パッケージのインストールスクリプトは既定でブロックされる。
+# 実行を許可するものだけを明示する (`pnpm approve-builds` で対話的に更新できる)。
+allowBuilds:
+  "@prisma/engines": true
+  prisma: true
+  esbuild: true
+  msw: true
+  sharp: true
+  # テレメトリ送信のみで機能に不要
+  "@scarf/scarf": false
+
+minimumReleaseAgeExclude:
+  - npm-check-updates@23.0.2

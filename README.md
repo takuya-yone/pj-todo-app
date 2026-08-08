@@ -1,9 +1,9 @@
 # Script
 
 ```sh
-yarn workspace frontend dev
+pnpm --filter frontend dev
 ```
 
 ```sh
-yarn workspace backend start:dev
+pnpm --filter backend start:dev
 ```

@@ -7,11 +7,11 @@ See also the root `../../CLAUDE.md` for monorepo-wide commands, architecture ove
 ## Frontend Commands
 
 ```sh
-yarn workspace frontend dev     # Dev server (Next.js)
-yarn workspace frontend build   # Static export build (output: out/)
-yarn workspace frontend lint    # Next.js lint
-yarn workspace frontend orval   # Regenerate API types from backend OpenAPI spec
-yarn fix:frontend               # Biome lint + format (run from monorepo root)
+pnpm --filter frontend dev     # Dev server (Next.js)
+pnpm --filter frontend build   # Static export build (output: out/)
+pnpm --filter frontend lint    # Next.js lint
+pnpm --filter frontend orval   # Regenerate API types from backend OpenAPI spec
+pnpm fix:frontend              # Biome lint + format (run from monorepo root)
 ```
 
 ## Code Generation (Orval)
@@ -19,42 +19,50 @@ yarn fix:frontend               # Biome lint + format (run from monorepo root)
 Files in `app/gen/` are **auto-generated** — never edit them manually. They are produced by Orval from the backend's `openapi.yml`.
 
 Generated output:
+
 - `app/gen/endpoints/` — SWR hooks and Zod validation schemas (one file per API tag)
 - `app/gen/models/` — TypeScript types matching the OpenAPI spec
 
 To regenerate after backend API changes:
+
 1. Restart the backend so it writes a fresh `openapi.yml`
-2. Run `yarn workspace frontend orval`
+2. Run `pnpm --filter frontend orval`
 
 Configuration: `orval.config.ts` (reads from `../backend/openapi.yml`, outputs SWR hooks + Zod schemas)
 
 ## Architecture
 
 ### App Structure (Next.js App Router)
+
 - `app/page.tsx` — Single-page client component (`'use client'`), renders the todo list UI
 - `app/layout.tsx` — Root layout with Geist fonts, gradient header, and Sonner toast provider
 - `app/globals.css` — TailwindCSS 4 imports and custom gradient/animation utility classes
 
 ### Component Patterns
+
 - `app/components/TodoForm.tsx` — Create todo form using React Hook Form + Zod (from generated schemas)
 - `app/components/TodoCard.tsx` — Individual todo card with edit/delete/complete toggle
 - `app/components/ui/` — shadcn/ui primitives (add new ones via `npx shadcn@latest add <component>`)
 
 ### Custom Hooks
+
 - `app/hooks/useTodo.ts` — Wraps Orval-generated SWR hooks (`useTodoControllerGet`, `useTodoControllerCreate`, etc.) and adds toast notifications for success/error states. All CRUD operations go through this hook.
 - `app/hooks/useHealth.ts` — Health check endpoint wrapper
 
 ### Data Flow
+
 ```
 React Hook Form → Zod validation (generated) → useTodo hook → Generated SWR hooks → Backend REST API
 ```
 
 ### Styling
+
 - TailwindCSS 4 with OKLch color space and CSS variable theming
 - Custom utility classes in `globals.css`: `.gradient-text`, `.btn-gradient-primary`, `.btn-gradient-danger`, `.rainbow-border`, `.card-hover`
 - shadcn/ui config in `components.json` (New York style)
 
 ### Path Alias
+
 `@/*` maps to `app/*` — use `@/components/`, `@/hooks/`, `@/lib/`, `@/gen/` in imports.
 
 ## Key Conventions
