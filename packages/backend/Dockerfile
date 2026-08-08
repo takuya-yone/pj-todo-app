@@ -22,7 +22,7 @@ RUN pnpm --filter backend exec prisma generate
 # RUN pnpm --filter backend exec prisma migrate deploy
 
 FROM base AS runner
-COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.1 /lambda-adapter /opt/extensions/lambda-adapter
+COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:1.1.0 /lambda-adapter /opt/extensions/lambda-adapter
 
 WORKDIR /app
 

@@ -14,7 +14,7 @@ RUN pnpm install --frozen-lockfile --prod=false
 
 COPY . .
 
-RUN pnpm --filter backend exec prisma generate
+RUN pnpm --filter backend run prisma generate
 RUN pnpm --filter frontend run build
 
 
@@ -27,10 +27,10 @@ RUN pnpm --filter frontend run build
 
 ############### Nginx ###############
 
-FROM nginx:1.23.1-alpine
+FROM nginx:1.31.3-alpine
 COPY ./frontend/nginx/default.conf /etc/nginx/conf.d/default.conf
 COPY ./frontend/nginx/nginx.conf /etc/nginx/nginx.conf
-COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:0.8.1 /lambda-adapter /opt/extensions/lambda-adapter
+COPY --from=public.ecr.aws/awsguru/aws-lambda-adapter:1.1.0 /lambda-adapter /opt/extensions/lambda-adapter
 COPY --from=builder  /app/frontend/out/ /usr/share/nginx/html
 ENV PORT 8080
 EXPOSE 8080
