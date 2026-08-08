@@ -64,8 +64,40 @@ jobs:
       - name: Build backend
         run: pnpm --filter backend run build
 
+  docker-build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Build image
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          push: false
+          load: true
+          tags: pj-todo-app:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      # runner ステージは pnpm の hoisted な node_modules を COPY して組み立てているため、
+      # ビルド成功だけでなくイメージ内で実際に解決できるかまで確認する
+      - name: Smoke test image
+        run: |
+          docker run --rm --entrypoint sh \
+            -e DB_USERNAME=ci -e DB_PASSWORD=ci -e DB_HOST=localhost \
+            -e DB_PORT=5432 -e DB_DATABASE=ci -e DB_SSLMODE=disable \
+            pj-todo-app:ci -c '
+              set -e
+              test -f packages/backend/dist/src/main.js
+              test -f packages/frontend/out/index.html
+              ./node_modules/.bin/prisma -v
+            '
+
   actions-timeline:
-    needs: [frontend-build, backend-build]
+    needs: [frontend-build, backend-build, docker-build]
     runs-on: ubuntu-latest
     permissions:
       actions: read

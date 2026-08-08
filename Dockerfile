@@ -10,7 +10,12 @@ COPY . /app
 WORKDIR /app
 # ビルドには devDependencies (nest/next CLI 等) が必要なので --prod=false を明示する
 RUN pnpm install --frozen-lockfile --prod=false --filter frontend --filter backend
-RUN pnpm --filter backend exec prisma generate
+# prisma generate は datasource URL に接続しないが、prisma.config.ts が env() を
+# 即時解決するためダミー値を渡す。これにより .env (gitignore 対象) が
+# ビルドコンテキストに無くてもイメージをビルドできる
+RUN DB_USERNAME=build DB_PASSWORD=build DB_HOST=localhost DB_PORT=5432 \
+    DB_DATABASE=build DB_SSLMODE=disable \
+    pnpm --filter backend exec prisma generate
 RUN pnpm --filter backend run build
 RUN pnpm --filter frontend run build
 
