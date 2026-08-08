@@ -1,5 +1,5 @@
 # 外部イメージをbaseステージとして扱う
-FROM node:20-alpine AS base
+FROM node:26-alpine AS base
 
 # baseステージをもとにbuilderステージを開始
 FROM base AS builder
@@ -8,7 +8,7 @@ WORKDIR /app
 
 COPY package.json pnpm-lock.yaml pnpm-workspace.yaml ./
 
-RUN npm install -g corepack@0.35.0 && corepack enable pnpm
+RUN npm install -g corepack && corepack enable pnpm
 
 RUN pnpm install --frozen-lockfile --prod=false
 
