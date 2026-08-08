@@ -8,6 +8,8 @@ services:
     build:
       context: .
       dockerfile: "./Dockerfile"
+      # Dockerfile の最終ステージは CI 用の smoke-test なので、実行用イメージを明示する
+      target: runner
     environment:
       DB_USERNAME: postgres
       DB_PASSWORD: postgres

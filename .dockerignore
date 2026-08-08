@@ -1,1 +1,35 @@
+# ビルドコンテキストを最小化する。
+# ここに挙げたものはイメージ内で再生成されるか、ビルドに不要。
+# ローカルの生成物が混入するとキャッシュが無駄に無効化され、CI と結果がずれる。
+
+# ---- 依存・ビルド生成物 ----
 **/node_modules
+**/dist
+**/out
+**/.next
+**/generated
+**/coverage
+**/*.tsbuildinfo
+
+# ---- VCS / CI / エディタ / ツール設定 ----
+.git
+.gitignore
+.github
+.vscode
+.claude
+.kiro
+
+# ---- 環境ファイル ----
+# ビルドは .env を必要としない (CI のクリーンチェックアウトと同条件に揃える)。
+# 必要な値は Dockerfile 側でダミーを渡す or 実行時に注入する。
+**/.env
+**/.env.local
+**/.env.*.local
+
+# ---- ドキュメント・インフラ定義 ----
+**/*.md
+**/Dockerfile
+.dockerignore
+compose.yml
+cloudbuild.yaml
+clouddeploy.yaml
