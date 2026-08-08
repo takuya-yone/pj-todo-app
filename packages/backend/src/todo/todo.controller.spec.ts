@@ -5,6 +5,7 @@ import configuration from '../config/configuration'
 import { PrismaService } from '../prisma/prisma.service'
 import { TodoController } from './todo.controller'
 import { CreateTodoDto, DeleteTodoDto, UpdateTodoDto } from './todo.dto'
+import { TodoRepository } from './todo.repository'
 import { TodoService } from './todo.service'
 
 const mockDto = new CreateTodoDto('titletitle', 'commentcomment')
@@ -14,6 +15,7 @@ describe('TodoController', () => {
   let todoService: TodoService
   let configService: ConfigService
   let prismaService: PrismaService
+  let todoRepository: TodoRepository
 
   beforeEach(async () => {
     const moduleFixture = await Test.createTestingModule({
@@ -24,7 +26,8 @@ describe('TodoController', () => {
     configService = moduleFixture.get<ConfigService>(ConfigService)
 
     prismaService = new PrismaService(configService)
-    todoService = new TodoService(prismaService)
+    todoRepository = new TodoRepository(prismaService)
+    todoService = new TodoService(todoRepository)
     todoController = new TodoController(todoService)
   })
 

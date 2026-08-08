@@ -1,49 +1,25 @@
 import { Injectable } from '@nestjs/common'
 import { TodoItem } from '../../generated/prisma/client'
-import { TodoItemGetPayload } from '../../generated/prisma/models'
-import { PrismaService } from '../prisma/prisma.service'
 import { CreateTodoDto, DeleteTodoDto, UpdateTodoDto } from './todo.dto'
-
-type TodoItemWithMetadata = TodoItemGetPayload<{
-  include: { itemMetadatas: true }
-}>
+import { TodoItemWithMetadata, TodoRepository } from './todo.repository'
 
 @Injectable()
 export class TodoService {
-  constructor(private prisma: PrismaService) {}
+  constructor(private todoRepository: TodoRepository) {}
 
   async getTodos(): Promise<TodoItemWithMetadata[]> {
-    const todos = await this.prisma.todoItem.findMany({
-      include: {
-        itemMetadatas: true,
-      },
-      orderBy: {
-        createdAt: 'asc',
-      },
-    })
-    return todos
+    return await this.todoRepository.findMany()
   }
 
   async createTodo(item: CreateTodoDto): Promise<TodoItem> {
-    const todo = this.prisma.todoItem.create({ data: item })
-    return todo
+    return await this.todoRepository.create(item)
   }
 
   async updateTodo(item: UpdateTodoDto): Promise<TodoItem> {
-    const todo = this.prisma.todoItem.update({
-      where: {
-        id: item.id,
-      },
-      data: item,
-    })
-    return todo
+    return await this.todoRepository.update(item)
   }
+
   async deleteTodo(item: DeleteTodoDto): Promise<TodoItem> {
-    const todo = this.prisma.todoItem.delete({
-      where: {
-        id: item.id,
-      },
-    })
-    return todo
+    return await this.todoRepository.delete(item.id)
   }
 }
