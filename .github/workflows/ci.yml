@@ -93,4 +93,4 @@ jobs:
     permissions:
       actions: read
     steps:
-      - uses: Kesin11/actions-timeline@v3.1.1
+      - uses: Kesin11/actions-timeline@v3.2.0
