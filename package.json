@@ -14,7 +14,7 @@
   "license": "ISC",
   "packageManager": "pnpm@11.20.0",
   "devDependencies": {
-    "@biomejs/biome": "^2.5.7",
+    "@biomejs/biome": "^2.5.8",
     "npm-check-updates": "^23.0.2"
   }
 }
