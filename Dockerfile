@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM node:24-alpine AS base
+FROM node:26-alpine AS base
 # node:24-alpine は corepack を同梱していないため明示的に導入する。
 # pnpm 自体のバージョンは package.json の packageManager フィールドから解決される。
 RUN npm install -g corepack && corepack enable pnpm
